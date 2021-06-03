@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="static/codemirror/lib/codemirror.css">
+    <script src="static/codemirror/mode/clike/clike.js"></script>
+    <link rel="stylesheet" href="static/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="static/codemirror/theme/dracula.css">
+    <script src="static/codemirror/addon/edit/closebrackets.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/76b63a401b.js"></script>
+
+    <title>OCL2</title>
+</head>
+<body>
+
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">OCL2</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <label class="custom-file-upload" id="file-input">
+                    <input type="file"/>
+                    Abrir
+                    <i class="fa fa-folder-open"></i>
+                </label>
+              <input class="nav-link active" class="custom-file-upload" type="file" aria-current="page" id="file-input">
+
+            </input>
+              <a class="nav-link" href="#">
+                  Guardar
+                  <i class="fa fa-save"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <br>
+
+    <!-- Editor's Tabs -->
+
+      <div class="container-info">
+
+                <div class="col-tab">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <textarea id="editor"></textarea>
+                        </div>
+
+                      </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <textarea
+                        class="terminal"
+                        readonly
+                        cols="60"
+                        rows="14"
+                        placeholder="Salida">
+                    </textarea>
+                </div>
+          </div>
+      </div>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="static/js/main.js"></script>
+</body>
+</html>

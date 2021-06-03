@@ -1,0 +1,36 @@
+nav {
+    margin-bottom: 80px;
+}
+
+
+.container-info {
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.terminal {
+    margin-top: 45px;
+    background: black;
+    text-decoration: none;
+    resize: none;
+    color: white;
+}
+
+.output-terminals-container {
+    margin-top: 40px;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
