@@ -55,5 +55,6 @@ input[type="file"] {
 }
 
 #analyze-btn {
-    width: 70%;
+    width: 74.5%;
+    margin-right: 60px;
 }
