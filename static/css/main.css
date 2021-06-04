@@ -50,11 +50,11 @@ input[type="file"] {
     color: black;
 }
 
-.analyze {
+.parse {
     text-align: center
 }
 
-#analyze-btn {
+#parse-btn {
     width: 74.5%;
     margin-right: 60px;
 }

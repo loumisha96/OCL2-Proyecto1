@@ -5,7 +5,7 @@ document.getElementById('file-input')
     .addEventListener('change', readFile, false);
 
 fileName = '';
-editorSelected = '';
+editorSelected = 'editor';
 
 function readFile(e) {
     var file = e.target.files[0];
@@ -72,12 +72,43 @@ function generateEditor() {
     newEditor.setSize("550", "311");
 }
 
-function getTabName(e) {
-    editorSelected = e.toElement.innerText;
-    if(editorSelected != 'tab1') editorSelected = editorSelected + '-editor';
+function getTabName() {
+
+    if(editorSelected != 'editor') editorSelected = editorSelected + '-editor';
 }
 
 
-function analyze() {
+function parse() {
     console.log(editorSelected);
+    let editor = document.getElementsByClassName(editorSelected);
+    console.log(editor[0].value);
+}
+
+function saveFile() {
+    let editor = document.getElementById(editorSelected);
+    console.log(editor);
+    let contents = editor.value;
+    var blob = new Blob([contents], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, editorSelected + '.xml');
+}
+
+
+function download() {
+    let editor = document.getElementById(editorSelected);
+    let contents = editor.value;
+    var file = new Blob([contents], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, editorSelected);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = editorSelected;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
 }
