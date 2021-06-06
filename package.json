@@ -1,0 +1,19 @@
+{
+  "name": "ocl2-proyecto1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gramaticaXPath.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loumisha96/OCL2-Proyecto1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loumisha96/OCL2-Proyecto1/issues"
+  },
+  "homepage": "https://github.com/loumisha96/OCL2-Proyecto1#readme"
+}

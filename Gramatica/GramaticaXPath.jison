@@ -1,6 +1,8 @@
 /*definición léxica*/
 %{
-
+     /*   const rep_gram = require("./AST_XPATH/reporteGramatica").reporteGramatica;
+        const pro = require("./AST_XPATH/produccion").producion;
+        let p = new pro();*/
 %}
 
 %lex
@@ -8,6 +10,8 @@
 
 %%
 "*"         return 'asterisk';
+".."        return 'twoPoint';
+"."         return 'point';
 "("         return 'parIzq';
 ")"         return 'parDer';
 "{"         return 'llaIzq';
@@ -17,7 +21,7 @@
 "|"         return 'barra';
 "["         return 'corcheteIzq';
 "]"         return 'corcheteDer';
-
+";"         return 'ptcoma';
 "+"         return 'add';
 ","         return 'comma';
 "-"         return 'minus';
@@ -37,6 +41,7 @@
 "and"       return 'and';
 "div"       return 'div';
 "mod"       return 'mod';
+"text"      return 'text';
 "node"      return 'node';
 "child"     return 'child';
 "self"      return 'self';
@@ -53,10 +58,14 @@
 "following_sibling"  return 'following_sibling';
 "preceding_sibling"  return 'preceding_sibling';
 "processing_instruction" return 'processing_instruction';
+/*Espacios en blanco*/
+[ \r\t]+     {}       
+\n           {}    
 [0-9]+                      return  'digits';
 ("."{digits})|({digits}"."[0-9]*)  return  'decimal';
-(\"({EscapeQuot}|[^"])*\")|("'""({EscapeApos}|[^'])*""'") return 'STRING_LITERAL';
+(\"({EscapeQuot}|[^"])*\")|("'""({EscapeApos}|[^'])*""'") return 'cadena';
 [A-Za-z_][A-Za-z_0-9]*	    return 'id';
+
 
 <<EOF>>                 return 'EOF';
 .       {
@@ -85,32 +94,42 @@
 %start ini 
 %% /*definicion de gramática*/
 ini
-        :XPATH EOF {}
+        :XPATH EOF {/*console.log(p.getGramatica('ini'));*/}
 ;
 XPATH
         //:STEP
-        :XPATH barra TIPO_PATH{}
-        |TIPO_PATH{}
+        :XPATH barra TIPO_STEP {}
+        |TIPO_STEP{}
 ;
-TIPO_PATH
-        :slash STEP{}
-        |STEP{}
-        |lIST_PATH
-;
-STEP
-        :STEP AXIS{}
-        |AXIS{}
-;
-AXIS
-        :AXIS_NAME doubleColon AXIS_OPTION{}
-        |AXIS_NAME doubleColon asterisk slash AXIS_OPTION{}
-        
-;
-AXIS_OPTION
-        :PATH{}
-        |id{}
+TIPO_STEP
+        :TIPO_STEP OPT PATH{}
+        |OPT PATH{}
 ;
 
+OPT
+        :slash{}
+        |PATH{}
+        
+;
+PATH
+        //:id 
+        :doubleSlash{}
+        
+        |OPTIONS{}
+        
+        |WILDCARD{}
+        |AXIS{}
+        |twoPoint{}
+        |point{}
+;
+OPTIONS
+        :id LIST_PREDICATE{}
+        |id{}
+;
+AXIS
+        :AXIS_NAME doubleColon{}
+        |AXIS_NAME{}
+;
 AXIS_NAME
         :ancestor{}
         |ancestor_or_self{}
@@ -126,23 +145,9 @@ AXIS_NAME
         |preceding_sibling{}
         |self{}
 ;
-lIST_PATH
-        :lIST_PATH PATH{}
-        |PATH{}
-;
-PATH
-        //:id 
-        :slash OPTIONS{}
-        |doubleSlash OPTIONS{}
-        
-        |doubleSlash asterisk{}
-        |asterisk slash{}
-        |WILDCARD{}
-        
-;
-OPTIONS
-        :id PREDICATE{}
-        |id{}
+LIST_PREDICATE
+        :LIST_PREDICATE PREDICATE
+        |PREDICATE
 ;
 PREDICATE
         :corcheteIzq E corcheteDer{}
@@ -163,15 +168,19 @@ E
         |E and E{}
         |E mod E{}
         |id parIzq parDer{}
-        |id{}
+       // |id{}
         |PATH{}
         |digits{}
         |decimal{}
+        |cadena{}
+        
         
 ;
 
 WILDCARD
         :asterisk{}
         |at asterisk{}
-        |node corcheteIzq corcheteDer{}
+        |at id{}
+        |node parIzq parDer{}
+        |text parIzq parDer{}
 ;
