@@ -1,14 +1,22 @@
 nav {
-    margin-bottom: 80px;
+    margin-bottom: -10px;
+}
+
+body {
+    background-color: blue;
+    text-align: center
 }
 
 
 .container-info {
     padding: 50px;
     display: flex;
+    height: 60vh;
     flex-direction: row;
+    margin-left: 60px;
     align-items: center;
     justify-content: center;
+
 }
 
 .terminal {
@@ -24,13 +32,29 @@ nav {
 }
 
 
+
+
 input[type="file"] {
     display: none;
 }
 
 .custom-file-upload {
-    border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
+    color: rgb(133, 133, 133);
+    transition: all 0.5s;
+}
+
+.custom-file-upload:hover {
+    color: black;
+}
+
+.parse {
+    text-align: center
+}
+
+#parse-btn {
+    width: 74.5%;
+    margin-right: 60px;
 }
