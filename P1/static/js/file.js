@@ -79,9 +79,11 @@ function getTabName() {
 
 
 function parse() {
-    console.log(editorSelected);
     let editor = document.getElementsByClassName(editorSelected);
-    console.log(editor[0].value);
+    console.log(editor);
+    let contents = editor[0].value;
+    console.log(contents);
+    ejecutarCodigo(contents);
 }
 
 function saveFile() {
