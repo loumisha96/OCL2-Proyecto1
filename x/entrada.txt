@@ -13,5 +13,7 @@ CHILD::*//BOOL/tew
 //autor[.="Mario Vargas Llosa"]/..
 //.
 //title[@*]
-//libro[autor=libro[titulo="Pantaleón y las visitoras"]/autor/text()]/titulo --->//libro no permite
+//libro[autor=//libro[titulo="Pantaleón y las visitoras"]/autor/text()]/titulo
 //libro[titulo="La vida está en otra parte"]/fechaPublicacion/@ano
+//@ano[.="1970"]
+//libro[autor="Mario Vargas Llosa" and fechaPublicacion/@ano="1973"]
