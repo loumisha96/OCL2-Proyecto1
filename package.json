@@ -1,15 +1,20 @@
 {
-  "name": "interprete-jison",
+  "name": "ocl2-proyecto1",
   "version": "1.0.0",
-  "description": "Interprete básico para uso del laboratorio de Compiladores 2",
-  "main": "index.js",
+  "description": "",
+  "main": "gramaticaXPath.js",
   "scripts": {
-    "build": "tsc",
-    "gramatica": "jison ./dist/Gramatica/gramatica.jison"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Haroldo Pablo Arias Molina",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loumisha96/OCL2-Proyecto1.git"
+  },
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^15.9.0"
-  }
+  "bugs": {
+    "url": "https://github.com/loumisha96/OCL2-Proyecto1/issues"
+  },
+  "homepage": "https://github.com/loumisha96/OCL2-Proyecto1#readme"
+
 }
