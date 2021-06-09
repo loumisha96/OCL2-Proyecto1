@@ -1,11 +1,6 @@
 START : RAICES EOF
     ;
 
-RAICES:
-    RAICES RAIZ
-	| RAIZ
-
-// RAICES sin recursividad por la izquierda
 
 RAICES:
     RAIZ RAICES'
@@ -14,8 +9,6 @@ RAICES':
         RAIZ RAICES'
     |   EPSILON
 
-
-//
 
 RAIZ:
     PRINT semicolon
@@ -33,31 +26,17 @@ LATRIBUTOS: ATRIBUTOS
            |
 ;
 
-ATRIBUTOS:
-    ATRIBUTOS ATRIBUTO
-    | ATRIBUTO
-;
-
-// ATRIBUTOS sin recursividad por la izquierda
 
 ATRIBUTOS: ATRIBUTO ATRIBUTOS'
 
 ATRIBUTOS': ATRIBUTO ATRIBUTOS'
         |   EPSILON
 
-//
-
 ATRIBUTO:
     identifier asig StringLiteral
 ;
 
-LISTA_ID_OBJETO: LISTA_ID_OBJETO identifier
-        | identifier
-        |LISTA_ID_OBJETO todos
-        | todos
-;
 
-// LISTA_ID_OBJETO sin recursividad por la izquierda
 
 LISTA_ID_OBJETO: identifier LISTA_ID_OBJETO'
             |     todos LISTA_ID_OBJETO'
@@ -66,24 +45,17 @@ LISTA_ID_OBJETO': identifier LISTA_ID_OBJETO'
             | todos
             | EPSILON
 
-//
-
-OBJETOS:
-      OBJETOS OBJETO
-	| OBJETO
-
-// OBJETOS sin recursividad por la izquierda
 
 OBJETOS: OBJETO OBJETOS'
 
 OBJETOS': OBJETO OBJETOS'
       |   EPSILON
 
-//
 
 PRINT:
     print lparen EXPR rparen
-/*EXPR
+
+/*EXPR:
     PRIMITIVA
     | OP_ARITMETICAS
 
