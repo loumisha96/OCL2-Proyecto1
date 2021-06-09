@@ -1,6 +1,6 @@
 "use strict";
-class Simbolo {
-    constructor(tipo, id, linea, columna, valor, Entorno, TablaSimbolos) {
+var Simbolo = /** @class */ (function () {
+    function Simbolo(tipo, id, linea, columna, valor, Entorno, TablaSimbolos) {
         this.id = id;
         this.linea = linea;
         this.columna = columna;
@@ -9,10 +9,12 @@ class Simbolo {
         this.Entorno = Entorno;
         this.TablaSimbolos = TablaSimbolos;
     }
-    getTipo(ent, arbol) {
+    Simbolo.prototype.getTipo = function (ent, arbol) {
         return this.tipo;
-    }
-    getValorImplicito(ent, arbol) {
+    };
+    Simbolo.prototype.getValorImplicito = function (ent, arbol) {
         return this.valor;
-    }
-}
+    };
+    return Simbolo;
+}());
+//# sourceMappingURL=Simbolo.js.map

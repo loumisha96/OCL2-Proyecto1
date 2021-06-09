@@ -1,6 +1,6 @@
 "use strict";
-class Objeto {
-    constructor(id, texto, linea, columna, listaAtributos, listaObjetos, EtiquetaCierre) {
+var Objeto = /** @class */ (function () {
+    function Objeto(id, texto, linea, columna, listaAtributos, listaObjetos, EtiquetaCierre) {
         this.id = id;
         this.texto = texto;
         this.linea = linea;
@@ -10,25 +10,27 @@ class Objeto {
         this.entorno = new Entorno(null);
         this.EtiquetaCierre = EtiquetaCierre;
     }
-    getId() {
+    Objeto.prototype.getId = function () {
         return this.id;
-    }
-    getTexto() {
+    };
+    Objeto.prototype.getTexto = function () {
         return this.texto;
-    }
-    getLinea() {
+    };
+    Objeto.prototype.getLinea = function () {
         return this.linea;
-    }
-    getColumna() {
+    };
+    Objeto.prototype.getColumna = function () {
         return this.columna;
-    }
-    getListaObjetos() {
+    };
+    Objeto.prototype.getListaObjetos = function () {
         return this.listaObjetos;
-    }
-    getListaAtributo() {
+    };
+    Objeto.prototype.getListaAtributo = function () {
         return this.listaAtributos;
-    }
-    getEtiquetaCierre() {
+    };
+    Objeto.prototype.getEtiquetaCierre = function () {
         return this.EtiquetaCierre;
-    }
-}
+    };
+    return Objeto;
+}());
+//# sourceMappingURL=Objeto.js.map

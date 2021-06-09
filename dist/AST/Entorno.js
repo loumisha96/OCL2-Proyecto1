@@ -1,58 +1,60 @@
 "use strict";
-class Entorno {
-    constructor(anterior) {
+var Entorno = /** @class */ (function () {
+    function Entorno(anterior) {
         this.tabla = {};
         this.anterior = anterior;
     }
-    agregar(id, simbolo) {
+    Entorno.prototype.agregar = function (id, simbolo) {
         // id = id.toLowerCase();
         //  simbolo.id = simbolo.id;
         this.tabla[id] = simbolo;
-    }
-    eliminar(id) {
+    };
+    Entorno.prototype.eliminar = function (id) {
         //id = id.toLowerCase();
-        for (let e = this; e != null; e = e.anterior) {
-            const value = e.tabla[id];
+        for (var e = this; e != null; e = e.anterior) {
+            var value = e.tabla[id];
             if (value !== undefined) {
                 delete e.tabla[id];
                 return true;
             }
         }
         return false;
-    }
-    existe(id) {
+    };
+    Entorno.prototype.existe = function (id) {
         id = id.toLowerCase();
-        for (let e = this; e != null; e = e.anterior) {
-            const value = e.tabla[id];
+        for (var e = this; e != null; e = e.anterior) {
+            var value = e.tabla[id];
             if (value !== undefined) {
                 return true;
             }
         }
         return false;
-    }
-    existeEnActual(id) {
+    };
+    Entorno.prototype.existeEnActual = function (id) {
         id = id.toLowerCase();
         if (this.tabla[id] !== undefined) {
             return true;
         }
         return false;
-    }
-    getSimbolo(id) {
+    };
+    Entorno.prototype.getSimbolo = function (id) {
         id = id.toLowerCase();
-        for (let e = this; e != null; e = e.anterior) {
+        for (var e = this; e != null; e = e.anterior) {
             if (e.tabla[id] !== undefined) {
                 return e.tabla[id];
             }
         }
         return null;
-    }
-    reemplazar(id, nuevoValor) {
+    };
+    Entorno.prototype.reemplazar = function (id, nuevoValor) {
         id = id.toLowerCase();
-        for (let e = this; e != null; e = e.anterior) {
-            const value = e.tabla[id];
+        for (var e = this; e != null; e = e.anterior) {
+            var value = e.tabla[id];
             if (value !== undefined) {
                 e.tabla[id] = nuevoValor;
             }
         }
-    }
-}
+    };
+    return Entorno;
+}());
+//# sourceMappingURL=Entorno.js.map
