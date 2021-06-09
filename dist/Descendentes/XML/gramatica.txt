@@ -1,0 +1,79 @@
+START : RAICES EOF
+    ;
+
+
+RAICES:
+    RAIZ RAICES'
+
+RAICES':
+        RAIZ RAICES'
+    |   EPSILON
+
+
+RAIZ:
+    PRINT semicolon
+    | OBJETO
+
+
+OBJETO:
+      lt identifier LATRIBUTOS gt OBJETOS           lt div identifier gt
+    | lt identifier LATRIBUTOS gt LISTA_ID_OBJETO   lt div identifier gt
+    | lt identifier LATRIBUTOS div gt
+    | lt identifier LATRIBUTOS gt  lt div identifier gt
+
+
+LATRIBUTOS: ATRIBUTOS
+           |
+;
+
+
+ATRIBUTOS: ATRIBUTO ATRIBUTOS'
+
+ATRIBUTOS': ATRIBUTO ATRIBUTOS'
+        |   EPSILON
+
+ATRIBUTO:
+    identifier asig StringLiteral
+;
+
+
+
+LISTA_ID_OBJETO: identifier LISTA_ID_OBJETO'
+            |     todos LISTA_ID_OBJETO'
+
+LISTA_ID_OBJETO': identifier LISTA_ID_OBJETO'
+            | todos
+            | EPSILON
+
+
+OBJETOS: OBJETO OBJETOS'
+
+OBJETOS': OBJETO OBJETOS'
+      |   EPSILON
+
+
+PRINT:
+    print lparen EXPR rparen
+
+/*EXPR:
+    PRIMITIVA
+    | OP_ARITMETICAS
+
+OP_ARITMETICAS:
+    EXPR plus EXPR
+    | EXPR minus EXPR
+    | EXPR times EXPR
+    | EXPR div EXPR
+    | EXPR mod EXPR
+    | minus EXPR %prec UMINUS
+    | lparen EXPR rparen
+;
+
+PRIMITIVA:
+    IntegerLiteral
+    | DoubleLiteral
+    | StringLiteral
+    | charliteral
+    | null
+    | true
+    | false

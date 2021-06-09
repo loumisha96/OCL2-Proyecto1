@@ -4,8 +4,9 @@
   "description": "",
   "main": "gramaticaXPath.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gramatica": "jison ./dist/Gramatica/gramatica.jison"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,8 @@
     "url": "https://github.com/loumisha96/OCL2-Proyecto1/issues"
   },
   "homepage": "https://github.com/loumisha96/OCL2-Proyecto1#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.7",
-    "typescript": "^4.3.2"
+  "dependencies": {
+    "@types/npm": "^2.0.31",
+    "types": "^0.1.1"
   }
 }
