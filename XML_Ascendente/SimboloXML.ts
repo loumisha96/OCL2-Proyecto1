@@ -1,6 +1,6 @@
 
 
-class Simbolo  {
+class SimboloXML  {
     public id: string;
     public valor: any;
     private tipo: any;
