@@ -5,7 +5,7 @@ var simboloAnterior;
 let entornoGlobal:any;
 let guardarTabla:any;
 
-function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
+function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {//envia una objeto a buscar y su tabla de simbolos(objetos)
     if(tabla!=undefined){
     tabla.forEach((element)=>{
         
