@@ -232,20 +232,32 @@ function DescargarArchivo(){
         },0); 
     }
 }
-
+var contenidoErrores;
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
-    
+    contenidoErrores="";
+        Errores.clear();
     try {
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         //agregarTablaSimbolos3(result);
+        //contenidoErrores="";
+        //Errores.clear();
+        //tabla="";
+        //agregarTablaSimbolos3(result);
+        
+        tabla="";
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
         recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        if(!Errores.Vacio()){
+            console.log("vacio we")
+        }else{
+            contenidoErrores= Errores.mostrar_Lista()
+        }
 
     } catch (error) {
       console.log(error);
@@ -287,21 +299,15 @@ function GenerarReporteTabla(){
 function Reporte_Errores(){
 
     var nueva_ventana = window.open('../Reporte_Errores','_blank');
-    nueva_ventana.document.write(Reporte_Error);
+    nueva_ventana.document.write(contenidoErrores);
     //alert(Reporte_Error)
 
 }
-function Reporte_ErroresP(){
 
-    var nueva_ventana = window.open('../Reporte_Errores_Python','_blank');
-    nueva_ventana.document.write(Reporte_ErrorPython);
-    //alert(Reporte_Error)
-
-}
 
 function Pagina_Reporte_AST(){
 
-    var nueva_ventana = window.open('../Reporte_AST','_blank');
+    var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
 
     var textopagina="<!DOCTYPE html>";
     textopagina += "<html lang=\"en\">";

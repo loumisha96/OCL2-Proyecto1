@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="codemirror/jquery-1.7.2.min.js"></script>
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror//lib//codemirror.css">
     <link rel="stylesheet" href="codemirror//theme//darcula.css">
@@ -91,7 +91,7 @@
             <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
             <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
             <button   id="boton" class="button">Analizar</button>
-            <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Errores JS</button>
+            <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Reporte Errores</button>
             <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">AST</button>
             <button onclick="Reporte_Tabla()" title="QuitarPestana" id="btn9" class="btnp">Tabla Simbolos</button>
             <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Limpiar Consolas</button>
@@ -175,6 +175,8 @@ nueva_ventana.document.write(Reporte_Tokens_PY);
              <script src='XML_Ascendente/SimboloXML.js'></script>
              <script src='XML_Ascendente/XML_Ascendente.js'></script>
              <script src='XML_Ascendente/Gramatica/gramaticaXML.js'></script>
+             <script src='Errores/Errores.js'></script>
+             <script src='Errores/Nodo_Error.js'></script>
         </body>
 
         <body>
