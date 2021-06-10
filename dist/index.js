@@ -232,6 +232,7 @@ function DescargarArchivo(){
         },0); 
     }
 }
+
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
@@ -239,13 +240,12 @@ const analizarTexto = () => {
     
     try {
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
-      
+        guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         //agregarTablaSimbolos3(result);
         agregarTablaSimbolos(result);
-       console.log(result);
-       //prueba(result);
-        //console.log(entornoGlobal);//<---------------------------- Aqui esta la tabla de simbolos
+        console.log(result);
         GenerarReporteTabla();
+        recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
 
     } catch (error) {
       console.log(error);

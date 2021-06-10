@@ -4,6 +4,48 @@ var tablaGeneral = [];
 var entornoAnterior = "Global";
 var simboloAnterior;
 let entornoGlobal;
+let guardarTabla;
+function recorreTabla(objeto, tabla) {
+    if (tabla != undefined) {
+        tabla.forEach((element) => {
+            if (element.id == objeto) {
+                if (element.id == element.EtiquetaCierre) {
+                    if (element.tablaSimbolos.length != 0) {
+                    }
+                    else {
+                        if (element.texto != "") {
+                            console.log("<" + element.id + ">" + element.texto + "</" + element.EtiquetaCierre + ">");
+                        }
+                    }
+                }
+                else {
+                }
+                llenarElementos(element.tablaEntornos);
+                // console.log(element.tablaEntornos)
+            }
+            else {
+                recorreTabla(objeto, element.tablaEntornos);
+            }
+        });
+    }
+}
+function llenarElementos(tabla) {
+    if (tabla != undefined) {
+        tabla.forEach((element) => {
+            if (element.id == element.EtiquetaCierre) {
+                if (element.tablaSimbolos.length != 0) {
+                }
+                else {
+                    if (element.texto != "") {
+                        console.log("<" + element.id + ">" + element.texto + "</" + element.EtiquetaCierre + ">");
+                    }
+                }
+            }
+            else {
+            }
+        });
+    }
+}
 function agregarTablaSimbolos3(result) {
     entornoGlobal = new Entorno(null);
     result.forEach((element) => {
@@ -64,11 +106,6 @@ function agregarTablaSimbolos(element) {
             entornoAnterior = element[index].id;
             agregarTablaSimbolos(element[index].tablaEntornos);
         }
-    }
-}
-function recorreTabla() {
-    for (let index = 1; index < tablaGeneral.length; index++) {
-        console.log(tablaGeneral[index]);
     }
 }
 var tabla = "";
