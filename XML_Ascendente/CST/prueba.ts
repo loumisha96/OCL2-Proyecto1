@@ -1,6 +1,7 @@
-class CST_Ascendente{
+
     var CSTAcadena="";
-    function CST_A(Nodos:any){
+    var i:number;
+    function CSTA(Nodos:any){
     
         var padre = "nodo"+i;
         
@@ -14,13 +15,13 @@ class CST_Ascendente{
         for (let index = 0; index < Nodos.hijos.length; index++) {
         //console.log(Nodos.hijos[index].descripcion.toString());
       //  if((Nodos.descripcion.toString()!="")){
-            cadena= cadena + padre +"->"+"nodo"+(i)+ " ";
+            CSTAcadena= CSTAcadena + padre +"->"+"nodo"+(i)+ " ";
           
       //  }
            // if((Nodos.hijos[index].descripcion.toString()!="")){ 
     
             
-            AST(Nodos.hijos[index]);
+            CSTA(Nodos.hijos[index]);
         //}
         } 
         } catch (error) {
@@ -31,7 +32,6 @@ class CST_Ascendente{
        // if((Nodos.descripcion.toString()!="")){
          
         //console.log(cadena);
-        return cadena;
+        return CSTAcadena;
     }
 
-}
