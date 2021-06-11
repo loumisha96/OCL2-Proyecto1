@@ -1,4 +1,4 @@
-"use strict";
+
 var Simbolo = /** @class */ (function () {
     //TablaSimbolos: Array<Simbolo>;
     // hijos:number;
@@ -20,4 +20,3 @@ var Simbolo = /** @class */ (function () {
     };
     return Simbolo;
 }());
-//# sourceMappingURL=Simbolo.js.map

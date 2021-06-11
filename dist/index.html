@@ -153,7 +153,6 @@
                 
                 function cargar() {
                     var contenido = Reporte_Clases;
-                    //formato para guardar el archivo
                     var hoy = new Date();
                     var dd = hoy.getDate();
                     var mm = hoy.getMonth() + 1;
@@ -162,7 +161,7 @@
                     var MM = hoy.getMinutes();
                     var formato = "doc" + dd + "_" + mm + "_" + yyyy + "_" + HH + "_" + MM;
 
-                    var nombre = "Archivo" + formato + ".js";//nombre del archivo
+                    var nombre = "Archivo" + formato + ".js";
                     var file = new Blob([contenido], { type: 'text/plain' });
 
                     if (window.navigator.msSaveOrOpenBlob) {
@@ -187,15 +186,17 @@ nueva_ventana.document.write(Reporte_Tokens_PY);
 
 }
             </script>
-            <script src='Gramatica/gramatica.js'></script>
+            
             <script src='index.js'></script>
             <script src='Expresiones/Objeto.js'></script>
              <script src='Expresiones/Atributo.js'></script>
-             <script src='Instrucciones/Primitivas/Print.js'></script>
-             <script src='AST/Entorno.js'></script>
              <script src='AST/Simbolo.js'></script>
-         
-             <script src='AST/TablaSim.js'></script>
+             <script src='AST/Entorno.js'></script>
+             <script src='Instrucciones/Primitivas/Print.js'></script>
+             <script src='XML_Ascendente/EntornoXML.js'></script>
+             <script src='XML_Ascendente/SimboloXML.js'></script>
+             <script src='XML_Ascendente/XML_Ascendente.js'></script>
+             <script src='XML_Ascendente/Gramatica/gramaticaXML.js'></script>
         </body>
 
         <body>
