@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="codemirror//lib//codemirror.css">
     <link rel="stylesheet" href="codemirror//theme//darcula.css">
     <script src="codemirror/mode/clike/clike.js"></script>
+
+    <!-----------------------------XPATH------------------------->
+    
+    <script src="indexXpath.js"></script>
+    <script src="../gramaticaXPath.js"></script>
+    <script src="../XPATH/AST/nodo.js"></script>
+    <script src="../XPATH/AST/ast.js"></script>
+    <script src="../XPATH/reporte/produccion.js"></script>
+    <script src="../XPATH/reporte/reporteGramatica.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.js"></script>
+    <script src="grafo.js"></script>
+   
+    
+    
+    
+    
+    
     <style>
         h2 {
             color: #fff;
@@ -26,7 +43,7 @@
         textarea {
             resize: none;
             background-color: #000;
-            border: 14px solid rgb(38, 92, 76);
+            border: 14px solid rgb(205, 247, 234);
             color: #ffffff;
             padding: 10px;
             font-family: courier new;
@@ -39,9 +56,9 @@
     background: #464753;
 }
 .contenedor{
-    width: 1180px;
+    width: 2000px;
     margin: auto;
-    background:#5108c7a8;
+    background:#045e64bd;
     color: rgb(0, 112, 163);
     padding: 20px 15px 50px 50px;
     border-radius: 10px;
@@ -65,7 +82,7 @@
 }
 .btnp {
     border: none;
-    background: #042694;
+    background: #01030a;
     color: #f2f2f2;
     padding: 5px;
     font-size: 14px;
@@ -87,17 +104,21 @@
         <div></br></div>
         <div> 
             <button onclick="GuardarArchivo();" id="guardarEditor" title="Guardar" class="btnp">Guardar</button>
+            
             <button onclick="cargar()" id="guardar" title="GuardarJ" class="btnp">Descargar C3D</button>
             <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
             <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
             <button   id="boton" class="button">Analizar</button>
+            <button onclick="AnalizarXpath();" id="guardarEditor" title="Guardar" class="btnp">Analizar Xpath</button>
             <button onclick="Reporte_Errores()" title="QuitarPestana" id="btn6" class="btnp">Errores JS</button>
             <button onclick="Pagina_Reporte_AST()" title="QuitarPestana" id="btn7" class="btnp">AST</button>
+            <button onclick="ASTXPATH()" title="QuitarPestana" id="btn7" class="btnp">AST_XPATH</button>
             <button onclick="Reporte_Tabla()" title="QuitarPestana" id="btn9" class="btnp">Tabla Simbolos</button>
             <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Limpiar Consolas</button>
         </div>
+        
 <script> </script>
- 
+    
         <div id="pestanas">
             <ul id="lista">
             </ul>
@@ -129,6 +150,7 @@
             </div>
    
             <script>
+                
                 function cargar() {
                     var contenido = Reporte_Clases;
                     var hoy = new Date();
@@ -179,6 +201,9 @@ nueva_ventana.document.write(Reporte_Tokens_PY);
 
         <body>
             <div id="contenidoconsolas">
+            </div>
+            <div id="grafo">
+
             </div>
         </body>
 

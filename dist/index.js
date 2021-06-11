@@ -233,15 +233,26 @@ function DescargarArchivo(){
     }
 }
 
+/*------------------------- Prueba de conexion -----------------------------------------------------*/
+var cont =0;
+var tablaGeneral =[];
+var tablaLocal =[];
+var arbolDesimbolo;
+var entornoAnterior="Global";
+var simboloAnterior;
+let entornoGlobal;
+let p = new producion();
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
     
     try {
+
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         //agregarTablaSimbolos3(result);
+
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();

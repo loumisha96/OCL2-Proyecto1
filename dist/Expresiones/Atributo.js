@@ -1,21 +1,23 @@
 "use strict";
-class Atributo {
-    constructor(id, valor, linea, columna) {
+var Atributo = /** @class */ (function () {
+    function Atributo(id, valor, linea, columna) {
         this.id = id;
         this.valor = valor;
         this.linea = linea;
         this.columna = columna;
     }
-    getId() {
+    Atributo.prototype.getId = function () {
         return this.id;
-    }
-    getValor() {
+    };
+    Atributo.prototype.getValor = function () {
         return this.valor;
-    }
-    getLinea() {
+    };
+    Atributo.prototype.getLinea = function () {
         return this.linea;
-    }
-    getColumna() {
+    };
+    Atributo.prototype.getColumna = function () {
         return this.columna;
-    }
-}
+    };
+    return Atributo;
+}());
+//# sourceMappingURL=Atributo.js.map

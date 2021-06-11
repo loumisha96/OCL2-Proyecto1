@@ -20,6 +20,7 @@
   "homepage": "https://github.com/loumisha96/OCL2-Proyecto1#readme",
   "dependencies": {
     "@types/npm": "^2.0.31",
-    "types": "^0.1.1"
+    "types": "^0.1.1",
+    "vis": "^4.21.0-EOL"
   }
 }
