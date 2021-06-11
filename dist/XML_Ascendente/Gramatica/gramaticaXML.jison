@@ -127,7 +127,7 @@ OBJETO:
                                                                                     $$= new EntornoXML($2,'',@1.first_line, @1.first_column,$3,$5,$8);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $2)
-                                                                                    var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $2+"-> "+$8, contadorLineas,0);
+                                                                                    var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$8, @1.first_line, @1.first_column);
                                                                                     Errores.add(er);
                                                                                     }  
                                                                                         }
@@ -136,7 +136,7 @@ OBJETO:
                                                                                     $$= new EntornoXML($2,$5,@1.first_line, @1.first_column,$3,[],$8);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $2)
-                                                                                    var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $2+"-> "+$8, contadorLineas,0);
+                                                                                    var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$8, @1.first_line, @1.first_column);
                                                                                     Errores.add(er);
                                                                                     } 
                                                                                      }
@@ -145,18 +145,18 @@ OBJETO:
                                                                 if($2==$8){
                                                                 $$ = new EntornoXML($2,$5,@1.first_line, @1.first_column,[],[],$7);
                                                                 }else{
-                                                                console.log("Error semantico"+ $2)
-                                                                var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $2+"-> "+$7, contadorLineas,0);
+                                                                console.log("Error semantico"+ $2+ @1.first_column)
+                                                                var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$7, @1.first_line, @1.first_column);
                                                                 Errores.add(er);
                                                                                     } 
                                                                                     }
 
     |error identifier {console.error('Error Sintactico: ' + yytext + ', linea: ' + @1.first_line + ',  columna: ' + @1.first_column);
-                               var er =new NodoError("Error Sintatico","No se esperaba el caracter: "+ yytext, @1.first_line,@1.first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+$1+"Se esperaba OBJETO(Etiqueta Doble)|| OBJETO(Etiqueta Unica) ", @1.first_line,@1.first_column);
                                Errores.add(er);}
 ;
 PANIC: error {console.error('Error Sintactico: ' + yytext + ', linea: ' + @1.first_line + ',  columna: ' + @1.first_column);
-                               var er =new NodoError("Error Sintatico","No se esperaba el caracter: "+ yytext, @1.first_line,@1.first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+$1+"Se esperaba OBJETO(Etiqueta Doble)|| OBJETO(Etiqueta Unica) ", @1.first_line,@1.first_column);
                                Errores.add(er);}
 
 ;
@@ -174,7 +174,7 @@ ATRIBUTOS:
 ATRIBUTO: 
     identifier asig StringLiteral                   { $$= new Atributo($1, $3, @1.first_line, @1.first_column); }
     |error StringLiteral {console.error('Error Sintactico: ' + yytext + ', linea: ' + @1.first_line + ',  columna: ' + @1.first_column);
-                               var er =new NodoError("Error Sintatico","No se esperaba el caracter: "+ yytext, @1.first_line,@1.first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+ $1+"Se esperaba: ATRIBUTO ", @1.first_line,@1.first_column);
                                Errores.add(er);}
 ;
 

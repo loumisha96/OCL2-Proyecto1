@@ -104,7 +104,7 @@ contadorLineas++;
                                                                                     this.$= new EntornoXML($$[$0-7],'',_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],$$[$0-4],$$[$0-1]);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $$[$0-7])
-                                                                                    var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], contadorLineas,0);
+                                                                                    var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], _$[$0-8].first_line, _$[$0-8].first_column);
                                                                                     Errores.add(er);
                                                                                     }  
                                                                                         
@@ -115,7 +115,7 @@ case 7:
                                                                                     this.$= new EntornoXML($$[$0-7],$$[$0-4],_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],[],$$[$0-1]);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $$[$0-7])
-                                                                                    var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], contadorLineas,0);
+                                                                                    var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], _$[$0-8].first_line, _$[$0-8].first_column);
                                                                                     Errores.add(er);
                                                                                     } 
                                                                                      
@@ -129,19 +129,19 @@ case 9:
                                                                 this.$ = new EntornoXML($$[$0-6],$$[$0-3],_$[$0-7].first_line, _$[$0-7].first_column,[],[],$$[$0-1]);
                                                                 }else{
                                                                 console.log("Error semantico"+ $$[$0-6])
-                                                                var er =new NodoError("Error Semantico","Etiquetas no coincidenG: "+ $$[$0-6]+"-> "+$$[$0-1], contadorLineas,0);
+                                                                var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-6]+"-> "+$$[$0-1], _$[$0-7].first_line, _$[$0-7].first_column);
                                                                 Errores.add(er);
                                                                                     } 
                                                                                     
 break;
-case 10: case 17:
+case 10:
 console.error('Error Sintactico: ' + yytext + ', linea: ' + _$[$0-1].first_line + ',  columna: ' + _$[$0-1].first_column);
-                               var er =new NodoError("Error Sintatico","No se esperaba el caracter: "+ yytext, _$[$0-1].first_line,_$[$0-1].first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+$$[$0-1]+"Se esperaba OBJETO(Etiqueta Doble)|| OBJETO(Etiqueta Unica) ", _$[$0-1].first_line,_$[$0-1].first_column);
                                Errores.add(er);
 break;
 case 11:
 console.error('Error Sintactico: ' + yytext + ', linea: ' + _$[$0].first_line + ',  columna: ' + _$[$0].first_column);
-                               var er =new NodoError("Error Sintatico","No se esperaba el caracter: "+ yytext, _$[$0].first_line,_$[$0].first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+$$[$0]+"Se esperaba OBJETO(Etiqueta Doble)|| OBJETO(Etiqueta Unica) ", _$[$0].first_line,_$[$0].first_column);
                                Errores.add(er);
 break;
 case 12:
@@ -152,6 +152,11 @@ case 13:
 break;
 case 16:
  this.$= new Atributo($$[$0-2], $$[$0], _$[$0-2].first_line, _$[$0-2].first_column); 
+break;
+case 17:
+console.error('Error Sintactico: ' + yytext + ', linea: ' + _$[$0-1].first_line + ',  columna: ' + _$[$0-1].first_column);
+                               var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+ $$[$0-1]+"Se esperaba: ATRIBUTO ", _$[$0-1].first_line,_$[$0-1].first_column);
+                               Errores.add(er);
 break;
 case 18: case 20:
  $$[$0-1]=$$[$0-1] + ' ' +$$[$0] ; this.$ = $$[$0-1];

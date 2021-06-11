@@ -32,6 +32,7 @@ class Errores extends Array {
         texto += "<tr> \n";
         texto += "<th scope=\"col\">#</th> \n";
         texto += "<th scope=\"col\">Nombre</th> \n";
+        texto += "<th scope=\"col\">Analizador</th> \n";
         texto += "<th scope=\"col\">Descripcion</th> \n";
         texto += "<th scope=\"col\">Fila</th> \n";
         texto += "<th scope=\"col\">Columna</th> \n";
@@ -43,9 +44,10 @@ class Errores extends Array {
             texto += "<tr> \n";
             texto += "<th scope=\"row\">" + No + "</th> \n";
             texto += "<td>" + this.prototype[i].gettipo() + "</td><td>" +
+                this.prototype[i].getAnalizador() + "</td><td>" +
                 this.prototype[i].getdescripcion() + "</td><td>" +
-                this.prototype[i].getlinea() + "</td>\n";
-            this.prototype[i].getcolumna() + "</td>\n";
+                this.prototype[i].getlinea() + "</td><td>\n" +
+                this.prototype[i].getcolumna() + "</td>\n";
             texto += "</tr>\n";
             No = No + 1;
         }

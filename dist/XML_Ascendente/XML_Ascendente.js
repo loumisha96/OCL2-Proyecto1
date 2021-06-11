@@ -99,7 +99,7 @@ function agregarTablaSimbolos3(result) {
             }
             else {
                 console.log("Error semantico" + element.id);
-                var er = new NodoError("Error Semantico", "Etiquetas no coinciden: " + element.id + "-> " + element.EtiquetaCierre, contadorLineas, 0);
+                var er = new NodoError("Error Semantico", "XML Ascendente", "Etiquetas no coinciden: " + element.id + "-> " + element.EtiquetaCierre, element.linea, element.columna);
                 Errores.add(er);
             }
         }
@@ -154,7 +154,7 @@ function agregarTablaSimbolos(element) {
             }
             else {
                 console.log("Error semantico" + element[index].id);
-                var er = new NodoError("Error Semantico", "Etiquetas no coinciden: " + element[index].id + "-> " + element[index].EtiquetaCierre, contadorLineas, 0);
+                var er = new NodoError("Error Semantico", "XML Ascendente", "Etiquetas no coinciden: " + element[index].id + "-> " + element[index].EtiquetaCierre, element[index].linea, element[index].columna);
                 Errores.add(er);
             }
         }
