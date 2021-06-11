@@ -232,7 +232,20 @@ function DescargarArchivo(){
         },0); 
     }
 }
+
 var contenidoErrores;
+
+
+/*------------------------- Prueba de conexion -----------------------------------------------------*/
+var cont =0;
+var tablaGeneral =[];
+var tablaLocal =[];
+var arbolDesimbolo;
+var entornoAnterior="Global";
+var simboloAnterior;
+let entornoGlobal;
+let p = new producion();
+
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
@@ -241,15 +254,20 @@ const analizarTexto = () => {
     contenidoErrores="";
         Errores.clear();
     try {
+
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         //agregarTablaSimbolos3(result);
+
         //contenidoErrores="";
         //Errores.clear();
         //tabla="";
         //agregarTablaSimbolos3(result);
         
         tabla="";
+
+
+
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();

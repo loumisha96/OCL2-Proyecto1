@@ -18,16 +18,16 @@ var Operador;
     Operador[Operador["MENOR_IGUA_QUE"] = 14] = "MENOR_IGUA_QUE";
     Operador[Operador["DESCONOCIDO"] = 15] = "DESCONOCIDO";
 })(Operador || (Operador = {}));
-class Operacion {
-    constructor(op_izquierda, op_derecha, operacion, linea, columna) {
+var Operacion = /** @class */ (function () {
+    function Operacion(op_izquierda, op_derecha, operacion, linea, columna) {
         this.linea = linea;
         this.columna = columna;
         this.op_izquierda = op_izquierda;
         this.op_derecha = op_derecha;
         this.operador = operacion;
     }
-    getTipo(ent, arbol) {
-        const valor = this.getValorImplicito(ent, arbol);
+    Operacion.prototype.getTipo = function (ent, arbol) {
+        var valor = this.getValorImplicito(ent, arbol);
         if (typeof (valor) === 'boolean') {
             return 'boolean';
         }
@@ -44,11 +44,11 @@ class Operacion {
             return 'null';
         }
         return 'void';
-    }
-    getValorImplicito(ent, arbol) {
+    };
+    Operacion.prototype.getValorImplicito = function (ent, arbol) {
         if (this.operador !== Operador.MENOS_UNARIO && this.operador !== Operador.NOT) {
-            let op1 = this.op_izquierda.getValorImplicito(ent, arbol);
-            let op2 = this.op_derecha.getValorImplicito(ent, arbol);
+            var op1 = this.op_izquierda.getValorImplicito(ent, arbol);
+            var op2 = this.op_derecha.getValorImplicito(ent, arbol);
             //suma
             if (this.operador == Operador.SUMA) {
                 if (typeof (op1 === "number") && typeof (op2 === "number")) {
@@ -116,7 +116,7 @@ class Operacion {
             }
         }
         else {
-            let op1 = this.op_izquierda.getValorImplicito(ent, arbol);
+            var op1 = this.op_izquierda.getValorImplicito(ent, arbol);
             if (this.operador == Operador.MENOS_UNARIO) {
                 if (typeof (op1 === "number")) {
                     return -1 * op1;
@@ -128,8 +128,10 @@ class Operacion {
             }
         }
         return null;
-    }
-    isInt(n) {
+    };
+    Operacion.prototype.isInt = function (n) {
         return Number(n) === n && n % 1 === 0;
-    }
-}
+    };
+    return Operacion;
+}());
+//# sourceMappingURL=Operacion.js.map

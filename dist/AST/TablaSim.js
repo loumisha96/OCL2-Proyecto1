@@ -1,12 +1,14 @@
 "use strict";
-class TablaSim {
-    constructor() {
+var TablaSim = /** @class */ (function () {
+    function TablaSim() {
         this.tabla = new Array();
     }
-    addSimbolo(simbolo) {
+    TablaSim.prototype.addSimbolo = function (simbolo) {
         this.tabla.push(simbolo);
-    }
-    getTabla() {
+    };
+    TablaSim.prototype.getTabla = function () {
         return this.tabla;
-    }
-}
+    };
+    return TablaSim;
+}());
+//# sourceMappingURL=TablaSim.js.map
