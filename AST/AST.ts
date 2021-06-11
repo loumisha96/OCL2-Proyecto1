@@ -1,6 +1,5 @@
 
-
-export class AST{
+ class AST{
     
     public instrucciones:Array<any>
 
