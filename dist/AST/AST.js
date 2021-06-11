@@ -1,11 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AST = void 0;
-var AST = /** @class */ (function () {
-    function AST(instrucciones) {
+
+class AST {
+    constructor(instrucciones) {
         this.instrucciones = instrucciones;
     }
-    return AST;
-}());
-exports.AST = AST;
-//# sourceMappingURL=AST.js.map
+}
+
+

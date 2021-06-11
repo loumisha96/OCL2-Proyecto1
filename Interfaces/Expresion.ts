@@ -1,5 +1,5 @@
 
-export interface Expresion{
+interface Expresion{
      linea:number;
      columna: number;
     
