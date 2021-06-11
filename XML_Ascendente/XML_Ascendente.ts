@@ -2,7 +2,7 @@ var cont = 0;
 var tablaGeneral:any = [];
 var entornoAnterior = "Global";
 var simboloAnterior;
-let entornoGlobal:any;
+let entornoGlobalXML:any;
 let guardarTabla:any;
 let contadorLineas:number;
 ///////// PRUEBA DE BUSQUEDA TIPO----> //titulo
@@ -70,7 +70,7 @@ function llenarElementos(tabla:Array<EntornoXML>) {
 }
 
 function agregarTablaSimbolos3(result:any) {
-    entornoGlobal = new Entorno(null);
+    entornoGlobalXML = new Entorno(null);
     result.forEach((element:any) => {
         contadorLineas++;
     if(element!=undefined){
@@ -101,7 +101,7 @@ function agregarTablaSimbolos3(result:any) {
     }
         if (element != undefined) {
             let simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "Global");
-            entornoGlobal.agregar(simbolo, element, simbolo);
+            entornoGlobalXML.agregar(simbolo, element, simbolo);
             llenar(simbolo);
         }
         // agregarTablaSimbolos3(element.listaObjetos)

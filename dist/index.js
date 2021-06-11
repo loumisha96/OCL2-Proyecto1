@@ -237,6 +237,7 @@ const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
+
     contenidoErrores="";
         Errores.clear();
     try {

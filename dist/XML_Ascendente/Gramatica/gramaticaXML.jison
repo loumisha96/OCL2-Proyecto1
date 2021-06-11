@@ -62,8 +62,8 @@ BSL                                 "\\".
 
 /* Number literals */
 
-(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
-[0-9]+                              return 'IntegerLiteral';
+//(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
+//[0-9]+                              return 'IntegerLiteral';
 
 [a-zA-Z_][a-zA-Z0-9_ñÑ]*            return 'identifier';
 
@@ -84,6 +84,11 @@ BSL                                 "\\".
 
 //SECCION DE IMPORTS
 %{
+    var especia_lt="&lt;"
+    var especia_gt="&gt;"
+    var especia_amp="&amp;"
+    var especia_apos="&apos;"
+    var especia_quot="&quot;"
 
 %}
 
@@ -178,10 +183,31 @@ ATRIBUTO:
                                Errores.add(er);}
 ;
 
-LISTA_ID_OBJETO: LISTA_ID_OBJETO identifier          { $1=$1 + ' ' +$2 ; $$ = $1;}
-        | identifier                                 { $$ = $1 }
-        |LISTA_ID_OBJETO todos          { $1=$1 + ' ' +$2 ; $$ = $1;}
-        | todos                                 { $$ = $1 }
+LISTA_ID_OBJETO:  LISTA_ID_OBJETO todos          { $2=$2.replace('&lt;','<');
+                                                    $2=$2.replace('&gt;','>');
+                                                    $2=$2.replace('&amp;','&');
+                                                    $2=$2.replace('&apos;',"'");
+                                                    $2=$2.replace('&quot;','"');
+                                                    $1=$1 + ' ' +$2 ; $$ = $1;}
+        | todos                                 { $$=$$.replace('&lt;','<');
+                                                    $$=$$.replace('&gt;','>');
+                                                    $$=$$.replace('&amp;','&');
+                                                    $$=$$.replace('&apos;',"'");
+                                                    $$=$$.replace('&quot;','"'); 
+                                                    $$ = $1 }
+        |LISTA_ID_OBJETO identifier          { $2=$2.replace('&lt;','<');
+                                                    $2=$2.replace('&gt;','>');
+                                                    $2=$2.replace('&amp;','&');
+                                                    $2=$2.replace('&apos;',"'");
+                                                    $2=$2.replace('&quot;','"'); 
+                                                    $1=$1 + ' ' +$2 ; $$ = $1;}
+        | identifier                                 { $$=$$.replace('&lt;','<');
+                                                    $$=$$.replace('&gt;','>');
+                                                    $$=$$.replace('&amp;','&');
+                                                    $$=$$.replace('&apos;',"'");
+                                                    $$=$$.replace('&quot;','"'); 
+                                                    $$ = $1 }
+
         
         
 ;
