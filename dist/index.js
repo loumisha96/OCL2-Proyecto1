@@ -245,13 +245,14 @@ var arbolDesimbolo;
 var entornoAnterior="Global";
 var simboloAnterior;
 let entornoGlobal;
-
+let p = new producion();
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
     
     try {
+    
       let result = gramatica.parse(contenido);
       arbolDesimbolo=result;
         agregarTablaSimbolos3(result);

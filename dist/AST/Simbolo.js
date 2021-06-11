@@ -1,7 +1,8 @@
-class Simbolo {
+"use strict";
+var Simbolo = /** @class */ (function () {
     //TablaSimbolos: Array<Simbolo>;
     // hijos:number;
-    constructor(tipo, id, linea, columna, valor, Entorno) {
+    function Simbolo(tipo, id, linea, columna, valor, Entorno) {
         this.id = id;
         this.linea = linea;
         this.columna = columna;

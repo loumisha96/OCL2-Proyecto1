@@ -1,6 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.busqueda = void 0;
+//import { nodo } from "../AST/nodo";
 var busqueda = /** @class */ (function () {
     function busqueda() {
         this.list_nodos = new Array();
@@ -16,5 +15,4 @@ var busqueda = /** @class */ (function () {
     };
     return busqueda;
 }());
-exports.busqueda = busqueda;
 //# sourceMappingURL=busqueda.js.map

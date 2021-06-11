@@ -1,3 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+/*interface  reporteGramatica{
+    producion:string
+    getGramatica(tipo:string):string;
+
+}*/ 
 //# sourceMappingURL=reporteGramatica.js.map

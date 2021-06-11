@@ -1,14 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.tree = void 0;
+//import { nodo } from "./nodo";
 var tree = /** @class */ (function () {
-    function tree(nodo) {
+    function tree(nodo, reporte) {
         this.tree = nodo;
+        this.reporte = reporte;
     }
     ;
     tree.prototype.getValue = function () {
     };
     return tree;
 }());
-exports.tree = tree;
 //# sourceMappingURL=ast.js.map

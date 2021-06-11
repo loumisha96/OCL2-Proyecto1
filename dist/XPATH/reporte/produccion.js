@@ -1,6 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.producion = void 0;
+//import {reporteGramatica} from "./reporteGramatica";
 var producion = /** @class */ (function () {
     function producion() {
         this.producion = " ";
@@ -120,5 +119,4 @@ var producion = /** @class */ (function () {
     };
     return producion;
 }());
-exports.producion = producion;
 //# sourceMappingURL=produccion.js.map

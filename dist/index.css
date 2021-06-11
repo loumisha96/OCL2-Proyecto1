@@ -65,14 +65,22 @@ body {
 
 #contenidopestanas{
     clear: both;
-    background: #70DB93;
+    background: #92f3b2;
     padding: 20px 0px 20px 20px;
     border-radius: 5px;
     border-top-left-radius: 0px;
     border: 2px solid rgb(0, 112, 163);
     width: 1025px;
 }
-
+#grafo{
+    clear: both;
+    background: #d8eedf;
+    padding: 20px 0px 20px 20px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border: 2px solid rgb(0, 112, 163);
+    width: 1025px;
+}
 #pestanascon {
     float: top;
     font-size: 3ex;

@@ -1,6 +1,6 @@
-import { nodo } from "../AST/nodo";
+//import { nodo } from "../AST/nodo";
 
-export class busqueda{
+class busqueda{
     lista_query:Array<any>;
     list_nodos:Array<nodo>;
     constructor(){

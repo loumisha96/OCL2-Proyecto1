@@ -1,7 +1,5 @@
 
-
-
-export class attribute{
+ class attribute{
     name:string;
     value:any;
     constructor(name:string,value:any){
@@ -9,8 +7,7 @@ export class attribute{
         this.value = value;
     }
 }
-
-export class nodo {
+ class nodo {
     name:string="";
     
     children:Array<nodo>;
@@ -18,7 +15,4 @@ export class nodo {
         this.name = name;
         this.children=children;
     };
-    
-
-    
 }

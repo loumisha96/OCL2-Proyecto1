@@ -87,82 +87,82 @@ case 1:
 /*console.log(p.getGramatica('ini'));*/ return new tree($$[$0-1],p.getGramatica("ini"));
 break;
 case 2:
-this.$=new nodoX("xpath", new Array($$[$0-1],$$[$0]));p.getGramatica("xpath")
+this.$=new nodo("xpath", new Array($$[$0-1],$$[$0]));p.getGramatica("xpath")
 break;
 case 3:
-this.$=new nodoX("xpath", new Array($$[$0]));p.getGramatica("xpath")
+this.$=new nodo("xpath", new Array($$[$0]));p.getGramatica("xpath")
 break;
 case 4:
-this.$=new nodoX("entry", new Array($$[$0]));p.getGramatica("entry")
+this.$=new nodo("entry", new Array($$[$0]));p.getGramatica("entry")
 break;
 case 5:
-this.$=new nodoX("entry", new Array($$[$0]));p.getGramatica("entry") 
+this.$=new nodo("entry", new Array($$[$0]));p.getGramatica("entry") 
 break;
 case 6:
-this.$=new nodoX("list_step", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_step")
+this.$=new nodo("list_step", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_step")
 break;
 case 7:
-this.$=new nodoX("list_step", new Array($$[$0]));p.getGramatica("list_step")
+this.$=new nodo("list_step", new Array($$[$0]));p.getGramatica("list_step")
 break;
 case 8:
-this.$=new nodoX("seperate", new Array($$[$0-1],$$[$0]));p.getGramatica("seperate")
+this.$=new nodo("seperate", new Array($$[$0-1],$$[$0]));p.getGramatica("seperate")
 break;
 case 9: case 10: case 11:
-this.$=new nodoX("seperate", new Array($$[$0]));p.getGramatica("seperate")
+this.$=new nodo("seperate", new Array($$[$0]));p.getGramatica("seperate")
 break;
 case 12:
-this.$=new nodoX("step", new Array($$[$0-1],$$[$0]));p.getGramatica("step")
+this.$=new nodo("step", new Array($$[$0-1],$$[$0]));p.getGramatica("step")
 break;
 case 13: case 14: case 15:
-this.$=new nodoX("step", new Array($$[$0]));p.getGramatica("step")
+this.$=new nodo("step", new Array($$[$0]));p.getGramatica("step")
 break;
 case 16:
-this.$=new nodoX("list_e", new Array($$[$0-1],$$[$0]));p.getGramatica("list_pred")
+this.$=new nodo("list_e", new Array($$[$0-1],$$[$0]));p.getGramatica("list_pred")
 break;
 case 17:
-this.$=new nodoX("list_predicate", new Array($$[$0]));p.getGramatica("list_pred")
+this.$=new nodo("list_predicate", new Array($$[$0]));p.getGramatica("list_pred")
 break;
 case 18:
-this.$=new nodoX("predicate", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("predicate")
+this.$=new nodo("predicate", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("predicate")
 break;
 case 19:
-this.$=new nodoX("list_e", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_e")
+this.$=new nodo("list_e", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_e")
 break;
 case 20:
-this.$=new nodoX("list_e", new Array($$[$0]));p.getGramatica("list_e")
+this.$=new nodo("list_e", new Array($$[$0]));p.getGramatica("list_e")
 break;
 case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31: case 32: case 33: case 34:
-this.$=new nodoX("operador", new Array($$[$0]));p.getGramatica("op")
+this.$=new nodo("operador", new Array($$[$0]));p.getGramatica("op")
 break;
 case 35: case 36: case 37: case 38: case 39:
-this.$=new nodoX("E", new Array($$[$0]));p.getGramatica("e")
+this.$=new nodo("E", new Array($$[$0]));p.getGramatica("e")
 break;
 case 40:
-this.$=new nodoX("axis", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("axis")
+this.$=new nodo("axis", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("axis")
 break;
 case 41:
-this.$=new nodoX("axis", new Array($$[$0]));p.getGramatica("axis")
+this.$=new nodo("axis", new Array($$[$0]));p.getGramatica("axis")
 break;
 case 42: case 43: case 44: case 45: case 46: case 47: case 48: case 49: case 50: case 51: case 52: case 53: case 54:
-this.$=new nodoX("axis_name", new Array($$[$0]));p.getGramatica("axis_name")
+this.$=new nodo("axis_name", new Array($$[$0]));p.getGramatica("axis_name")
 break;
 case 55: case 56: case 57:
-this.$=new nodoX("wildcards", new Array($$[$0]));p.getGramatica("wild")
+this.$=new nodo("wildcards", new Array($$[$0]));p.getGramatica("wild")
 break;
 case 58:
-this.$=new nodoX("wildcard", new Array($$[$0-1],$$[$0]));p.getGramatica("wild") 
+this.$=new nodo("wildcard", new Array($$[$0-1],$$[$0]));p.getGramatica("wild") 
 break;
 case 59: case 62:
-this.$=new nodoX("wildcards", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
+this.$=new nodo("wildcards", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
 case 60:
-this.$=new nodoX("wildcards", new Array($$[$0-1],$$[$0]));p.getGramatica("wild")
+this.$=new nodo("wildcards", new Array($$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
 case 61:
-this.$=new nodoX("wildcards", new Array($$[$0-2]));p.getGramatica("wild")
+this.$=new nodo("wildcards", new Array($$[$0-2]));p.getGramatica("wild")
 break;
 case 63:
-this.$=new nodoX("wildcard", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
+this.$=new nodo("wildcard", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
 }
 },
@@ -315,11 +315,11 @@ parse: function parse(input) {
     return true;
 }};
 
-        const rep_gram = require("./XPATH/reporte/reporteGramatica").reporteGramatica;
-        const pro = require("./XPATH/reporte/produccion").producion;
+       //const rep_gram = require("./XPATH/reporte/reporteGramatica").reporteGramatica;
+     /*   const pro = require("./XPATH/reporte/produccion").producion;
         const tree = require("./XPATH/ast/ast").tree;
-        const nodoX = require("./XPATH/ast/nodo").nodo;
-        let p = new pro();
+        const nodoX = require("./XPATH/ast/nodo").nodo;*/
+      // let p = new producion();
 /* generated by jison-lex 0.3.4 */
 var lexer = (function(){
 var lexer = ({

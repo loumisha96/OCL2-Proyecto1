@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.AST = void 0;
 var AST = /** @class */ (function () {
     function AST(instrucciones) {

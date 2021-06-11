@@ -1,6 +1,4 @@
-"use strict";
-exports.__esModule = true;
-exports.producion = void 0;
+//import {reporteGramatica} from "./reporteGramatica";
 var producion = /** @class */ (function () {
     function producion() {
         this.producion = " ";
@@ -120,4 +118,3 @@ var producion = /** @class */ (function () {
     };
     return producion;
 }());
-exports.producion = producion;

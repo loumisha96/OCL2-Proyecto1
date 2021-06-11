@@ -1,6 +1,5 @@
-import {reporteGramatica} from "./reporteGramatica";
-
-export class producion implements reporteGramatica{
+//import {reporteGramatica} from "./reporteGramatica";
+ class producion {
     producion:string;
     constructor(){
         this.producion = " ";

@@ -1,10 +1,10 @@
 /*definición léxica*/
 %{
-        const rep_gram = require("./XPATH/reporte/reporteGramatica").reporteGramatica;
-        const pro = require("./XPATH/reporte/produccion").producion;
+       //const rep_gram = require("./XPATH/reporte/reporteGramatica").reporteGramatica;
+     /*   const pro = require("./XPATH/reporte/produccion").producion;
         const tree = require("./XPATH/ast/ast").tree;
-        const nodoX = require("./XPATH/ast/nodo").nodo;
-        let p = new pro();
+        const nodoX = require("./XPATH/ast/nodo").nodo;*/
+      // let p = new producion();
 %}
 
 %lex
@@ -100,94 +100,94 @@ ini
         :XPATH EOF {/*console.log(p.getGramatica('ini'));*/ return new tree($1,p.getGramatica("ini"));}
 ;
 XPATH
-        :ENTRY LIST_STEP                     {$$=new nodoX("xpath", new Array($1,$2));p.getGramatica("xpath")}
-        |LIST_STEP                           {$$=new nodoX("xpath", new Array($1));p.getGramatica("xpath")}
+        :ENTRY LIST_STEP                     {$$=new nodo("xpath", new Array($1,$2));p.getGramatica("xpath")}
+        |LIST_STEP                           {$$=new nodo("xpath", new Array($1));p.getGramatica("xpath")}
 ;
 ENTRY
-        :slash                               {$$=new nodoX("entry", new Array($1));p.getGramatica("entry")}
-        |doubleSlash                         {$$=new nodoX("entry", new Array($1));p.getGramatica("entry") }
+        :slash                               {$$=new nodo("entry", new Array($1));p.getGramatica("entry")}
+        |doubleSlash                         {$$=new nodo("entry", new Array($1));p.getGramatica("entry") }
 ;
 LIST_STEP
-        :LIST_STEP SEPERATE STEP             {$$=new nodoX("list_step", new Array($1,$2,$3));p.getGramatica("list_step")}
-        |STEP                                {$$=new nodoX("list_step", new Array($1));p.getGramatica("list_step")}
+        :LIST_STEP SEPERATE STEP             {$$=new nodo("list_step", new Array($1,$2,$3));p.getGramatica("list_step")}
+        |STEP                                {$$=new nodo("list_step", new Array($1));p.getGramatica("list_step")}
 ;
 SEPERATE
-        :barra ENTRY                         {$$=new nodoX("seperate", new Array($1,$2));p.getGramatica("seperate")}
-        |barra                               {$$=new nodoX("seperate", new Array($1));p.getGramatica("seperate")}
-        |slash                               {$$=new nodoX("seperate", new Array($1));p.getGramatica("seperate")}
-        |doubleSlash                         {$$=new nodoX("seperate", new Array($1));p.getGramatica("seperate")}
+        :barra ENTRY                         {$$=new nodo("seperate", new Array($1,$2));p.getGramatica("seperate")}
+        |barra                               {$$=new nodo("seperate", new Array($1));p.getGramatica("seperate")}
+        |slash                               {$$=new nodo("seperate", new Array($1));p.getGramatica("seperate")}
+        |doubleSlash                         {$$=new nodo("seperate", new Array($1));p.getGramatica("seperate")}
 ;
 
 STEP
-        :id LIST_PREDICATE                   {$$=new nodoX("step", new Array($1,$2));p.getGramatica("step")}
-        |id                                  {$$=new nodoX("step", new Array($1));p.getGramatica("step")}
-        |AXIS                                {$$=new nodoX("step", new Array($1));p.getGramatica("step")}                         
-        |WILDCARD                            {$$=new nodoX("step", new Array($1));p.getGramatica("step")}
+        :id LIST_PREDICATE                   {$$=new nodo("step", new Array($1,$2));p.getGramatica("step")}
+        |id                                  {$$=new nodo("step", new Array($1));p.getGramatica("step")}
+        |AXIS                                {$$=new nodo("step", new Array($1));p.getGramatica("step")}                         
+        |WILDCARD                            {$$=new nodo("step", new Array($1));p.getGramatica("step")}
         
 ;
 LIST_PREDICATE
-        :LIST_PREDICATE PREDICATE             {$$=new nodoX("list_e", new Array($1,$2));p.getGramatica("list_pred")}
-        |PREDICATE                            {$$=new nodoX("list_predicate", new Array($1));p.getGramatica("list_pred")}
+        :LIST_PREDICATE PREDICATE             {$$=new nodo("list_e", new Array($1,$2));p.getGramatica("list_pred")}
+        |PREDICATE                            {$$=new nodo("list_predicate", new Array($1));p.getGramatica("list_pred")}
 ;
 PREDICATE
-        :corcheteIzq LIST_E corcheteDer       {$$=new nodoX("predicate", new Array($1,$2,$3));p.getGramatica("predicate")}    
+        :corcheteIzq LIST_E corcheteDer       {$$=new nodo("predicate", new Array($1,$2,$3));p.getGramatica("predicate")}    
 ;
 LIST_E
-        :LIST_E OP E                          {$$=new nodoX("list_e", new Array($1,$2,$3));p.getGramatica("list_e")}
-        |E                                    {$$=new nodoX("list_e", new Array($1));p.getGramatica("list_e")}
+        :LIST_E OP E                          {$$=new nodo("list_e", new Array($1,$2,$3));p.getGramatica("list_e")}
+        |E                                    {$$=new nodo("list_e", new Array($1));p.getGramatica("list_e")}
 ;
 OP
-        :add                                  {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |minus                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |asterisk                             {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |slash                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |equal                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |diferent                             {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |menor                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |menorIgual                           {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |mayorIgual                           {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |mayor                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |or                                   {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |barra                                {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |and                                  {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
-        |mod                                  {$$=new nodoX("operador", new Array($1));p.getGramatica("op")}
+        :add                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |minus                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |asterisk                             {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |slash                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |equal                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |diferent                             {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |menor                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |menorIgual                           {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |mayorIgual                           {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |mayor                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |or                                   {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |barra                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |and                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |mod                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         
 ;
 E
-        :STEP                                 {$$=new nodoX("E", new Array($1));p.getGramatica("e")}
-        |ENTRY                                {$$=new nodoX("E", new Array($1));p.getGramatica("e")}
-        |decimal                              {$$=new nodoX("E", new Array($1));p.getGramatica("e")}
-        |digits                               {$$=new nodoX("E", new Array($1));p.getGramatica("e")}
-        |cadena                               {$$=new nodoX("E", new Array($1));p.getGramatica("e")}
+        :STEP                                 {$$=new nodo("E", new Array($1));p.getGramatica("e")}
+        |ENTRY                                {$$=new nodo("E", new Array($1));p.getGramatica("e")}
+        |decimal                              {$$=new nodo("E", new Array($1));p.getGramatica("e")}
+        |digits                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
+        |cadena                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
         
 ;
 AXIS
-        :AXIS_NAME doubleColon STEP           {$$=new nodoX("axis", new Array($1,$2,$3));p.getGramatica("axis")}
-        |AXIS_NAME                            {$$=new nodoX("axis", new Array($1));p.getGramatica("axis")}
+        :AXIS_NAME doubleColon STEP           {$$=new nodo("axis", new Array($1,$2,$3));p.getGramatica("axis")}
+        |AXIS_NAME                            {$$=new nodo("axis", new Array($1));p.getGramatica("axis")}
 ;
 AXIS_NAME
-        :ancestor                             {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |ancestor_or_self                     {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |attribute                            {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |child                                {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |descendant                           {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |descendant_or_self                   {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |following                            {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |following_sibling                    {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |namespace                            {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |parent                               {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |preceding                            {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |preceding_sibling                    {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
-        |self                                 {$$=new nodoX("axis_name", new Array($1));p.getGramatica("axis_name")}
+        :ancestor                             {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |ancestor_or_self                     {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |attribute                            {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |child                                {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |descendant                           {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |descendant_or_self                   {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |following                            {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |following_sibling                    {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |namespace                            {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |parent                               {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |preceding                            {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |preceding_sibling                    {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
+        |self                                 {$$=new nodo("axis_name", new Array($1));p.getGramatica("axis_name")}
 ;
 WILDCARD
-        :asterisk                             {$$=new nodoX("wildcards", new Array($1));p.getGramatica("wild")}
-        |point                                {$$=new nodoX("wildcards", new Array($1));p.getGramatica("wild")}
-        |twoPoint                             {$$=new nodoX("wildcards", new Array($1));p.getGramatica("wild")}
-        |at asterisk                          {$$=new nodoX("wildcard", new Array($1,$2));p.getGramatica("wild") }
-        |at id PREDICATE                      {$$=new nodoX("wildcards", new Array($1,$2,$3));p.getGramatica("wild")}
-        |at id                                {$$=new nodoX("wildcards", new Array($1,$2));p.getGramatica("wild")}
-        |node parIzq parDer                   {$$=new nodoX("wildcards", new Array($1));p.getGramatica("wild")}
-        |text parIzq parDer                   {$$=new nodoX("wildcards", new Array($1,$2,$3));p.getGramatica("wild")}
-        |last parIzq parDer                   {$$=new nodoX("wildcard", new Array($1,$2,$3));p.getGramatica("wild")}
+        :asterisk                             {$$=new nodo("wildcards", new Array($1));p.getGramatica("wild")}
+        |point                                {$$=new nodo("wildcards", new Array($1));p.getGramatica("wild")}
+        |twoPoint                             {$$=new nodo("wildcards", new Array($1));p.getGramatica("wild")}
+        |at asterisk                          {$$=new nodo("wildcard", new Array($1,$2));p.getGramatica("wild") }
+        |at id PREDICATE                      {$$=new nodo("wildcards", new Array($1,$2,$3));p.getGramatica("wild")}
+        |at id                                {$$=new nodo("wildcards", new Array($1,$2));p.getGramatica("wild")}
+        |node parIzq parDer                   {$$=new nodo("wildcards", new Array($1));p.getGramatica("wild")}
+        |text parIzq parDer                   {$$=new nodo("wildcards", new Array($1,$2,$3));p.getGramatica("wild")}
+        |last parIzq parDer                   {$$=new nodo("wildcard", new Array($1,$2,$3));p.getGramatica("wild")}
 ;

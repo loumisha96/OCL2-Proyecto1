@@ -1,6 +1,6 @@
 
-export interface  reporteGramatica{
+/*interface  reporteGramatica{
     producion:string
     getGramatica(tipo:string):string;
 
-}
+}*/

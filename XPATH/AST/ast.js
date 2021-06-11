@@ -1,6 +1,4 @@
-"use strict";
-exports.__esModule = true;
-exports.tree = void 0;
+//import { nodo } from "./nodo";
 var tree = /** @class */ (function () {
     function tree(nodo, reporte) {
         this.tree = nodo;
@@ -11,4 +9,3 @@ var tree = /** @class */ (function () {
     };
     return tree;
 }());
-exports.tree = tree;
