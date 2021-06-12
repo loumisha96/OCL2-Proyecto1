@@ -5,10 +5,9 @@ var simboloAnterior;
 let entornoGlobal:any;
 let guardarTabla:any;
 
-function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
+/*function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
     if(tabla!=undefined){
     tabla.forEach((element)=>{
-        
         if(element.id==objeto){
             if(element.id==element.EtiquetaCierre){
                 if(element.tablaSimbolos.length!=0){
@@ -32,7 +31,7 @@ function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
       
     })
     }
-}
+}*/
 
 function llenarElementos(tabla:Array<EntornoXML>) {
     

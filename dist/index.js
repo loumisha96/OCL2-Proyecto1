@@ -242,6 +242,7 @@ var entornoAnterior="Global";
 var simboloAnterior;
 let entornoGlobal;
 let p = new producion();
+
 const analizarTexto = () => {
     //analizar y ejecutar
     var ta = document.getElementById(get_vent());
@@ -256,7 +257,9 @@ const analizarTexto = () => {
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
-        recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        busqueda= new busqueda(guardarTabla);
+        
+       // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
 
     } catch (error) {
       console.log(error);

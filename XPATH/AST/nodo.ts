@@ -1,18 +1,12 @@
 
- class attribute{
-    name:string;
-    value:any;
-    constructor(name:string,value:any){
-        this.name= name;
-        this.value = value;
-    }
-}
  class nodo {
     name:string="";
-    
+    value:string="";   
     children:Array<nodo>;
-    constructor(name:string,children:Array<nodo>){
+    contenido="";
+    constructor(name:string,children:Array<nodo>, value:string){
         this.name = name;
         this.children=children;
+        this.value=value
     };
 }
