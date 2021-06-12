@@ -243,6 +243,8 @@ var tablaLocal =[];
 var arbolDesimbolo;
 var entornoAnterior="Global";
 var simboloAnterior;
+var textopagina="";
+var contenido="";
 //let entornoGlobal;
 let p = new producion();
 
@@ -271,7 +273,13 @@ const analizarTexto = () => {
         //agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
+        //contenido=otra(result);
+        //Pagina_Reporte_AST();
         recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        pruebaGraficarXML(guardarTabla);
+        //otra(result);
+            var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
+            window.open(direccion, '_blank');
         if(!Errores.Vacio()){
             console.log("vacio we")
         }else{
@@ -322,13 +330,49 @@ function Reporte_Errores(){
     //alert(Reporte_Error)
 
 }
-
+/*
 
 function Pagina_Reporte_AST(){
 
     var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
 
     var textopagina="<!DOCTYPE html>";
+    textopagina += "<html lang=\"en\">";
+    textopagina += "<head>";
+    textopagina += " <title>Reporte AST</title>";
+    textopagina += "<meta charset=\"utf-8\">";
+    textopagina += " <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+    textopagina +=   "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js\"></script>";
+    textopagina += " <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js\"></script>";
+   
+    textopagina +=  " <script src=\"https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.3.0/viz.js\"></script>" ;  
+     
+
+    textopagina += "</head>";
+    textopagina += "<body>";
+    textopagina += "<div class=\"container\">";
+    textopagina += "<h1>Display</h1>";
+    textopagina += "<div id=\"jstree-tree\"></div>";
+    textopagina +=" <div id=\"graph\" style=\"text-align: center;\"></div>";
+    textopagina += "<script Viz("+cstXML+", options); ></script>";
+
+
+
+    
+    textopagina += "</div>";
+    textopagina += "</body>";
+    textopagina += "</html>";
+
+    nueva_ventana.document.write(textopagina);
+    //alert(textopagina);
+    
+
+}*/
+function Pagina_Reporte_AST(){
+
+    ///var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
+
+    textopagina="<!DOCTYPE html>";
     textopagina += "<html lang=\"en\">";
     textopagina += "<head>";
     textopagina += " <title>Reporte AST</title>";
@@ -349,15 +393,15 @@ function Pagina_Reporte_AST(){
     textopagina += "<script src=\"https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js\"></script>";
     textopagina += "<script src=\"https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js\"></script>";
     textopagina +=" <div id=\"graph\" style=\"text-align: center;\"></div>";
-    textopagina +="<script> d3.select(\"#graph\").graphviz() .renderDot("+Graphviz+"); </script>";
+    textopagina +="<script> d3.select(\"#graph\").graphviz() .renderDot("+contenido+"); </script>";
     
     textopagina += "</div>";
     textopagina += "</body>";
     textopagina += "</html>";
 
-    nueva_ventana.document.write(textopagina);
+    //nueva_ventana.document.write(textopagina);
     //alert(textopagina);
-    
+   // return textopagina
 
 }
 
@@ -374,6 +418,13 @@ function Reporte_Tabla(){
 
     var nueva_ventana = window.open('../Reporte_Tabla','_blank');
     nueva_ventana.document.write(texto);
+
+
+}
+function Reporte_CST(){
+
+    var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
+    nueva_ventana.document.write(textopagina);
 
 
 }

@@ -63,39 +63,40 @@ function llenarElementos(tabla) {
 function agregarTablaSimbolos3(result) {
     entornoGlobalXML = new Entorno(null);
     result.forEach(function (element) {
-        contadorLineas++;
+        //  contadorLineas++;
         if (element != undefined) {
             if (element.id == element.EtiquetaCierre || element.EtiquetaCierre == 'Unica') {
                 var entornoObjeto_1 = new Entorno(null);
                 if (element.tablaSimbolos.lenght != 0) {
                     element.tablaSimbolos.forEach(function (atributo) {
                         if (atributo != undefined) {
-                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, entornoAnterior);
+                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element.id);
                             entornoObjeto_1.agregar(simbolo.id, simbolo);
                             llenar(simbolo);
                         }
                     });
                 }
                 element.entorno = entornoObjeto_1;
-                if (element.tablaEntornos != undefined) {
-                    if (element.tablaEntornos.lenght != 0) {
-                        entornoAnterior = element.id;
-                        element.tablaEntornos.forEach(function (objeto) {
-                            if (objeto != undefined) {
-                                var simbolo = new SimboloXML("OBJETO", objeto.id, objeto.linea, objeto.columna, objeto.texto, entornoAnterior);
-                                entornoObjeto_1.agregar(simbolo.id, simbolo);
-                                // agregarTablaSimbolos3(objeto.tablaEntornos);
-                                llenar(simbolo);
-                            }
-                        });
-                    }
-                }
+                //  if( element.tablaEntornos != undefined){
+                // if (element.tablaEntornos.lenght != 0) {
+                //   entornoAnterior = element.id;
+                //  element.tablaEntornos.forEach((objeto:any) => {
+                //    if (objeto != undefined) {
+                //      let simbolo = new SimboloXML("OBJETO", objeto.id, objeto.linea, objeto.columna, objeto.texto, entornoAnterior);
+                //    entornoObjeto.agregar(simbolo.id, simbolo);
+                // agregarTablaSimbolos3(objeto.tablaEntornos);
+                //  llenar(simbolo);
+                //  }
+                //});
+                //}
+                //}
                 if (element != undefined) {
-                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "Global");
+                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "");
                     entornoGlobalXML.agregar(simbolo, element, simbolo);
                     llenar(simbolo);
+                    entornoAnterior = element.id;
+                    agregarTablaSimbolos3(element.tablaEntornos);
                 }
-                agregarTablaSimbolos3(element.listaObjetos);
             }
             else {
                 console.log("Error semantico" + element.id);
@@ -112,6 +113,7 @@ function agregarTablaSimbolos(element) {
             if (element[0].tablaEntornos.length == 0) {
                 var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                 llenar(simbolo);
+                // console.log(element[0])
                 contadorLineas++;
             }
             //}else{
@@ -127,6 +129,7 @@ function agregarTablaSimbolos(element) {
             if (element[index].tablaEntornos.length != 0) {
                 var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                 llenar(simbolo);
+                //console.log(element[index])
                 contadorLineas++;
             }
             if (element[index].tablaSimbolos != undefined) {
@@ -152,6 +155,7 @@ function agregarTablaSimbolos(element) {
                     simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                     entornoAnterior = element[index].id;
                     contadorLineas++;
+                    console.log(element[index]);
                     agregarTablaSimbolos(element[index].tablaEntornos);
                 }
             }
