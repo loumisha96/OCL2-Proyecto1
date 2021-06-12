@@ -93,7 +93,7 @@ function agregarTablaSimbolos3(result:any) {
                 if (objeto != undefined) {
                     let simbolo = new SimboloXML("OBJETO", objeto.id, objeto.linea, objeto.columna, objeto.texto, entornoAnterior);
                     entornoObjeto.agregar(simbolo.id, simbolo);
-                    agregarTablaSimbolos3(objeto.tablaEntornos);
+                   // agregarTablaSimbolos3(objeto.tablaEntornos);
                     llenar(simbolo);
                 }
             });
@@ -104,7 +104,7 @@ function agregarTablaSimbolos3(result:any) {
             entornoGlobalXML.agregar(simbolo, element, simbolo);
             llenar(simbolo);
         }
-        // agregarTablaSimbolos3(element.listaObjetos)
+         agregarTablaSimbolos3(element.listaObjetos)
         }else{
           console.log("Error semantico"+ element.id)
           var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coinciden: "+ element.id+"-> "+element.EtiquetaCierre, element.linea,element.columna);

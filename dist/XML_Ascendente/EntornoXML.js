@@ -1,6 +1,6 @@
 "use strict";
-class EntornoXML {
-    constructor(id, texto, linea, columna, tablaSimbolos, tablaEntornos, EtiquetaCierre) {
+var EntornoXML = /** @class */ (function () {
+    function EntornoXML(id, texto, linea, columna, tablaSimbolos, tablaEntornos, EtiquetaCierre) {
         this.id = id;
         this.texto = texto;
         this.linea = linea;
@@ -10,25 +10,27 @@ class EntornoXML {
         // this.entorno = new EntornoXML(null);
         this.EtiquetaCierre = EtiquetaCierre;
     }
-    getId() {
+    EntornoXML.prototype.getId = function () {
         return this.id;
-    }
-    getTexto() {
+    };
+    EntornoXML.prototype.getTexto = function () {
         return this.texto;
-    }
-    getLinea() {
+    };
+    EntornoXML.prototype.getLinea = function () {
         return this.linea;
-    }
-    getColumna() {
+    };
+    EntornoXML.prototype.getColumna = function () {
         return this.columna;
-    }
-    getTablaEntornos() {
+    };
+    EntornoXML.prototype.getTablaEntornos = function () {
         return this.tablaEntornos;
-    }
-    getTablaSimbolos() {
+    };
+    EntornoXML.prototype.getTablaSimbolos = function () {
         return this.tablaSimbolos;
-    }
-    getEtiquetaCierre() {
+    };
+    EntornoXML.prototype.getEtiquetaCierre = function () {
         return this.EtiquetaCierre;
-    }
-}
+    };
+    return EntornoXML;
+}());
+//# sourceMappingURL=EntornoXML.js.map

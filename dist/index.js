@@ -243,7 +243,7 @@ var tablaLocal =[];
 var arbolDesimbolo;
 var entornoAnterior="Global";
 var simboloAnterior;
-let entornoGlobal;
+//let entornoGlobal;
 let p = new producion();
 
 const analizarTexto = () => {
@@ -261,14 +261,14 @@ const analizarTexto = () => {
 
         //contenidoErrores="";
         //Errores.clear();
-        //tabla="";
-        //agregarTablaSimbolos3(result);
-        
         tabla="";
+        agregarTablaSimbolos3(result);
+        
+        //tabla="";
 
 
 
-        agregarTablaSimbolos(result);
+        //agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
         recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo

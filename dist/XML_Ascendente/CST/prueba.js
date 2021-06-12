@@ -10,7 +10,7 @@ function CSTA(Nodos) {
         i = i + 1;
         //cadena+= padre +"->"+"nodo"+(i)+ "\n";
         //}
-        for (let index = 0; index < Nodos.hijos.length; index++) {
+        for (var index = 0; index < Nodos.hijos.length; index++) {
             //console.log(Nodos.hijos[index].descripcion.toString());
             //  if((Nodos.descripcion.toString()!="")){
             CSTAcadena = CSTAcadena + padre + "->" + "nodo" + (i) + " ";
@@ -27,3 +27,4 @@ function CSTA(Nodos) {
     //console.log(cadena);
     return CSTAcadena;
 }
+//# sourceMappingURL=prueba.js.map
