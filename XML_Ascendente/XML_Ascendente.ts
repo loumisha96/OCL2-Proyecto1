@@ -13,6 +13,7 @@ function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {//envia una objeto a 
         if(element.id==objeto){//SI LO ENCUENTRA
             if(element.id==element.EtiquetaCierre){// SI EL ELEMENTO ES DOBLE TIPO <TITULO>"TEXTO"</TITULO>
                 //if(element.tablaSimbolos.length!=0){// SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+
     
                 //}else{// SI EL ELEMENTO NO TIENE MAS ENTORNO EN SU INTERIOR
                     if(element.texto!=""){// SI EL ELEMENTO NO TIENE MAS ENTORNOS EN SU INTERIOR <---- DOBLE VALIDACION 

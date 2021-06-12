@@ -273,6 +273,7 @@ const analizarTexto = () => {
         //agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
+
         //contenido=otra(result);
         //Pagina_Reporte_AST();
         recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
@@ -285,6 +286,11 @@ const analizarTexto = () => {
         }else{
             contenidoErrores= Errores.mostrar_Lista()
         }
+
+        busqueda= new busqueda(guardarTabla);
+        
+       // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+
 
     } catch (error) {
       console.log(error);
