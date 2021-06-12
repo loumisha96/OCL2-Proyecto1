@@ -5,7 +5,7 @@ var simboloAnterior;
 let entornoGlobal:any;
 let guardarTabla:any;
 
-/*function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
+function recorreTabla(objeto:any,tabla:Array<EntornoXML>) {
     if(tabla!=undefined){
     tabla.forEach((element)=>{
         if(element.id==objeto){
@@ -31,7 +31,7 @@ let guardarTabla:any;
       
     })
     }
-}*/
+}
 
 function llenarElementos(tabla:Array<EntornoXML>) {
     
