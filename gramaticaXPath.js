@@ -71,7 +71,7 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var gramaticaXPath = (function(){
+var GramaticaXPath = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,8],$V3=[1,12],$V4=[1,19],$V5=[1,20],$V6=[1,21],$V7=[1,22],$V8=[1,23],$V9=[1,24],$Va=[1,25],$Vb=[1,26],$Vc=[1,27],$Vd=[1,28],$Ve=[1,29],$Vf=[1,30],$Vg=[1,31],$Vh=[1,13],$Vi=[1,14],$Vj=[1,15],$Vk=[1,16],$Vl=[1,17],$Vm=[1,18],$Vn=[1,36],$Vo=[1,37],$Vp=[1,35],$Vq=[8,12,13,20,23,24,25,26,27,28,29,30,31,32,33,34,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vr=[5,8,9,12],$Vs=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vt=[1,40],$Vu=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34,39],$Vv=[13,25,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vw=[5,8,9,12,18,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vx=[1,54],$Vy=[1,55],$Vz=[1,56],$VA=[8,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$VB=[8,9,13,25,35,36,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60];
 var parser = {trace: function trace () { },
 yy: {},
@@ -781,9 +781,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = gramaticaXPath;
-exports.Parser = gramaticaXPath.Parser;
-exports.parse = function () { return gramaticaXPath.parse.apply(gramaticaXPath, arguments); };
+exports.parser = GramaticaXPath;
+exports.Parser = GramaticaXPath.Parser;
+exports.parse = function () { return GramaticaXPath.parse.apply(GramaticaXPath, arguments); };
 exports.main = function commonjsMain (args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

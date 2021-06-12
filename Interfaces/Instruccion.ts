@@ -1,6 +1,6 @@
 
 
-export interface Instruccion{
+interface Instruccion{
      linea:number;
      columna: number;
     

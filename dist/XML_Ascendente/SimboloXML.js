@@ -1,6 +1,6 @@
 "use strict";
-class SimboloXML {
-    constructor(tipo, id, linea, columna, valor, Entorno) {
+var SimboloXML = /** @class */ (function () {
+    function SimboloXML(tipo, id, linea, columna, valor, Entorno) {
         this.id = id;
         this.linea = linea;
         this.columna = columna;
@@ -8,10 +8,12 @@ class SimboloXML {
         this.valor = valor;
         this.Entorno = Entorno;
     }
-    getTipo(ent, arbol) {
+    SimboloXML.prototype.getTipo = function (ent, arbol) {
         return this.tipo;
-    }
-    getValorImplicito(ent, arbol) {
+    };
+    SimboloXML.prototype.getValorImplicito = function (ent, arbol) {
         return this.valor;
-    }
-}
+    };
+    return SimboloXML;
+}());
+//# sourceMappingURL=SimboloXML.js.map
