@@ -83,6 +83,39 @@ function pruebaGraficarXML(result){
     };
     var graf = new vis.Network(contenedorXML, datosML,opcionesXML);//muestra grafo
 }
-
+function CSTA(element) {
+    var padre = "nodo" + m;
+    try {
+        // var rem=element.texto.toString().replace('"','');
+        //var reme=rem.replace('"','');
+        for (var index = 0; index < element.length; index++) {
+            if (element[index].id != undefined) {
+                CSTAcadena += "" + padre + " [label =" + "\"" + element[index].id + "\"]  ";
+                m = m + 1;
+            }
+        }
+        //CSTAcadena +=""+ padre+ " [label ="+"\""+element.id+"]  ";
+        //i=i + 1;
+        //cadena+= padre +"->"+"nodo"+(i)+ "\n";
+        //}
+        for (var index = 0; index < element.length; index++) {
+            //console.log(Nodos.hijos[index].descripcion.toString());
+            //  if((Nodos.descripcion.toString()!="")){
+            CSTAcadena = CSTAcadena + padre + "->" + "nodo" + (m) + " ";
+            //  }
+            // if((Nodos.hijos[index].descripcion.toString()!="")){ 
+            if (element[index].tablaEntornos != undefined) {
+                CSTA(element[index].tablaEntornos);
+                //}
+            }
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+    // if((Nodos.descripcion.toString()!="")){
+    //console.log(cadena);
+    return CSTAcadena;
+}
 
 //# sourceMappingURL=prueba.js.map
