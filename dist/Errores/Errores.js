@@ -1,12 +1,28 @@
 "use strict";
-class Errores extends Array {
-    constructor() {
-        super();
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Errores = /** @class */ (function (_super) {
+    __extends(Errores, _super);
+    function Errores() {
+        return _super.call(this) || this;
     }
-    static add(err) {
+    Errores.add = function (err) {
         this.prototype.push(err);
-    }
-    static mostrar() {
+    };
+    Errores.mostrar = function () {
         var enviar = "";
         for (var i = 0; i < this.prototype.length; i++) {
             //  console.log(this.prototype[i].getdescripcion()+" Tipo: "+this.prototype[i].gettipo()+" Linea: "+this.prototype[i].getlinea()+" Columna: "+this.prototype[i].getcolumna());
@@ -14,8 +30,8 @@ class Errores extends Array {
         }
         console.log(enviar);
         return enviar;
-    }
-    static mostrar_Lista() {
+    };
+    Errores.mostrar_Lista = function () {
         var texto = "";
         texto = "<!DOCTYPE html> ";
         texto += "<html lang=\"en\">";
@@ -56,17 +72,19 @@ class Errores extends Array {
         texto += "</body>";
         texto += "</html>";
         return texto;
-    }
-    static Vacio() {
+    };
+    Errores.Vacio = function () {
         var vacio = false;
         while (this.prototype.length > 0) {
             return true;
         }
         return vacio;
-    }
-    static clear() {
+    };
+    Errores.clear = function () {
         while (this.prototype.length > 0) {
             this.prototype.pop();
         }
-    }
-}
+    };
+    return Errores;
+}(Array));
+//# sourceMappingURL=Errores.js.map

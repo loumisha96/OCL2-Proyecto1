@@ -1,25 +1,27 @@
 "use strict";
-class NodoError {
-    constructor(tipo, analizador, descripcion, linea, columna) {
+var NodoError = /** @class */ (function () {
+    function NodoError(tipo, analizador, descripcion, linea, columna) {
         this.tipo = tipo;
         this.analizador = analizador;
         this.descripcion = descripcion;
         this.linea = (linea + 1);
         this.columna = (columna + 1);
     }
-    gettipo() {
+    NodoError.prototype.gettipo = function () {
         return this.tipo;
-    }
-    getAnalizador() {
+    };
+    NodoError.prototype.getAnalizador = function () {
         return this.analizador;
-    }
-    getdescripcion() {
+    };
+    NodoError.prototype.getdescripcion = function () {
         return this.descripcion;
-    }
-    getlinea() {
+    };
+    NodoError.prototype.getlinea = function () {
         return this.linea;
-    }
-    getcolumna() {
+    };
+    NodoError.prototype.getcolumna = function () {
         return this.columna;
-    }
-}
+    };
+    return NodoError;
+}());
+//# sourceMappingURL=Nodo_Error.js.map

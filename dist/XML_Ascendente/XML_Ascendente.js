@@ -3,13 +3,13 @@ var cont = 0;
 var tablaGeneral = [];
 var entornoAnterior = "Global";
 var simboloAnterior;
-let entornoGlobalXML;
-let guardarTabla;
-let contadorLineas;
+var entornoGlobalXML;
+var guardarTabla;
+var contadorLineas;
 ///////// PRUEBA DE BUSQUEDA TIPO----> //titulo
 function recorreTabla(objeto, tabla) {
     if (tabla != undefined) {
-        tabla.forEach((element) => {
+        tabla.forEach(function (element) {
             if (element.id == objeto) { //SI LO ENCUENTRA
                 if (element.id == element.EtiquetaCierre) { // SI EL ELEMENTO ES DOBLE TIPO <TITULO>"TEXTO"</TITULO>
                     //if(element.tablaSimbolos.length!=0){// SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
@@ -45,7 +45,7 @@ function recorreTabla(objeto, tabla) {
 ///////////////////////////---> PRUEBA FUNCION PARA BUSQUEDAS TIPO /BIBLIOTECA/LIBROS
 function llenarElementos(tabla) {
     if (tabla != undefined) {
-        tabla.forEach((element) => {
+        tabla.forEach(function (element) {
             if (element.id == element.EtiquetaCierre) {
                 if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
                 }
@@ -62,40 +62,40 @@ function llenarElementos(tabla) {
 }
 function agregarTablaSimbolos3(result) {
     entornoGlobalXML = new Entorno(null);
-    result.forEach((element) => {
+    result.forEach(function (element) {
         contadorLineas++;
         if (element != undefined) {
             if (element.id == element.EtiquetaCierre || element.EtiquetaCierre == 'Unica') {
-                let entornoObjeto = new Entorno(null);
+                var entornoObjeto_1 = new Entorno(null);
                 if (element.tablaSimbolos.lenght != 0) {
-                    element.tablaSimbolos.forEach((atributo) => {
+                    element.tablaSimbolos.forEach(function (atributo) {
                         if (atributo != undefined) {
-                            let simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, entornoAnterior);
-                            entornoObjeto.agregar(simbolo.id, simbolo);
+                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, entornoAnterior);
+                            entornoObjeto_1.agregar(simbolo.id, simbolo);
                             llenar(simbolo);
                         }
                     });
                 }
-                element.entorno = entornoObjeto;
+                element.entorno = entornoObjeto_1;
                 if (element.tablaEntornos != undefined) {
                     if (element.tablaEntornos.lenght != 0) {
                         entornoAnterior = element.id;
-                        element.tablaEntornos.forEach((objeto) => {
+                        element.tablaEntornos.forEach(function (objeto) {
                             if (objeto != undefined) {
-                                let simbolo = new SimboloXML("OBJETO", objeto.id, objeto.linea, objeto.columna, objeto.texto, entornoAnterior);
-                                entornoObjeto.agregar(simbolo.id, simbolo);
-                                agregarTablaSimbolos3(objeto.tablaEntornos);
+                                var simbolo = new SimboloXML("OBJETO", objeto.id, objeto.linea, objeto.columna, objeto.texto, entornoAnterior);
+                                entornoObjeto_1.agregar(simbolo.id, simbolo);
+                                // agregarTablaSimbolos3(objeto.tablaEntornos);
                                 llenar(simbolo);
                             }
                         });
                     }
                 }
                 if (element != undefined) {
-                    let simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "Global");
+                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "Global");
                     entornoGlobalXML.agregar(simbolo, element, simbolo);
                     llenar(simbolo);
                 }
-                // agregarTablaSimbolos3(element.listaObjetos)
+                agregarTablaSimbolos3(element.listaObjetos);
             }
             else {
                 console.log("Error semantico" + element.id);
@@ -106,11 +106,11 @@ function agregarTablaSimbolos3(result) {
     });
 }
 function agregarTablaSimbolos(element) {
-    for (let index = 0; index < element.length; index++) {
+    for (var index = 0; index < element.length; index++) {
         if (element[0].tablaEntornos != undefined) {
             //if(element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre=='Unica'){
             if (element[0].tablaEntornos.length == 0) {
-                let simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                 llenar(simbolo);
                 contadorLineas++;
             }
@@ -121,17 +121,17 @@ function agregarTablaSimbolos(element) {
             // }
         }
     }
-    for (let index = 0; index < element.length; index++) {
+    var _loop_1 = function (index) {
         if (element[index].tablaEntornos != undefined) {
             // if(element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre=='Unica'){
             if (element[index].tablaEntornos.length != 0) {
-                let simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                 llenar(simbolo);
                 contadorLineas++;
             }
             if (element[index].tablaSimbolos != undefined) {
-                element[index].tablaSimbolos.forEach((atributo) => {
-                    let simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element[index].id);
+                element[index].tablaSimbolos.forEach(function (atributo) {
+                    var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element[index].id);
                     llenar(simbolo);
                 });
             }
@@ -141,8 +141,11 @@ function agregarTablaSimbolos(element) {
             // Errores.add(er);
             // }
         }
+    };
+    for (var index = 0; index < element.length; index++) {
+        _loop_1(index);
     }
-    for (let index = 0; index < element.length; index++) {
+    for (var index = 0; index < element.length; index++) {
         if (element[index].tablaEntornos != undefined) {
             if (element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre == 'Unica') {
                 if (element[index].tablaEntornos.length != 0) {
@@ -171,3 +174,4 @@ function llenar(TablaSimbolos) {
         TablaSimbolos.Entorno + "</td>\n";
     tabla += "</tr>\n";
 }
+//# sourceMappingURL=XML_Ascendente.js.map
