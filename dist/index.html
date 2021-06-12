@@ -64,7 +64,7 @@
     border-radius: 10px;
     box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
 }
-       
+
 
         #titulos {
     display: inline-block;
@@ -104,6 +104,7 @@
         <div></br></div>
         <div> 
             <button onclick="GuardarArchivo();" id="guardarEditor" title="Guardar" class="btnp">Guardar</button> 
+
             <button onclick="cargar()" id="guardar" title="GuardarJ" class="btnp">Descargar C3D</button>
             <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btnp">Agregar Pestana</button>
             <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btnp">Quitar Pestana</button>
@@ -117,8 +118,7 @@
             <button onclick="eraseText()" title="QuitarPestana" id="btn10" class="btnp">Limpiar Consolas</button>
         </div>
         
-<script> </script>
-    
+
         <div id="pestanas">
             <ul id="lista">
             </ul>
@@ -148,7 +148,7 @@
                     }
                 </script>
             </div>
-   
+
             <script>
                 
                 function cargar() {
@@ -191,6 +191,8 @@ nueva_ventana.document.write(Reporte_Tokens_PY);
             <script src='Expresiones/Objeto.js'></script>
              <script src='Expresiones/Atributo.js'></script>
              <script src='AST/Simbolo.js'></script>
+
+             <script src='AST/TablaSim.js'></script>
              <script src='AST/Entorno.js'></script>
              <script src='Instrucciones/Primitivas/Print.js'></script>
              <script src='XML_Ascendente/EntornoXML.js'></script>
@@ -213,5 +215,3 @@ nueva_ventana.document.write(Reporte_Tokens_PY);
 </body>
 
 </html>
-
-
