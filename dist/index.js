@@ -262,10 +262,18 @@ const analizarTexto = () => {
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         arbolito=result;
         tabla="";
+
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
         recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+
+
+
+
+        busqueda = new busqueda(result)
+        search=busqueda
+
 
         if(!Errores.Vacio()){
             console.log("vacio we")

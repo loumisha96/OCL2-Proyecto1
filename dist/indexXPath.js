@@ -1,6 +1,6 @@
 let ast;
 i=0;
-
+let  search;
 function AnalizarXpath() {
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;
@@ -15,7 +15,7 @@ function AnalizarXpath() {
    // i=0;
 }
 function query(){
-    busqueda.recorrerAst(ast.tree);
+    search.RecorrerAst(ast.tree);
 }
 function ASTXPATH(){
     graficar();
