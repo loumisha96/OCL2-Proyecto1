@@ -4,8 +4,6 @@ var m = 0;
 var k = 0;
 var padreXML;
 var cstXML;
-
-
 function otra(result) {
     result.forEach(function (element) {
         cstXML += "digraph G{ node[shape= \"box\", style=filled ];\n\n";
@@ -13,7 +11,7 @@ function otra(result) {
         cstXML += 'RAIZ->';
         cstXML += recorrer(element);
         cstXML += '}';
-
+        //this.cadenaFinal += cadenaInterna
     });
     cstXML = cstXML.replace('undefined', '');
     return cstXML;
@@ -21,10 +19,8 @@ function otra(result) {
 function recorrer(objetos) {
     var concatena = "";
     m++;
-    concatena+="nodo"+m+"[label = \" OBJETOS \"];";
-    m++;
     var padre = "nodo" + m;
-    //Se agrega el entorno anterior al padre
+    //Con esta linea agregamos el objeto anterior al padre
     concatena += padre + ";\n";
     concatena += padre + "[label = \"" + objetos.id + "\"];\n";
     if (objetos.tablaSimbolos != undefined) {
@@ -41,7 +37,7 @@ function recorrer(objetos) {
             });
         }
     }
-    //si no tiene mas hijos
+    //Verificamos si tiene texto para agregarselo
     if (objetos.texto != '') {
         m++;
         var nodoTexto = "nodoTexto" + m;
@@ -50,8 +46,6 @@ function recorrer(objetos) {
     }
     if (objetos.tablaEntornos != undefined) {
         if (objetos.tablaEntornos.length != 0) {
-            //m++;
-           //<\"];"
             objetos.tablaEntornos.forEach(function (objetoSiguiente) {
                 //Con esta linea agregamos el objeto anterior al padre
                 concatena += padre + "->";
@@ -61,27 +55,74 @@ function recorrer(objetos) {
     }
     return concatena;
 }
-function pruebaGraficarXML(result){
-
-    var contenedorXML= document.getElementById("grafoXML");//llama al contenedor
-
-    var datosXML=otra(result)
-    var parsedData = vis.network.convertDot(datosXML);
-    var datosML = {
-        nodes: parsedData.nodes,
-        edges: parsedData.edges
-    };
-    var opcionesXML = {//estética del grafo
-        layout:{
-            hierarchical:{
-                levelSeparation:100,
-                nodeSpacing:100,
-                parentCentralization:true,
-                
+function pruebaGraficar(result) {
+    result.forEach(function (element) {
+        if (element != undefined) {
+            if (element.id == element.EtiquetaCierre || element.EtiquetaCierre == 'Unica') {
+                if (element.tablaSimbolos.lenght != 0) {
+                    element.tablaSimbolos.forEach(function (atributo) {
+                        if (atributo != undefined) {
+                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element.id);
+                        }
+                    });
+                }
+                if (element != undefined) {
+                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, entornoAnterior);
+                    agregarTablaSimbolos3(element.tablaEntornos);
+                }
+            }
+            else {
+            }
+        }
+    });
+}
+function graficarCST(element) {
+    padreXML = padreXML + m;
+    element.texto = element.texto.toString().replace('"', '');
+    element.texto = element.texto.toString().replace('"', '');
+    for (var index = 0; index < element.length; index++) {
+        if (element[0].tablaEntornos != undefined) {
+            if (element[0].tablaEntornos.length == 0) {
+                if (element[0].EtiquetaCierre == element[0].id) {
+                    CSTAcadena += padreXML + "->" + element[0].id;
+                    m++;
+                    //let simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                }
+                else {
+                    CSTAcadena += padreXML + "->" + element[0].id;
+                    m++;
+                }
+            }
+        }
+    }
+    var _loop_1 = function (index) {
+        if (element[index].tablaEntornos != undefined) {
+            if (element[index].tablaEntornos.length != 0) {
+                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+            }
+            if (element[index].tablaSimbolos != undefined) {
+                element[index].tablaSimbolos.forEach(function (atributo) {
+                    var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element[index].id);
+                });
             }
         }
     };
-    var graf = new vis.Network(contenedorXML, datosML,opcionesXML);//muestra grafo
+    for (var index = 0; index < element.length; index++) {
+        _loop_1(index);
+    }
+    for (var index = 0; index < element.length; index++) {
+        if (element[index].tablaEntornos != undefined) {
+            if (element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre == 'Unica') {
+                if (element[index].tablaEntornos.length != 0) {
+                    simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                    padreXML = element[index].id;
+                    agregarTablaSimbolos(element[index].tablaEntornos);
+                }
+            }
+            else {
+            }
+        }
+    }
 }
 function CSTA(element) {
     var padre = "nodo" + m;
@@ -117,5 +158,4 @@ function CSTA(element) {
     //console.log(cadena);
     return CSTAcadena;
 }
-
 //# sourceMappingURL=prueba.js.map
