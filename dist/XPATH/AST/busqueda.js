@@ -1,5 +1,4 @@
 "use strict";
-var _this = this;
 var busqueda = /** @class */ (function () {
     function busqueda(tabla) {
         this.bandera = false;
@@ -91,79 +90,85 @@ var busqueda = /** @class */ (function () {
             if (this.query[x] == e.id) {
                 etemp = e;
                 cadena = this.recorrerTablaId(this.query[x], tablaActual);
-                break;
+                // break;
             }
             else {
                 this.doubleSlash(x, e, e.tablaEntornos);
             }
         }
+        return [cadena, etemp];
+    };
+    busqueda.prototype.recorrerTablaId = function (objeto, tablaActual) {
+        var _this = this;
+        var cadena = "";
+        tablaActual.forEach(function (element) {
+            if (element.id == objeto) { //encontró el entorno
+                if (element.id == element.EtiquetaCierre) {
+                    cadena += "<" + element.id + ">\n ";
+                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                        cadena += _this.recorrerAttrb(element.tablaSimbolos);
+                    }
+                    else {
+                        if (element.texto != "")
+                            cadena += element.texto;
+                        else
+                            cadena += _this.getContenido(element.tablaEntornos);
+                        cadena += "</" + element.EtiquetaCierre + ">\n";
+                    }
+                }
+                else {
+                    cadena += "<" + element.id;
+                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                        cadena += _this.recorrerAttrb(element.tablaSimbolos) + "/>";
+                    }
+                    else
+                        cadena += _this.getContenido(element.tablaEntornos) + "/>";
+                }
+            }
+        });
+        return cadena;
+    };
+    busqueda.prototype.getContenido = function (tablaActual) {
+        var _this = this;
+        var cadena = "";
+        if (tablaActual != undefined) {
+            tablaActual.forEach(function (element) {
+                if (element.id == element.EtiquetaCierre) {
+                    cadena += "<" + element.id + "> ";
+                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                        cadena += _this.recorrerAttrb(element.tablaSimbolos);
+                    }
+                    else {
+                        if (element.texto != "") {
+                            cadena += element.texto;
+                        }
+                        else
+                            cadena += _this.getContenido(element.tablaEntornos);
+                    }
+                    cadena += "</" + element.EtiquetaCierre + ">\n";
+                }
+                else {
+                    cadena += "<" + element.id;
+                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                        cadena += _this.recorrerAttrb(element.tablaSimbolos);
+                    }
+                    else
+                        cadena += _this.getContenido(element.tablaEntornos);
+                }
+            });
+        }
+        return cadena;
+    };
+    busqueda.prototype.recorrerAttrb = function (tabla) {
+        var cadena = " ";
+        tabla.forEach(function (element) {
+            cadena += element.id + "=" + element.valor + " ";
+        });
+        cadena += " ";
+        return cadena;
+    };
+    busqueda.prototype.getId = function () {
     };
     return busqueda;
 }());
-recorrerTablaId(objeto, any, tablaActual, Array(), any, {
-    var: cadena = "",
-    tablaActual: tablaActual, : .forEach(function (element) {
-        if (element.id == objeto) { //encontró el entorno
-            if (element.id == element.EtiquetaCierre) {
-                cadena += "<" + element.id + ">\n ";
-                if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                    cadena += _this.recorrerAttrb(element.tablaSimbolos);
-                }
-                else {
-                    if (element.texto != "")
-                        cadena += element.texto;
-                    else
-                        cadena += _this.getContenido(element.tablaEntornos);
-                    cadena += "</" + element.EtiquetaCierre + ">\n";
-                }
-            }
-            else {
-                cadena += "<" + element.id;
-                if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                    cadena += _this.recorrerAttrb(element.tablaSimbolos) + "/>";
-                }
-                else
-                    cadena += _this.getContenido(element.tablaEntornos) + "/>";
-            }
-        }
-    }),
-    return: cadena
-}, getContenido(tablaActual, Array(), string, {
-    var: cadena = "",
-    if: function (tablaActual) { }
-} != undefined), {
-    tablaActual: tablaActual, : .forEach(function (element) {
-        if (element.id == element.EtiquetaCierre) {
-            cadena += "<" + element.id + "> ";
-            if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                cadena += _this.recorrerAttrb(element.tablaSimbolos);
-            }
-            else {
-                if (element.texto != "") {
-                    cadena += element.texto;
-                }
-                else
-                    cadena += _this.getContenido(element.tablaEntornos);
-            }
-            cadena += "</" + element.EtiquetaCierre + ">\n";
-        }
-        else {
-            cadena += "<" + element.id;
-            if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                cadena += _this.recorrerAttrb(element.tablaSimbolos);
-            }
-            else
-                cadena += _this.getContenido(element.tablaEntornos);
-        }
-    })
-});
-return cadena;
-recorrerAttrb(tabla, Array(), string, {
-    var: cadena = " ",
-    tabla: tabla, : .forEach(function (element) {
-        cadena += element.id + "=" + element.valor + " ";
-    }),
-    cadena: cadena, " ": ,
-    return: cadena
-}, getId(), {});
 //# sourceMappingURL=busqueda.js.map

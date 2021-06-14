@@ -97,16 +97,16 @@ class busqueda{
                 if (this.query[x]==e.id){
                     etemp=e
                     cadena= this.recorrerTablaId(this.query[x],tablaActual)
-                     break
+                    // break;
                  }else{
                     this.doubleSlash(x,e, e.tablaEntornos)
                  }
             }
-        }
+        
         
             return [cadena, etemp]
 
-        
+    
     }
     recorrerTablaId(objeto:any, tablaActual:Array<EntornoXML>):any{
         var cadena=""
