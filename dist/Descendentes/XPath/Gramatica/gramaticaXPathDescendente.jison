@@ -124,15 +124,15 @@ ENTRY
         }
 ;
 
-LIST_STEP: STEP LIST_STEP' {
+LIST_STEP: STEP LIST_STEPP {
     $$ = new NodeDesc('LIST_STEP');
     $$.setChild($1);
     $$.setChild($2);
 
 };
 
-LIST_STEP': SEPARATE STEP LIST_STEP' {
-    $$ = new NodeDesc(`LIST_STEP'`);
+LIST_STEPP: SEPARATE STEP LIST_STEPP {
+    $$ = new NodeDesc("LIST_STEPP");
     $$.setChild($1);
     $$.setChild($2);
     $$.setChild($3);
@@ -141,53 +141,53 @@ LIST_STEP': SEPARATE STEP LIST_STEP' {
 
 SEPERATE
         :barra ENTRY {
-    $$ = new NodeDesc(`SEPARATE`);
+    $$ = new NodeDesc("SEPARATE");
     $$.setChild($1);
     $$.setChild($2);
         }
         |barra {
-            $$ = new NodeDesc(`SEPARATE`);
+            $$ = new NodeDesc("SEPARATE");
             $$.setChild($1);
         }
         |slash {
-            $$ = new NodeDesc(`SEPARATE`);
+            $$ = new NodeDesc("SEPARATE");
             $$.setChild($1);
         }
         |doubleSlash {
-            $$ = new NodeDesc(`SEPARATE`);
+            $$ = new NodeDesc("SEPARATE");
             $$.setChild($1);
         }
 ;
 
 STEP
         :id LIST_PREDICATE {
-            $$ = new NodeDesc(`STEP`);
+            $$ = new NodeDesc("STEP");
             $$.setChild($1);
             $$.setChild($2);
         }
         |id {
-            $$ = new NodeDesc(`STEP`);
+            $$ = new NodeDesc("STEP");
             $$.setChild($1);
         }
         |AXIS {
-            $$ = new NodeDesc(`STEP`);
+            $$ = new NodeDesc("STEP");
             $$.setChild($1);
         }
         |WILDCARD {
-            $$ = new NodeDesc(`STEP`);
+            $$ = new NodeDesc("STEP");
             $$.setChild($1);
         }
 
 ;
 
 
-LIST_PREDICATE: PREDICATE LIST_PREDICATE' { 
-    $$ = new NodeDesc(`LIST_PREDICATE`);
+LIST_PREDICATE: PREDICATE LIST_PREDICATEP { 
+    $$ = new NodeDesc("LIST_PREDICATE");
     $$.setChild($1);
     $$.setChild($2);
 };
-LIST_PREDICATE': PREDICATE LIST_PREDICATE' {
-    $$ = new NodeDesc(`LIST_PREDICATE'`);
+LIST_PREDICATEP: PREDICATE LIST_PREDICATEP {
+    $$ = new NodeDesc("LIST_PREDICATEP");
     $$.setChild($1);
     $$.setChild($2);
 }
@@ -195,20 +195,20 @@ LIST_PREDICATE': PREDICATE LIST_PREDICATE' {
 
 PREDICATE:
     corcheteIzq LIST_E corcheteDer {
-        $$ = new NodeDesc(`PREDICATE`);
+        $$ = new NodeDesc("PREDICATE");
         $$.setChild($1);
         $$.setChild($2);
     }
 ;
 
-LIST_E: E LIST_E' {
-        $$ = new NodeDesc(`LIST_E`);
+LIST_E: E LIST_EPP {
+        $$ = new NodeDesc("LIST_E");
         $$.setChild($1);
         $$.setChild($2);
 };
 
-LIST_E': OP E LIST_E'{
-    $$ = new NodeDesc(`LIST_E'`);
+LIST_EP: OP E LIST_EPP{
+    $$ = new NodeDesc("LIST_EP");
     $$.setChild($1);
     $$.setChild($2);
     $$.setChild($3);
@@ -217,59 +217,59 @@ LIST_E': OP E LIST_E'{
 
 OP
         :add {
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |minus {
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |asterisk{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |slash{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |equal{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |diferent{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |menor{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |menorIgual{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |mayorIgual{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |mayor{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |or{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |barra{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |and{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
         |mod{
-            $$ = new NodeDesc(`OP`);
+            $$ = new NodeDesc("OP");
             $$.setChild($1);
         }
 
@@ -277,136 +277,136 @@ OP
 
 E:
     STEP{
-        $$ = new NodeDesc(`E`);
+        $$ = new NodeDesc("E");
         $$.setChild($1);
     }
     |ENTRY{
-        $$ = new NodeDesc(`E`);
+        $$ = new NodeDesc("E");
         $$.setChild($1);
     }
     |decimal{
-        $$ = new NodeDesc(`E`);
+        $$ = new NodeDesc("E");
         $$.setChild($1);
     }
     |digits{
-        $$ = new NodeDesc(`E`);
+        $$ = new NodeDesc("E");
         $$.setChild($1);
     }
     |cadena{
-        $$ = new NodeDesc(`E`);
+        $$ = new NodeDesc("E");
         $$.setChild($1);
     }
 
 ;
 AXIS
         :AXIS_NAME doubleColon STEP {
-            $$ = new NodeDesc(`AXIS`);
+            $$ = new NodeDesc("AXIS");
             $$.setChild($1);
             $$.setChild($2);
             $$.setChild($3);
         }
         |AXIS_NAME{
-            $$ = new NodeDesc(`AXIS`);
+            $$ = new NodeDesc("AXIS");
             $$.setChild($1);
         }
 ;
 AXIS_NAME
         :ancestor{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |ancestor_or_self{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |attribute{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |child{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |descendant{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |descendant_or_self{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |following{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |following_sibling{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |namespace{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |parent{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |preceding{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |preceding_sibling{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
         |self{
-            $$ = new NodeDesc(`AXIS_NAME`);
+            $$ = new NodeDesc("AXIS_NAME");
             $$.setChild($1);
         }
 ;
 WILDCARD
         :asterisk{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
         }
         |twoPoint{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
         }
         |point{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
         }
         |at asterisk{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
         }
         |at id PREDICATE{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
             $$.setChild($3);
         }
         |at id{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
         }
         |node parIzq parDer{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
             $$.setChild($3);
         }
         |text parIzq parDer{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
             $$.setChild($3);
         }
         |last parIzq parDer{
-            $$ = new NodeDesc(`WILDCARD`);
+            $$ = new NodeDesc("WILDCARD");
             $$.setChild($1);
             $$.setChild($2);
             $$.setChild($3);

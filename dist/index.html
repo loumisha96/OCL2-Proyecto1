@@ -36,6 +36,10 @@
     <script src="Descendentes/XPath/Reportes/CST.js"></script>
     <script src="Descendentes/XPath/Reportes/Graficar.js"></script>
     <script src="Descendentes/XPath/Reportes/ReporteGramatical.js"></script>
+    <script src="Descendentes/XPath/Gramatica/gramaticaXPathDescendente.js"></script>
+
+    <script src="Descendentes/XML/Gramatica//gramaticaXMLDescendente.js"></script>
+    <script src="Descendentes/XML/Reportes/AST/node.js"></script>
 
 
 
@@ -51,8 +55,7 @@
             text-align: center;
             text-transform: uppercase;
         }
-
-
+        
         textarea {
             resize: none;
             background-color: #000;
@@ -63,56 +66,60 @@
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
-
         }
+        
         body {
             background: #464753;
         }
-.contenedor{
-    width: 1300px;
-    margin: auto;
-    background:#045e64bd;
-    color: rgb(0, 112, 163);
-    padding: 20px 15px 50px 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
-}
-.contenedorXML{
-    width: 1300px;
-    height: 1300px;
-    margin: auto;
-    background:#045e64bd;
-    color: rgb(0, 112, 163);
-    padding: 20px 15px 50px 50px;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
-}
-
+        
+        .contenedor {
+            width: 1300px;
+            margin: auto;
+            background: #045e64bd;
+            color: rgb(0, 112, 163);
+            padding: 20px 15px 50px 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+        }
+        
+        .contenedorXML {
+            width: 1300px;
+            height: 1300px;
+            margin: auto;
+            background: #045e64bd;
+            color: rgb(0, 112, 163);
+            padding: 20px 15px 50px 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+        }
+        
         #titulos {
-    display: inline-block;
-    font-size: 24px;
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-}
-#titulosJ {
-    display: inline-block;
-    font-size: 24px;
-    color: #fff;
-    font-weight: 700;
-    text-align: center;
-}
-.btnp {
-    border: none;
-    background: #01030a;
-    color: #f2f2f2;
-    padding: 5px;
-    font-size: 14px;
-    border-radius: 2px;
-    position: relative;
-    box-sizing: border-box;
-    transition: all 500ms ease;
-}
+            display: inline-block;
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        #titulosJ {
+            display: inline-block;
+            font-size: 24px;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .btnp {
+            border: none;
+            background: #01030a;
+            color: #f2f2f2;
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 2px;
+            position: relative;
+            box-sizing: border-box;
+            transition: all 500ms ease;
+        }
     </style>
     <title>Proyecto 1</title>
 </head>
@@ -123,7 +130,9 @@
     </div>
     <div class="contenedor">
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btnp">
-        <div></br></div>
+        <div>
+            </br>
+        </div>
         <div>
             <button onclick="GuardarArchivo();" id="guardarEditor" title="Guardar" class="btnp">Guardar</button>
             <button onclick="cargar()" id="guardar" title="GuardarJ" class="btnp">Descargar C3D</button>
@@ -136,18 +145,21 @@
         <div>
             <button onclick="query();" id="guardarEditor" title="Guardar" class="btnp">Consulta</button>
             <button onclick="AnalizarXpath();" id="guardarEditor" title="Guardar" class="btnp">Analizar Xpath</button>
+            <button onclick="analaizarXPathDescendente();" id="guardarEditor" title="Guardar" class="btnp">Analizar XPath Desc</button>
+            <button onclick="analaizarXMLDescendente();" id="guardarEditor" title="Guardar" class="btnp">Analizar XML Desc</button>
             <button onclick="ASTXPATH()" title="QuitarPestana" id="btn7" class="btnp">AST_XPATH</button>
         </div>
         <div>
-            <button   id="boton" class="button">Analizar XML</button>
+            <button id="boton" class="button">Analizar XML</button>
             <button onclick="Reporte_CST()" title="QuitarPestana" id="btn12" class="btnp">CST Asc</button>
             <button onclick="Reporte_gramaticales()" title="QuitarPestana" id="btn14" class="btnp">Gramatical</button>
             <button onclick="Reporte_Tabla()" title="QuitarPestana" id="btn13" class="btnp">Tabla Simbolos XML Asc</button>
             <button onclick="Reporte_TablaV2()" title="QuitarPestana" id="btn15" class="btnp">Simbolos XML Asc V2</button>
         </div>
-        
-<script> </script>
-    
+
+        <script>
+        </script>
+
 
         <div id="pestanas">
             <ul id="lista">
@@ -157,7 +169,7 @@
         <body>
             <div id="contenidopestanas">
             </div>
-            
+
             <div class="consola">
                 <script>
                     var x = document.createElement("TEXTAREA");
@@ -179,9 +191,8 @@
                     }
                 </script>
             </div>
-      
-            <script>
 
+            <script>
                 function cargar() {
                     var contenido = Reporte_Clases;
                     var hoy = new Date();
@@ -193,50 +204,52 @@
                     var formato = "doc" + dd + "_" + mm + "_" + yyyy + "_" + HH + "_" + MM;
 
                     var nombre = "Archivo" + formato + ".js";
-                    var file = new Blob([contenido], { type: 'text/plain' });
+                    var file = new Blob([contenido], {
+                        type: 'text/plain'
+                    });
 
                     if (window.navigator.msSaveOrOpenBlob) {
                         window.navigator.msSaveOrOpenBlob(file, nombre);
                     } else {
-                        var a = document.createElement("a"), url = URL.createObjectURL(file);
+                        var a = document.createElement("a"),
+                            url = URL.createObjectURL(file);
                         a.href = url;
                         a.download = nombre;
                         document.body.appendChild(a);
                         a.click();
-                        setTimeout(function () {
+                        setTimeout(function() {
                             document.body.removeChild(a);
                             window.URL.revokeObjectURL(url);
                         }, 0);
                     }
                 }
-
             </script>
 
             <script src='index.js'></script>
             <script src='Expresiones/Objeto.js'></script>
-             <script src='Expresiones/Atributo.js'></script>
-             <script src='AST/Simbolo.js'></script>
+            <script src='Expresiones/Atributo.js'></script>
+            <script src='AST/Simbolo.js'></script>
 
-             <script src='AST/TablaSim.js'></script>
-             <script src='AST/Entorno.js'></script>
-             <script src='Instrucciones/Primitivas/Print.js'></script>
-             <script src='XML_Ascendente/EntornoXML.js'></script>
-             <script src='XML_Ascendente/SimboloXML.js'></script>
-             <script src='XML_Ascendente/XML_Ascendente.js'></script>
-             <script src='XML_Ascendente/Gramatica/gramaticaXML.js'></script>
-             <script src='XML_Ascendente/CST/prueba.js'></script>
-              <script src='XML_Ascendente/busquedasF/busquedasF.js'></script>
-             <script src='Errores/Errores.js'></script>
-             <script src='Errores/Nodo_Error.js'></script>
-          
+            <script src='AST/TablaSim.js'></script>
+            <script src='AST/Entorno.js'></script>
+            <script src='Instrucciones/Primitivas/Print.js'></script>
+            <script src='XML_Ascendente/EntornoXML.js'></script>
+            <script src='XML_Ascendente/SimboloXML.js'></script>
+            <script src='XML_Ascendente/XML_Ascendente.js'></script>
+            <script src='XML_Ascendente/Gramatica/gramaticaXML.js'></script>
+            <script src='XML_Ascendente/CST/prueba.js'></script>
+            <script src='XML_Ascendente/busquedasF/busquedasF.js'></script>
+            <script src='Errores/Errores.js'></script>
+            <script src='Errores/Nodo_Error.js'></script>
+
         </body>
 
         <body>
             <div id="contenidoconsolas">
             </div>
 
-                
-            </body>
+
+        </body>
 
     </div>
     <h2> VISUALIZACION DE REPORTES </h2>
