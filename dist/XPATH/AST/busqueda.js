@@ -34,27 +34,39 @@ var busqueda = /** @class */ (function () {
         }
         return cadena;
     };
+    // /biblioteca/libro
     busqueda.prototype.search = function (tablaActual, x, imprimir) {
         var cadena = "";
         if (tablaActual != undefined) {
-            for (var t = 0; t < tablaActual.length; t++) {
+            for (var t = 0; t < tablaActual.length; t++) { //recorrer tabla o entorno actual
                 var e = tablaActual[t];
                 while (x < this.query.length) {
                     if (this.query[x] == "/") {
                         x++;
+                        if (this.query[x] == "@") {
+                            this.getAttrbFather(x + 1, tablaActual);
+                        }
                     }
                     else if (this.query[x] == "//") {
                         x++;
-                        if (this.query[x] == e.id) {
-                            cadena = this.recorrerTablaId(this.query[x], tablaActual);
+                        if (this.query[x] == "@") {
+                            // this.getAttrb(x+1, tablaActual)
                         }
                         else {
-                            var arr = this.doubleSlash(x, e, e.tablaEntornos);
-                            cadena = arr[0];
-                            var etemp = arr[1];
-                            x++;
-                            for (var t_1 = 0; t_1 < etemp.length; t_1++) {
-                                this.search(etemp.tablaEntornos, x + 1, imprimir);
+                            if (this.query[x] == e.id) { //si es id retonar contenido
+                                cadena = this.recorrerTablaId(this.query[x], tablaActual);
+                            }
+                            else {
+                                cadena = this.doubleSlash(x, e, e.tablaEntornos);
+                                if (x + 1 == this.query.length && imprimir == false) {
+                                    console.log(cadena);
+                                    imprimir = true;
+                                }
+                                x++;
+                                if (x)
+                                    for (var t_1 = 0; t_1 < e.tablaEntornos.length; t_1++) {
+                                        this.search(e.tablaEntornos[t_1].tablaEntornos, x + 1, imprimir);
+                                    }
                             }
                         }
                     }
@@ -83,20 +95,19 @@ var busqueda = /** @class */ (function () {
     };
     busqueda.prototype.doubleSlash = function (x, e, tablaActual) {
         var cadena = "";
-        var etemp;
         if (tablaActual != undefined) {
-            for (var t = 0; t < tablaActual.length; t++)
+            for (var t = 0; t < tablaActual.length; t++) {
                 var e = tablaActual[t];
-            if (this.query[x] == e.id) {
-                etemp = e;
-                cadena = this.recorrerTablaId(this.query[x], tablaActual);
-                // break;
-            }
-            else {
-                this.doubleSlash(x, e, e.tablaEntornos);
+                if (this.query[x] == e.id) {
+                    cadena = this.recorrerTablaId(this.query[x], tablaActual);
+                    break;
+                }
+                else {
+                    this.doubleSlash(x, e, e.tablaEntornos);
+                }
             }
         }
-        return [cadena, etemp];
+        return cadena;
     };
     busqueda.prototype.recorrerTablaId = function (objeto, tablaActual) {
         var _this = this;
@@ -166,6 +177,22 @@ var busqueda = /** @class */ (function () {
         });
         cadena += " ";
         return cadena;
+    };
+    busqueda.prototype.getAttrbFather = function (x, tablaActual) {
+        var _this = this;
+        var cadena = "";
+        if (this.query[x] == "*") {
+            tablaActual.forEach(function (e) {
+                if (e.tablaSimbolos.length != 0) {
+                    if (_this.query[x - 3] == e.id)
+                        cadena = _this.recorrerAttrb(e.tablaSimbolos);
+                }
+            });
+        }
+        else {
+        }
+        tablaActual.forEach(function (e) {
+        });
     };
     busqueda.prototype.getId = function () {
     };

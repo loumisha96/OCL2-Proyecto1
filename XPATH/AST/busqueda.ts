@@ -5,7 +5,7 @@ class busqueda{
     tabla:Array<EntornoXML>;
     elementoActual:any
     bandera=false;
-    query:Array<any>
+    query:Array<any>//cadena de query
      x=0;
      cadenaDouble=""
     constructor(tabla:Array<EntornoXML>){
@@ -42,29 +42,40 @@ class busqueda{
         return cadena
 
     }
-    
+   // /biblioteca/libro
     search(tablaActual:Array<EntornoXML>,x:number,imprimir:boolean){
         var cadena=""
         if(tablaActual!=undefined){
-            for(let t=0; t<tablaActual.length; t++){
+            for(let t=0; t<tablaActual.length; t++){//recorrer tabla o entorno actual
                var  e=tablaActual[t]
                 while(x<this.query.length){
                     if(this.query[x]=="/"){
                        x++;
+                       if(this.query[x]=="@"){ 
+                            this.getAttrbFather(x+1, tablaActual)
+                       }
                     }else if(this.query[x]=="//"){
                         x++
-                        if(this.query[x]==e.id){
-                            cadena = this.recorrerTablaId(this.query[x],tablaActual)
-                        }else{
-                            var arr = this.doubleSlash(x,e, e.tablaEntornos)
-                            cadena=arr[0]
-                            var etemp=arr[1]
-                            x++;
-                            for(let t=0; t<etemp.length; t++){
-                                this.search(etemp.tablaEntornos ,x+1,imprimir)
-                            }
+                        if(this.query[x]=="@"){
+                           // this.getAttrb(x+1, tablaActual)
+                       }else{
+                            if(this.query[x]==e.id){//si es id retonar contenido
+                                cadena = this.recorrerTablaId(this.query[x],tablaActual)
+                            }else{
+                                cadena= this.doubleSlash(x,e, e.tablaEntornos)
+                                if(x+1==this.query.length && imprimir==false){
+                                    console.log(cadena)
+                                    imprimir=true
+                                }
+                                x++;
+                                if (x)
+                                for(let t=0; t<e.tablaEntornos.length; t++){
+                                    this.search(e.tablaEntornos[t].tablaEntornos,x+1,imprimir)
+                                }
 
-                        }
+                            }
+                       }
+                        
                     }
                     else{
                         if (this.query[x]==e.id){
@@ -88,23 +99,21 @@ class busqueda{
             }
         }
     }
-    doubleSlash(x:number,e:EntornoXML, tablaActual:Array<EntornoXML>):Array<any>{
-        var cadena=""
-        var etemp;
+    doubleSlash(x:number,e:EntornoXML, tablaActual:Array<EntornoXML>):string{
+        var cadena="";
         if(tablaActual!=undefined){
-            for(let t=0; t<tablaActual.length; t++)
-                var  e=tablaActual[t]
-                if (this.query[x]==e.id){
-                    etemp=e
-                    cadena= this.recorrerTablaId(this.query[x],tablaActual)
-                    // break;
+            for(let t=0; t<tablaActual.length; t++){
+                var e=tablaActual[t]
+                if(this.query[x]==e.id){
+                    cadena= this.recorrerTablaId(this.query[x],tablaActual);
+                    break
                  }else{
                     this.doubleSlash(x,e, e.tablaEntornos)
                  }
             }
+        }
         
-        
-            return [cadena, etemp]
+           return cadena
 
     
     }
@@ -170,6 +179,23 @@ class busqueda{
         })
         cadena+=" "
         return cadena
+    }
+    getAttrbFather(x:number, tablaActual:Array<EntornoXML>){
+        var cadena=""
+        if(this.query[x]=="*"){
+            tablaActual.forEach((e)=>{
+                if(e.tablaSimbolos.length!=0){
+                    if(this.query[x-3]==e.id)
+                     cadena = this.recorrerAttrb(e.tablaSimbolos)
+                     
+                }
+            })
+        }else{
+
+        }
+        tablaActual.forEach((e)=>{
+
+        })
     }
     getId(){
 

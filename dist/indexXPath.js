@@ -1,6 +1,6 @@
 let ast;
 i=0;
-let  search;
+let search;
 function AnalizarXpath() {
     var ta = document.getElementById(get_vent());
     var contenido = ta.value;

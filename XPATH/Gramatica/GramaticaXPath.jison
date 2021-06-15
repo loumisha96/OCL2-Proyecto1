@@ -126,8 +126,8 @@ STEP
         
 ;
 LIST_PREDICATE
-        :LIST_PREDICATE PREDICATE             {$$=new nodo("list_e", new Array($1,$2));p.getGramatica("list_pred")}
-        |PREDICATE                            {$$=new nodo("list_e", new Array($1));p.getGramatica("list_pred")}
+        :LIST_PREDICATE PREDICATE             {$$=new nodo("list_pred", new Array($1,$2));p.getGramatica("list_pred")}
+        |PREDICATE                            {$$=new nodo("list_pred", new Array($1));p.getGramatica("list_pred")}
 ;
 PREDICATE
         :corcheteIzq LIST_E corcheteDer       {$$=new nodo("predicate", new Array($1,$2,$3));p.getGramatica("predicate")}    

@@ -100,6 +100,8 @@ function agregarTablaSimbolos3(result:any) {
             //});
         //}
     //}
+    
+    
         if (element != undefined) {
             let simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "");
             entornoGlobalXML.agregar(simbolo, element, simbolo);
