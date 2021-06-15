@@ -105,23 +105,17 @@ BSL                                 "\\".
 
 /* Definición de la gramática */
 START : RAICES EOF  {
-    $$ = new NodeDescXML("START");
-    $$.childList.push($1);
-    return $$;
+
  }
 ;
 
 RAICES: RAIZ RAICESP {
-    $$ = new NodeDescXML("RAICES");
-    $$.childList.push($1);
-    $$.childList.push($2);
+
 }
 ;
 
 RAICESP: RAIZ RAICESP {
-    $$ = new NodeDescXML("RAICESP");
-    $$.childList.push($1);
-    $$.childList.push($2);
+
 }
     | {}
 ;
@@ -129,68 +123,39 @@ RAICESP: RAIZ RAICESP {
 
 RAIZ:
     PRINT semicolon       {
-        $$ = new NodeDescXML("RAIZ");
-        $$.childList.push($1);
-        $$.childList.push($2);
+
 
      }
     | OBJETO              {
-        $$ = new NodeDescXML("RAIZ");
-        $$.childList.push($1);
+
     }
 ;
 
 OBJETO:
-    lt identifier LATRIBUTOS OBJETOP {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
+    lt  identifier LATRIBUTOS OBJETOP {
     }
 ;
 
 OBJETOP:
-    gt  lt div identifier gt {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-    }
-    |gt OBJETOS lt div identifier gt
+      gt LISTA_ID_OBJETO lt div identifier gt
     {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-        $$.childList.push($6);
+
     }
-    | gt LISTA_ID_OBJETO lt div identifier gt
+    | gt OBJETOS lt div identifier gt
     {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-        $$.childList.push($6);
+
+    }
+    | gt  lt div identifier gt {
+
     }
     | div gt {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    }
 
+    }
 ;
 
 
 LATRIBUTOS: ATRIBUTOS {
-    $$ = new NodeDescXML("LATRIBUTOS");
-    $$.childList.push($1);
+
  }
  |
 ;
@@ -198,75 +163,56 @@ LATRIBUTOS: ATRIBUTOS {
 
 ATRIBUTOS:
     ATRIBUTO ATRIBUTOSP {
-        $$ = new NodeDescXML("ATRIBUTOS");
-        $$.childList.push($1);
-        $$.childList.push($2);
+
     };
 
 ATRIBUTOSP:
     ATRIBUTO ATRIBUTOSP {
-        $$ = new NodeDescXML("ATRIBUTOSP");
-        $$.childList.push($1);
-        $$.childList.push($2);
+
     }
     | {}
 ;
 
 ATRIBUTO:
     identifier asig StringLiteral {
-        $$ = new NodeDescXML("ATRIBUTO");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
+
     }
 ;
 
-LISTA_ID_OBJETO: identifier LISTA_ID_OBJETOP{
-                    $$ = new NodeDescXML("LISTA_ID_OBJETO");
-                    $$.childList.push($1);
-                    $$.childList.push($2);
+LISTA_ID_OBJETO: todos LISTA_ID_OBJETOP{
+
                 }
-                | todos LISTA_ID_OBJETOP{
-                    $$ = new NodeDescXML("LISTA_ID_OBJETO");
-                    $$.childList.push($1);
-                    $$.childList.push($2);
+                | identifier LISTA_ID_OBJETOP{
+
                 }
 ;
 
 LISTA_ID_OBJETOP:
-        identifier LISTA_ID_OBJETOP {
-                $$ = new NodeDescXML("LISTA_ID_OBJETOP");
-                $$.childList.push($1);
-                $$.childList.push($2);
+         todos LISTA_ID_OBJETOP {
+
         }
-        | todos LISTA_ID_OBJETOP {
-            $$ = new NodeDescXML("LISTA_ID_OBJETOP");
-            $$.childList.push($1);
-            $$.childList.push($2);
+        | identifier LISTA_ID_OBJETOP {
+
         }
         | {}
 ;
 
 OBJETOS:
     OBJETO OBJETOSP {
-        $$ = new NodeDescXML("OBJETOS");
-        $$.childList.push($1);
-        $$.childList.push($2);
     };
 
 OBJETOSP:
     OBJETO OBJETOSP {
-        $$ = new NodeDescXML("OBJETOSP");
-        $$.childList.push($1);
-        $$.childList.push($2);
+
     }
-    | {};
+    |{}
+
+;
+
+OBJETOVACIO: {};
 
 PRINT:
     print lparen EXPR rparen            {
-        $$ = new NodeDescXML("PRINT");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
+
+
      } ;
