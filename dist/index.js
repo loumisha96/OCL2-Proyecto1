@@ -271,8 +271,6 @@ const analizarTexto = () => {
 
 
 
-        busqueda = new busqueda(result)
-        search=busqueda
 
 
 
