@@ -72,124 +72,36 @@
   }
 */
 var gramaticaXPath = (function(){
-<<<<<<< HEAD
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[2,8],$V2=[1,11];
-=======
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,8],$V3=[1,12],$V4=[1,19],$V5=[1,20],$V6=[1,21],$V7=[1,22],$V8=[1,23],$V9=[1,24],$Va=[1,25],$Vb=[1,26],$Vc=[1,27],$Vd=[1,28],$Ve=[1,29],$Vf=[1,30],$Vg=[1,31],$Vh=[1,13],$Vi=[1,14],$Vj=[1,15],$Vk=[1,16],$Vl=[1,17],$Vm=[1,18],$Vn=[1,36],$Vo=[1,37],$Vp=[1,35],$Vq=[8,12,13,20,23,24,25,26,27,28,29,30,31,32,33,34,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vr=[5,8,9,12],$Vs=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vt=[1,40],$Vu=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34,39],$Vv=[13,25,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vw=[5,8,9,12,18,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vx=[1,54],$Vy=[1,55],$Vz=[1,56],$VA=[8,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$VB=[8,9,13,25,35,36,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60];
->>>>>>> 375c83ae8cf4226e0c46f2e55f6f6daeeb1eac84
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"STEP":10,"LIST_STEPP":11,"SEPARATE":12,"PREDICATE":13,"corcheteIzq":14,"LIST_E":15,"corcheteDer":16,"E":17,"LIST_EP":18,"OP":19,"add":20,"minus":21,"asterisk":22,"equal":23,"diferent":24,"menor":25,"menorIgual":26,"mayorIgual":27,"mayor":28,"or":29,"barra":30,"and":31,"mod":32,"decimal":33,"digits":34,"cadena":35,"AXIS":36,"AXIS_NAME":37,"doubleColon":38,"ancestor":39,"ancestor_or_self":40,"attribute":41,"child":42,"descendant":43,"descendant_or_self":44,"following":45,"following_sibling":46,"namespace":47,"parent":48,"preceding":49,"preceding_sibling":50,"self":51,"WILDCARD":52,"twoPoint":53,"point":54,"at":55,"id":56,"node":57,"parIzq":58,"parDer":59,"text":60,"last":61,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"slash",9:"doubleSlash",10:"STEP",12:"SEPARATE",14:"corcheteIzq",16:"corcheteDer",20:"add",21:"minus",22:"asterisk",23:"equal",24:"diferent",25:"menor",26:"menorIgual",27:"mayorIgual",28:"mayor",29:"or",30:"barra",31:"and",32:"mod",33:"decimal",34:"digits",35:"cadena",38:"doubleColon",39:"ancestor",40:"ancestor_or_self",41:"attribute",42:"child",43:"descendant",44:"descendant_or_self",45:"following",46:"following_sibling",47:"namespace",48:"parent",49:"preceding",50:"preceding_sibling",51:"self",53:"twoPoint",54:"point",55:"at",56:"id",57:"node",58:"parIzq",59:"parDer",60:"text",61:"last"},
-productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[7,2],[11,3],[11,0],[13,3],[15,2],[18,3],[18,0],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[17,1],[17,1],[17,1],[17,1],[17,1],[36,3],[36,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[52,1],[52,1],[52,1],[52,2],[52,3],[52,2],[52,3],[52,3],[52,3]],
+symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"SEPERATE":10,"STEP":11,"barra":12,"id":13,"LIST_PREDICATE":14,"AXIS":15,"WILDCARD":16,"PREDICATE":17,"corcheteIzq":18,"LIST_E":19,"corcheteDer":20,"OP":21,"E":22,"add":23,"minus":24,"asterisk":25,"equal":26,"diferent":27,"menor":28,"menorIgual":29,"mayorIgual":30,"mayor":31,"or":32,"and":33,"mod":34,"decimal":35,"digits":36,"cadena":37,"AXIS_NAME":38,"doubleColon":39,"ancestor":40,"ancestor_or_self":41,"attribute":42,"child":43,"descendant":44,"descendant_or_self":45,"following":46,"following_sibling":47,"namespace":48,"parent":49,"preceding":50,"preceding_sibling":51,"self":52,"point":53,"twoPoint":54,"at":55,"node":56,"parIzq":57,"parDer":58,"text":59,"last":60,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"slash",9:"doubleSlash",12:"barra",13:"id",18:"corcheteIzq",20:"corcheteDer",23:"add",24:"minus",25:"asterisk",26:"equal",27:"diferent",28:"menor",29:"menorIgual",30:"mayorIgual",31:"mayor",32:"or",33:"and",34:"mod",35:"decimal",36:"digits",37:"cadena",39:"doubleColon",40:"ancestor",41:"ancestor_or_self",42:"attribute",43:"child",44:"descendant",45:"descendant_or_self",46:"following",47:"following_sibling",48:"namespace",49:"parent",50:"preceding",51:"preceding_sibling",52:"self",53:"point",54:"twoPoint",55:"at",56:"node",57:"parIzq",58:"parDer",59:"text",60:"last"},
+productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[7,3],[7,1],[10,2],[10,1],[10,1],[10,1],[11,2],[11,1],[11,1],[11,1],[14,2],[14,1],[17,3],[19,3],[19,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[21,1],[22,1],[22,1],[22,1],[22,1],[22,1],[15,3],[15,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[38,1],[16,1],[16,1],[16,1],[16,2],[16,3],[16,2],[16,3],[16,3],[16,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
-
-            this.$ = new NodeDesc('INI');
-            this.$.setChild($$[$0-1]);
-            return this.$;
-        
+/*console.log(p.getGramatica('ini'));*/ return new tree($$[$0-1],p.getGramatica("ini"));
 break;
 case 2:
-
-            this.$ = new NodeDesc('XPATH');
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-
-        
+this.$=new nodo("xpath", new Array($$[$0-1],$$[$0]));p.getGramatica("xpath")
 break;
 case 3:
-
-        this.$ = new NodeDesc('XPATH');
-        this.$.setChild($$[$0]);
-    
+this.$=new nodo("xpath", new Array($$[$0]));p.getGramatica("xpath")
 break;
-case 4: case 5:
-
-            this.$ = new NodeDesc('ENTRY');
-            this.$.setChild($$[$0]);
-        
+case 4:
+this.$=new nodo("entry", new Array($$[$0]));p.getGramatica("entry")
+break;
+case 5:
+this.$=new nodo("entry", new Array($$[$0]));p.getGramatica("entry") 
 break;
 case 6:
-
-    this.$ = new NodeDesc('LIST_STEP');
-    this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
-
-
+this.$=new nodo("list_step", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_step")
 break;
 case 7:
-<<<<<<< HEAD
-
-        this.$ = new NodeDesc(`LIST_STEP'`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
-        this.$.setChild($$[$0]);
-    }
-
-    | {}
-;
-
-SEPERATE
-        :barra ENTRY {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-        }
-        |barra {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-        |slash {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-        |doubleSlash {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-;
-
-STEP
-        :id LIST_PREDICATE {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-        }
-        |id {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-        |AXIS {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-        |WILDCARD {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-
-;
-
-
-LIST_PREDICATE: PREDICATE LIST_PREDICATEP { 
-    this.$ = new NodeDesc(`LIST_PREDICATE`);
-    this.$.setChild($$[$0-2]);
-    this.$.setChild($$[$0-1]);
-};
-
-LIST_PREDICATEP:
-
-    PREDICATE LIST_PREDICATEP {
-        this.$ = new NodeDesc(`LIST_PREDICATE'`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
-    
-=======
 this.$=new nodo("list_step", new Array($$[$0]));p.getGramatica("list_step")
 break;
 case 8:
@@ -218,87 +130,44 @@ this.$=new nodo("list_e", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("l
 break;
 case 20:
 this.$=new nodo("list_e", new Array($$[$0]));p.getGramatica("list_e")
->>>>>>> 375c83ae8cf4226e0c46f2e55f6f6daeeb1eac84
 break;
-case 9:
-
-        this.$ = new NodeDesc(`PREDICATE`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
-    
+case 21: case 22: case 23: case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31: case 32: case 33: case 34:
+this.$=new nodo("operador", new Array($$[$0]));p.getGramatica("op")
 break;
-case 10:
-
-        this.$ = new NodeDesc(`LIST_E`);
-        this.$.setChild($$[$0-1]);
-        this.$.setChild($$[$0]);
-
+case 35: case 36: case 37: case 38: case 39:
+this.$=new nodo("E", new Array($$[$0]));p.getGramatica("e")
 break;
-case 11:
-
-    this.$ = new NodeDesc(`LIST_E'`);
-    this.$.setChild($$[$0-2]);
-    this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
-
+case 40:
+this.$=new nodo("axis", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("axis")
 break;
-case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26:
-
-            this.$ = new NodeDesc(`OP`);
-            this.$.setChild($$[$0]);
-        
+case 41:
+this.$=new nodo("axis", new Array($$[$0]));p.getGramatica("axis")
 break;
-case 27: case 28: case 29: case 30: case 31:
-
-        this.$ = new NodeDesc(`E`);
-        this.$.setChild($$[$0]);
-    
+case 42: case 43: case 44: case 45: case 46: case 47: case 48: case 49: case 50: case 51: case 52: case 53: case 54:
+this.$=new nodo("axis_name", new Array($$[$0]));p.getGramatica("axis_name")
 break;
-case 32:
-
-            this.$ = new NodeDesc(`AXIS`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-        
+case 55: case 56: case 57:
+this.$=new nodo("wildcards", new Array($$[$0]));p.getGramatica("wild")
 break;
-case 33:
-
-            this.$ = new NodeDesc(`AXIS`);
-            this.$.setChild($$[$0]);
-        
+case 58:
+this.$=new nodo("wildcard", new Array($$[$0-1],$$[$0]));p.getGramatica("wild") 
 break;
-case 34: case 35: case 36: case 37: case 38: case 39: case 40: case 41: case 42: case 43: case 44: case 45: case 46:
-
-            this.$ = new NodeDesc(`AXIS_NAME`);
-            this.$.setChild($$[$0]);
-        
+case 59: case 62:
+this.$=new nodo("wildcards", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
-case 47: case 48: case 49:
-
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0]);
-        
+case 60:
+this.$=new nodo("wildcards", new Array($$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
-case 50: case 52:
-
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-        
+case 61:
+this.$=new nodo("wildcards", new Array($$[$0-2]));p.getGramatica("wild")
 break;
-case 51: case 53: case 54: case 55:
-
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-        
+case 63:
+this.$=new nodo("wildcard", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("wild")
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:4,8:[1,5],9:[1,6],10:$V0},{1:[3]},{5:[1,8]},{7:9,10:$V0},{5:[2,3]},{10:[2,4]},{10:[2,5]},{5:$V1,11:10,12:$V2},{1:[2,1]},{5:[2,2]},{5:[2,6]},{10:[1,12]},{5:$V1,11:13,12:$V2},{5:[2,7]}],
-defaultActions: {4:[2,3],5:[2,4],6:[2,5],8:[2,1],9:[2,2],10:[2,6],13:[2,7]},
+table: [{3:1,4:2,6:3,7:4,8:$V0,9:$V1,11:7,13:$V2,15:9,16:10,25:$V3,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},{1:[3]},{5:[1,32]},{7:33,11:7,13:$V2,15:9,16:10,25:$V3,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},{5:[2,3],8:$Vn,9:$Vo,10:34,12:$Vp},o($Vq,[2,4]),o($Vq,[2,5]),o($Vr,[2,7]),o($Vs,[2,13],{14:38,17:39,18:$Vt}),o($Vs,[2,14]),o($Vs,[2,15]),o($Vs,[2,41],{39:[1,41]}),o($Vs,[2,55]),o($Vs,[2,56]),o($Vs,[2,57]),{13:[1,43],25:[1,42]},{57:[1,44]},{57:[1,45]},{57:[1,46]},o($Vu,[2,42]),o($Vu,[2,43]),o($Vu,[2,44]),o($Vu,[2,45]),o($Vu,[2,46]),o($Vu,[2,47]),o($Vu,[2,48]),o($Vu,[2,49]),o($Vu,[2,50]),o($Vu,[2,51]),o($Vu,[2,52]),o($Vu,[2,53]),o($Vu,[2,54]),{1:[2,1]},{5:[2,2],8:$Vn,9:$Vo,10:34,12:$Vp},{11:47,13:$V2,15:9,16:10,25:$V3,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},o($Vv,[2,9],{6:48,8:$V0,9:$V1}),o($Vv,[2,10]),o($Vv,[2,11]),o($Vs,[2,12],{17:49,18:$Vt}),o($Vw,[2,17]),{6:53,8:$V0,9:$V1,11:52,13:$V2,15:9,16:10,19:50,22:51,25:$V3,35:$Vx,36:$Vy,37:$Vz,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},{11:57,13:$V2,15:9,16:10,25:$V3,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},o($Vs,[2,58]),o($Vs,[2,60],{17:58,18:$Vt}),{58:[1,59]},{58:[1,60]},{58:[1,61]},o($Vr,[2,6]),o($Vv,[2,8]),o($Vw,[2,16]),{8:[1,67],12:[1,75],20:[1,62],21:63,23:[1,64],24:[1,65],25:[1,66],26:[1,68],27:[1,69],28:[1,70],29:[1,71],30:[1,72],31:[1,73],32:[1,74],33:[1,76],34:[1,77]},o($VA,[2,20]),o($VA,[2,35]),o($VA,[2,36]),o($VA,[2,37]),o($VA,[2,38]),o($VA,[2,39]),o($Vs,[2,40]),o($Vs,[2,59]),o($Vs,[2,61]),o($Vs,[2,62]),o($Vs,[2,63]),o($Vw,[2,18]),{6:53,8:$V0,9:$V1,11:52,13:$V2,15:9,16:10,22:78,25:$V3,35:$Vx,36:$Vy,37:$Vz,38:11,40:$V4,41:$V5,42:$V6,43:$V7,44:$V8,45:$V9,46:$Va,47:$Vb,48:$Vc,49:$Vd,50:$Ve,51:$Vf,52:$Vg,53:$Vh,54:$Vi,55:$Vj,56:$Vk,59:$Vl,60:$Vm},o($VB,[2,21]),o($VB,[2,22]),o($VB,[2,23]),o($VB,[2,24]),o($VB,[2,25]),o($VB,[2,26]),o($VB,[2,27]),o($VB,[2,28]),o($VB,[2,29]),o($VB,[2,30]),o($VB,[2,31]),o($VB,[2,32]),o($VB,[2,33]),o($VB,[2,34]),o($VA,[2,19])],
+defaultActions: {32:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -446,7 +315,11 @@ parse: function parse(input) {
     return true;
 }};
 
-
+       //const rep_gram = require("./XPATH/reporte/reporteGramatica").reporteGramatica;
+     /*   const pro = require("./XPATH/reporte/produccion").producion;
+        const tree = require("./XPATH/ast/ast").tree;
+        const nodoX = require("./XPATH/ast/nodo").nodo;*/
+      // let p = new producion();
 /* generated by jison-lex 0.3.4 */
 var lexer = (function(){
 var lexer = ({
@@ -775,101 +648,101 @@ options: {"case-insensitive":true},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 22;
+case 0:return 25;
 break;
-case 1:return 53;
+case 1:return 54;
 break;
-case 2:return 54;
+case 2:return 53;
 break;
-case 3:return 58;
+case 3:return 57;
 break;
-case 4:return 59;
+case 4:return 58;
 break;
 case 5:return 'llaIzq';
 break;
 case 6:return 'llaDer';
 break;
-case 7:return 38;
+case 7:return 39;
 break;
 case 8:return 'colon';
 break;
-case 9:return 30;
+case 9:return 12;
 break;
-case 10:return 14;
+case 10:return 18;
 break;
-case 11:return 16;
+case 11:return 20;
 break;
 case 12:return 'ptcoma';
 break;
-case 13:return 20;
+case 13:return 23;
 break;
 case 14:return 'comma';
 break;
-case 15:return 21;
+case 15:return 24;
 break;
 case 16:return 'arrow';
 break;
-case 17:return 23;
+case 17:return 26;
 break;
 case 18:return 9;
 break;
 case 19:return 8;
 break;
-case 20:return 24;
+case 20:return 27;
 break;
-case 21:return 25;
+case 21:return 28;
 break;
-case 22:return 26;
+case 22:return 29;
 break;
-case 23:return 28;
+case 23:return 31;
 break;
-case 24:return 27;
+case 24:return 30;
 break;
 case 25:return 55;
 break;
-case 26:return 29;
+case 26:return 32;
 break;
 case 27:return 'let';
 break;
-case 28:return 61;
+case 28:return 60;
 break;
-case 29:return 31;
+case 29:return 33;
 break;
 case 30:return 'div';
 break;
-case 31:return 32;
+case 31:return 34;
 break;
-case 32:return 60;
+case 32:return 59;
 break;
-case 33:return 57;
+case 33:return 56;
 break;
-case 34:return 42;
+case 34:return 43;
 break;
-case 35:return 51;
+case 35:return 52;
 break;
-case 36:return 48;
+case 36:return 49;
 break;
 case 37:return 'comment';
 break;
 case 38:return 'element';
 break;
-case 39:return 39;
+case 39:return 40;
 break;
-case 40:return 47;
+case 40:return 48;
 break;
-case 41:return 41;
+case 41:return 42;
 break;
-case 42:return 49;
+case 42:return 50;
 break;
-case 43:return 45;
+case 43:return 46;
 break;
-case 44:return 40;
+case 44:return 41;
 break;
-case 45:return 44;
+case 45:return 45;
 break;
-case 46:return 46;
+case 46:return 47;
 break;
-case 47:return 50;
+case 47:return 51;
 break;
 case 48:return 'processing_instruction';
 break;
@@ -881,9 +754,9 @@ case 51:return  'digits';
 break;
 case 52:return  'decimal';
 break;
-case 53:return 35;
+case 53:return 37;
 break;
-case 54:return 56;
+case 54:return 13;
 break;
 case 55:return 5;
 break;

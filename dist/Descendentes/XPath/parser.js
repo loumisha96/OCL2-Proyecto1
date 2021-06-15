@@ -1,13 +1,13 @@
-var fs = require('fs');
+var fs = require('fs'); 
 
 var parser = require('../gramaticaXPath');
 
-let tree
-fs.readFile('./entrada2.txt', p, (err, data) => {
+let ast
+fs.readFile('./XPATH/entrada2.txt',p, (err, data) => {
     if (err) throw err;
-    tree = parser.parse(data);
-    //  console.log(t.reporte)
-    console.log(tree);
+    ast =parser.parse(data.toString());
+  //  console.log(t.reporte)
+    console.log(ast.tree.children[0]);
 
-
+    
 });
