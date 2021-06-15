@@ -2,6 +2,7 @@
 
 echo "Procesando gramática..."
 
-jison ./XPATH/Gramatica/gramaticaXPath.jison
+# jison ./Descendentes/XPath/Gramatica/gramatica.jison
+jison ./dist/Descendentes/XPath/Gramatica/gramaticaXPathDescendente.jison
 
 echo "Gramática procesasda..."
