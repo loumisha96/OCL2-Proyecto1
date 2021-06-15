@@ -267,7 +267,7 @@ const analizarTexto = () => {
         console.log(result);
         GenerarReporteTabla();
         //recorreTablaExpresiones("titulo",guardarTabla)//prueba de entrada-->   //titulo
-
+        reconocerCaso(pruebaDeQuery,arbolito)
 
 
 
@@ -288,7 +288,7 @@ const analizarTexto = () => {
 
        // busqueda= new busqueda(guardarTabla);
         
-       // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        recorreTabla("CD",guardarTabla)//prueba de entrada-->   //titulo
 
 
     } catch (error) {
