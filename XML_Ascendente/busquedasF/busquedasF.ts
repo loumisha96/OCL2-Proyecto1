@@ -2,7 +2,7 @@
 var pruebaDeQuery=['/','/','fechaPublicacion','[','@','año','>','1970',']','/','.','.','/','titulo',']']
 function recorreTablaExpresiones(objeto:any,tabla:Array<EntornoXML>) {//envia una objeto a buscar y su tabla de simbolos(objetos)
     if(tabla!=undefined){
-    tabla.forEach((element)=>{
+    tabla.forEach((element)=>{ 
         
         if(element.id==objeto){//SI LO ENCUENTRA
             if(element.id==element.EtiquetaCierre){// SI EL ELEMENTO ES DOBLE TIPO <TITULO>"TEXTO"</TITULO>
