@@ -187,7 +187,7 @@ function recorrer(objetos) {
             });
         }
     }
-    //si no tiene mas hijos
+    //Verificamos si tiene texto para agregarselo
     if (objetos.texto != '') {
         m++;
         var nodoTexto = "nodoTexto" + m;
@@ -252,7 +252,22 @@ function pruebaGraficarXML(){
             }
         }
     };
-    var graf = new vis.Network(contenedorXML, datosML,opcionesXML);//muestra grafo
+    for (var index = 0; index < element.length; index++) {
+        _loop_1(index);
+    }
+    for (var index = 0; index < element.length; index++) {
+        if (element[index].tablaEntornos != undefined) {
+            if (element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre == 'Unica') {
+                if (element[index].tablaEntornos.length != 0) {
+                    simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                    padreXML = element[index].id;
+                    agregarTablaSimbolos(element[index].tablaEntornos);
+                }
+            }
+            else {
+            }
+        }
+    }
 }
 
 

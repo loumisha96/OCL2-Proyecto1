@@ -275,6 +275,13 @@ const analizarTexto = () => {
         search=busqueda
 
 
+
+
+
+        busqueda = new busqueda(result)
+        search=busqueda
+
+
         if(!Errores.Vacio()){
             console.log("vacio we")
         }else{
