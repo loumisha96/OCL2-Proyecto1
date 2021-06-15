@@ -155,7 +155,7 @@ function agregarTablaSimbolos(element) {
                     simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
                     entornoAnterior = element[index].id;
                     contadorLineas++;
-                    console.log(element[index]);
+                    // console.log(element[index])
                     agregarTablaSimbolos(element[index].tablaEntornos);
                 }
             }

@@ -10,7 +10,7 @@ function AnalizarXpath() {
        // if (err) throw err;
         ast =gramaticaXPath.parse(contenido);
       // RecorrerAst2(ast.tree)
-    //console.log(ast.reporte)
+    console.log(ast.tree)
     //console.log(ast.tree.children[0]);
    // i=0;
 }

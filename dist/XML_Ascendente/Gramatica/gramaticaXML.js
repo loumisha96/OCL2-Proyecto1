@@ -163,7 +163,7 @@ case 18:
                                                     $$[$0]=$$[$0].replace('&gt;','>');
                                                     $$[$0]=$$[$0].replace('&amp;','&');
                                                     $$[$0]=$$[$0].replace('&apos;',"'");
-                                                    $$[$0]=$$[$0].replace('&quos;','"');
+                                                    $$[$0]=$$[$0].replace('&quot;','"');
                                                     $$[$0-1]=$$[$0-1] + ' ' +$$[$0] ; this.$ = $$[$0-1];
 break;
 case 19: case 21:
@@ -171,7 +171,7 @@ case 19: case 21:
                                                     this.$=this.$.replace('&gt;','>');
                                                     this.$=this.$.replace('&amp;','&');
                                                     this.$=this.$.replace('&apos;',"'");
-                                                    this.$=this.$.replace('&quos;','"'); 
+                                                    this.$=this.$.replace('&quot;','"'); 
                                                     this.$ = $$[$0] 
 break;
 case 20:
@@ -179,7 +179,7 @@ case 20:
                                                     $$[$0]=$$[$0].replace('&gt;','>');
                                                     $$[$0]=$$[$0].replace('&amp;','&');
                                                     $$[$0]=$$[$0].replace('&apos;',"'");
-                                                    $$[$0]=$$[$0].replace('&quos;','"'); 
+                                                    $$[$0]=$$[$0].replace('&quot;','"'); 
                                                     $$[$0-1]=$$[$0-1] + ' ' +$$[$0] ; this.$ = $$[$0-1];
 break;
 case 24:

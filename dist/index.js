@@ -266,7 +266,7 @@ const analizarTexto = () => {
         agregarTablaSimbolos(result);
         console.log(result);
         GenerarReporteTabla();
-        recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        //recorreTablaExpresiones("titulo",guardarTabla)//prueba de entrada-->   //titulo
 
 
 
@@ -281,7 +281,7 @@ const analizarTexto = () => {
             contenidoErrores= Errores.mostrar_Lista()
         }
 
-        busqueda= new busqueda(guardarTabla);
+       // busqueda= new busqueda(guardarTabla);
         
        // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
 
@@ -353,29 +353,7 @@ function Pagina_Reporte_AST(){
     
     textopagina+="<button onclick=\"pruebaGraficarXML("+arbolito+")\"  id=\"btn22\" class=\"btnp\">CST Asc</button>"
     textopagina+="<div id=\"grafoXML\"> </div>";
-   // textopagina+= "<script var contenedorXML= document.getElementById(\"grafoXML\");//llama al contenedor";
 
-   /* textopagina+= "var datosXML=otra(result)"
-    textopagina+= "var parsedData = vis.network.convertDot(datosXML);"
-    textopagina+= "var datosML = {"
-        textopagina+= "nodes: parsedData.nodes,"
-        textopagina+= "edges: parsedData.edges"
-        textopagina+= "};"
-        textopagina+= "var opcionesXML = {//estética del grafo"
-            textopagina+= "layout:{"
-                textopagina+= "hierarchical:{"
-                    textopagina+= "levelSeparation:100,"
-                    textopagina+= "nodeSpacing:100,"
-                    textopagina+= "parentCentralization:true,"
-                
-                    textopagina+= "}"
-                    textopagina+= "}"
-                    textopagina+= "};"*/
-    //textopagina+="var graf = new vis.Network(contenedorXML, datosML,opcionesXML);//muestra grafo></script>"
-            
-    
-    
-   // textopagina += "</div>";
     textopagina += "</body>";
     textopagina += "</html>";
 
