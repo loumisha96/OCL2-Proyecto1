@@ -71,13 +71,13 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var gramaticaXPath = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[2,8],$V2=[1,11];
+var gramaticaXMLDescendente = (function(){
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,6],$V2=[2,4],$V3=[5,11,27],$V4=[1,13],$V5=[15,17],$V6=[1,19],$V7=[2,16],$V8=[2,22],$V9=[1,42],$Va=[1,43];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"STEP":10,"LIST_STEPP":11,"SEPARATE":12,"PREDICATE":13,"corcheteIzq":14,"LIST_E":15,"corcheteDer":16,"E":17,"LIST_EP":18,"OP":19,"add":20,"minus":21,"asterisk":22,"equal":23,"diferent":24,"menor":25,"menorIgual":26,"mayorIgual":27,"mayor":28,"or":29,"barra":30,"and":31,"mod":32,"decimal":33,"digits":34,"cadena":35,"AXIS":36,"AXIS_NAME":37,"doubleColon":38,"ancestor":39,"ancestor_or_self":40,"attribute":41,"child":42,"descendant":43,"descendant_or_self":44,"following":45,"following_sibling":46,"namespace":47,"parent":48,"preceding":49,"preceding_sibling":50,"self":51,"WILDCARD":52,"twoPoint":53,"point":54,"at":55,"id":56,"node":57,"parIzq":58,"parDer":59,"text":60,"last":61,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"slash",9:"doubleSlash",10:"STEP",12:"SEPARATE",14:"corcheteIzq",16:"corcheteDer",20:"add",21:"minus",22:"asterisk",23:"equal",24:"diferent",25:"menor",26:"menorIgual",27:"mayorIgual",28:"mayor",29:"or",30:"barra",31:"and",32:"mod",33:"decimal",34:"digits",35:"cadena",38:"doubleColon",39:"ancestor",40:"ancestor_or_self",41:"attribute",42:"child",43:"descendant",44:"descendant_or_self",45:"following",46:"following_sibling",47:"namespace",48:"parent",49:"preceding",50:"preceding_sibling",51:"self",53:"twoPoint",54:"point",55:"at",56:"id",57:"node",58:"parIzq",59:"parDer",60:"text",61:"last"},
-productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[7,2],[11,3],[11,0],[13,3],[15,2],[18,3],[18,0],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[19,1],[17,1],[17,1],[17,1],[17,1],[17,1],[36,3],[36,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[37,1],[52,1],[52,1],[52,1],[52,2],[52,3],[52,2],[52,3],[52,3],[52,3]],
+symbols_: {"error":2,"START":3,"RAICES":4,"EOF":5,"RAIZ":6,"RAICESP":7,"PRINT":8,"semicolon":9,"OBJETO":10,"lt":11,"identifier":12,"LATRIBUTOS":13,"OBJETOP":14,"gt":15,"OBJETOS":16,"div":17,"LISTA_ID_OBJETO":18,"ATRIBUTOS":19,"ATRIBUTO":20,"ATRIBUTOSP":21,"asig":22,"StringLiteral":23,"LISTA_ID_OBJETOP":24,"todos":25,"OBJETOSP":26,"print":27,"lparen":28,"EXPR":29,"rparen":30,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",9:"semicolon",11:"lt",12:"identifier",15:"gt",17:"div",22:"asig",23:"StringLiteral",25:"todos",27:"print",28:"lparen",29:"EXPR",30:"rparen"},
+productions_: [0,[3,2],[4,2],[7,2],[7,0],[6,2],[6,1],[10,4],[14,6],[14,6],[14,2],[14,5],[13,1],[13,0],[19,2],[21,2],[21,0],[20,3],[18,2],[18,2],[24,2],[24,2],[24,0],[16,2],[26,2],[26,0],[8,4]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -85,185 +85,152 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
 
-            this.$ = new NodeDesc('INI');
-            this.$.setChild($$[$0-1]);
-            return this.$;
-        
+    this.$ = new NodeDescXML("START");
+    this.$.childList.push($$[$0-1]);
+    return this.$;
+ 
 break;
 case 2:
 
-            this.$ = new NodeDesc('XPATH');
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
+    this.$ = new NodeDescXML("RAICES");
+    this.$.childList.push($$[$0-1]);
+    this.$.childList.push($$[$0]);
 
-        
 break;
 case 3:
 
-        this.$ = new NodeDesc('XPATH');
-        this.$.setChild($$[$0]);
-    
-break;
-case 4: case 5:
+    this.$ = new NodeDescXML("RAICESP");
+    this.$.childList.push($$[$0-1]);
+    this.$.childList.push($$[$0]);
 
-            this.$ = new NodeDesc('ENTRY');
-            this.$.setChild($$[$0]);
-        
+break;
+case 5:
+
+        this.$ = new NodeDescXML("RAIZ");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+
+     
 break;
 case 6:
 
-    this.$ = new NodeDesc('LIST_STEP');
-    this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
-
-
+        this.$ = new NodeDescXML("RAIZ");
+        this.$.childList.push($$[$0]);
+    
 break;
 case 7:
 
-        this.$ = new NodeDesc(`LIST_STEP'`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
-        this.$.setChild($$[$0]);
-    }
-
-    | {}
-;
-
-SEPERATE
-        :barra ENTRY {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-        }
-        |barra {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-        |slash {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-        |doubleSlash {
-            this.$ = new NodeDesc(`SEPARATE`);
-            this.$.setChild($$[$0-2]);
-        }
-;
-
-STEP
-        :id LIST_PREDICATE {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-        }
-        |id {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-        |AXIS {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-        |WILDCARD {
-            this.$ = new NodeDesc(`STEP`);
-            this.$.setChild($$[$0-2]);
-        }
-
-;
-
-
-LIST_PREDICATE: PREDICATE LIST_PREDICATEP { 
-    this.$ = new NodeDesc(`LIST_PREDICATE`);
-    this.$.setChild($$[$0-2]);
-    this.$.setChild($$[$0-1]);
-};
-
-LIST_PREDICATEP:
-
-    PREDICATE LIST_PREDICATEP {
-        this.$ = new NodeDesc(`LIST_PREDICATE'`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
+        this.$ = new NodeDescXML("OBJETOP");
+        this.$.childList.push($$[$0-3]);
+        this.$.childList.push($$[$0-2]);
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
     
 break;
-case 9:
+case 8: case 9:
 
-        this.$ = new NodeDesc(`PREDICATE`);
-        this.$.setChild($$[$0-2]);
-        this.$.setChild($$[$0-1]);
+        this.$ = new NodeDescXML("OBJETOP");
+        this.$.childList.push($$[$0-5]);
+        this.$.childList.push($$[$0-4]);
+        this.$.childList.push($$[$0-3]);
+        this.$.childList.push($$[$0-2]);
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
     
 break;
 case 10:
 
-        this.$ = new NodeDesc(`LIST_E`);
-        this.$.setChild($$[$0-1]);
-        this.$.setChild($$[$0]);
-
+        this.$ = new NodeDescXML("OBJETOP");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
 break;
 case 11:
 
-    this.$ = new NodeDesc(`LIST_E'`);
-    this.$.setChild($$[$0-2]);
-    this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
-
-break;
-case 13: case 14: case 15: case 16: case 17: case 18: case 19: case 20: case 21: case 22: case 23: case 24: case 25: case 26:
-
-            this.$ = new NodeDesc(`OP`);
-            this.$.setChild($$[$0]);
-        
-break;
-case 27: case 28: case 29: case 30: case 31:
-
-        this.$ = new NodeDesc(`E`);
-        this.$.setChild($$[$0]);
+        this.$ = new NodeDescXML("OBJETOP");
+        this.$.childList.push($$[$0-4]);
+        this.$.childList.push($$[$0-3]);
+        this.$.childList.push($$[$0-2]);
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
     
 break;
-case 32:
+case 12:
 
-            this.$ = new NodeDesc(`AXIS`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
+    this.$ = new NodeDescXML("LATRIBUTOS");
+    this.$.childList.push($$[$0]);
+ 
+break;
+case 14:
+
+        this.$ = new NodeDescXML("ATRIBUTOS");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
+break;
+case 15:
+
+        this.$ = new NodeDescXML("ATRIBUTOSP");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
+break;
+case 17:
+
+        this.$ = new NodeDescXML("ATRIBUTO");
+        this.$.childList.push($$[$0-2]);
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
+break;
+case 18: case 19:
+
+                    this.$ = new NodeDescXML("LISTA_ID_OBJETO");
+                    this.$.childList.push($$[$0-1]);
+                    this.$.childList.push($$[$0]);
+                
+break;
+case 20:
+
+                this.$ = new NodeDescXML("LISTA_ID_OBJETOP");
+                this.$.childList.push($$[$0-1]);
+                this.$.childList.push($$[$0]);
         
 break;
-case 33:
+case 21:
 
-            this.$ = new NodeDesc(`AXIS`);
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDescXML("LISTA_ID_OBJETOP");
+            this.$.childList.push($$[$0-1]);
+            this.$.childList.push($$[$0]);
         
 break;
-case 34: case 35: case 36: case 37: case 38: case 39: case 40: case 41: case 42: case 43: case 44: case 45: case 46:
+case 23:
 
-            this.$ = new NodeDesc(`AXIS_NAME`);
-            this.$.setChild($$[$0]);
-        
+        this.$ = new NodeDescXML("OBJETOS");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
 break;
-case 47: case 48: case 49:
+case 24:
 
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0]);
-        
+        this.$ = new NodeDescXML("OBJETOSP");
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+    
 break;
-case 50: case 52:
+case 26:
 
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-        
-break;
-case 51: case 53: case 54: case 55:
-
-            this.$ = new NodeDesc(`WILDCARD`);
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
-        
+        this.$ = new NodeDescXML("PRINT");
+        this.$.childList.push($$[$0-3]);
+        this.$.childList.push($$[$0-2]);
+        this.$.childList.push($$[$0-1]);
+        this.$.childList.push($$[$0]);
+     
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:4,8:[1,5],9:[1,6],10:$V0},{1:[3]},{5:[1,8]},{7:9,10:$V0},{5:[2,3]},{10:[2,4]},{10:[2,5]},{5:$V1,11:10,12:$V2},{1:[2,1]},{5:[2,2]},{5:[2,6]},{10:[1,12]},{5:$V1,11:13,12:$V2},{5:[2,7]}],
-defaultActions: {4:[2,3],5:[2,4],6:[2,5],8:[2,1],9:[2,2],10:[2,6],13:[2,7]},
+table: [{3:1,4:2,6:3,8:4,10:5,11:$V0,27:$V1},{1:[3]},{5:[1,8]},{5:$V2,6:10,7:9,8:4,10:5,11:$V0,27:$V1},{9:[1,11]},o($V3,[2,6]),{28:[1,12]},{12:$V4},{1:[2,1]},{5:[2,2]},{5:$V2,6:10,7:14,8:4,10:5,11:$V0,27:$V1},o($V3,[2,5]),{29:[1,15]},o($V5,[2,13],{13:16,19:17,20:18,12:$V6}),{5:[2,3]},{30:[1,20]},{14:21,15:[1,22],17:[1,23]},o($V5,[2,12]),o($V5,$V7,{21:24,20:25,12:$V6}),{22:[1,26]},{9:[2,26]},o($V3,[2,7]),{10:30,11:[1,29],12:[1,31],16:27,18:28,25:[1,32]},{15:[1,33]},o($V5,[2,14]),o($V5,$V7,{20:25,21:34,12:$V6}),{23:[1,35]},{11:[1,36]},{11:[1,37]},{12:$V4,17:[1,38]},{10:40,11:$V0,26:39},{11:$V8,12:$V9,24:41,25:$Va},{11:$V8,12:$V9,24:44,25:$Va},o($V3,[2,10]),o($V5,[2,15]),o([12,15,17],[2,17]),{17:[1,45]},{17:[1,46]},{12:[1,47]},{11:[2,23]},{10:40,11:$V0,26:48},{11:[2,18]},{11:$V8,12:$V9,24:49,25:$Va},{11:$V8,12:$V9,24:50,25:$Va},{11:[2,19]},{12:[1,51]},{12:[1,52]},{15:[1,53]},{11:[2,24]},{11:[2,20]},{11:[2,21]},{15:[1,54]},{15:[1,55]},o($V3,[2,11]),o($V3,[2,8]),o($V3,[2,9])],
+defaultActions: {8:[2,1],9:[2,2],14:[2,3],20:[2,26],39:[2,23],41:[2,18],44:[2,19],48:[2,24],49:[2,20],50:[2,21]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -740,126 +707,84 @@ options: {"case-insensitive":true},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 22;
+case 0:this.begin('comment');
 break;
-case 1:return 53;
+case 1:this.popState();
 break;
-case 2:return 54;
+case 2:/* skip comments */
 break;
-case 3:return 58;
+case 3:this.begin('comment');
 break;
-case 4:return 59;
+case 4:this.popState();
 break;
-case 5:return 'llaIzq';
+case 5:/* skip comment content*/
 break;
-case 6:return 'llaDer';
+case 6:/* skip whitespace */
 break;
-case 7:return 38;
+case 7:return 27;
 break;
-case 8:return 'colon';
+case 8:return 'null';
 break;
-case 9:return 30;
+case 9:return 'plus';
 break;
-case 10:return 14;
+case 10:return 'minus';
 break;
-case 11:return 16;
+case 11:return 'times';
 break;
-case 12:return 'ptcoma';
+case 12:return 17;
 break;
-case 13:return 20;
+case 13:return 'mod';
 break;
-case 14:return 'comma';
+case 14:return 'lte';
 break;
-case 15:return 21;
+case 15:return 'gte';
 break;
-case 16:return 'arrow';
+case 16:return 11;
 break;
-case 17:return 23;
+case 17:return 15;
 break;
-case 18:return 9;
+case 18:return 22;
 break;
-case 19:return 8;
+case 19:return 'equal';
 break;
-case 20:return 24;
+case 20:return 'nequal';
 break;
-case 21:return 25;
+case 21:return 'and';
 break;
-case 22:return 26;
+case 22:return 'or';
 break;
-case 23:return 28;
+case 23:return 'not';
 break;
-case 24:return 27;
+case 24:return 9;
 break;
-case 25:return 55;
+case 25:return 28;
 break;
-case 26:return 29;
+case 26:return 30;
 break;
-case 27:return 'let';
+case 27:return 'and';
 break;
-case 28:return 61;
+case 28:return 'or';
 break;
-case 29:return 31;
+case 29:return 'not';
 break;
-case 30:return 'div';
+case 30:return 12;
 break;
-case 31:return 32;
+case 31:return 23
 break;
-case 32:return 60;
+case 32:return 'CharLiteral'
 break;
-case 33:return 57;
+case 33:return 25;
 break;
-case 34:return 42;
+case 34:
+                                        console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea: ' + yy_.yylloc.first_line + ', en la columna: ' + yy_.yylloc.first_column);
+                                    
 break;
-case 35:return 51;
-break;
-case 36:return 48;
-break;
-case 37:return 'comment';
-break;
-case 38:return 'element';
-break;
-case 39:return 39;
-break;
-case 40:return 47;
-break;
-case 41:return 41;
-break;
-case 42:return 49;
-break;
-case 43:return 45;
-break;
-case 44:return 40;
-break;
-case 45:return 44;
-break;
-case 46:return 46;
-break;
-case 47:return 50;
-break;
-case 48:return 'processing_instruction';
-break;
-case 49:
-break;
-case 50:
-break;
-case 51:return  'digits';
-break;
-case 52:return  'decimal';
-break;
-case 53:return 35;
-break;
-case 54:return 56;
-break;
-case 55:return 5;
-break;
-case 56:
-        console.error('Error');
-
+case 35:return 5
 break;
 }
 },
-rules: [/^(?:\*)/i,/^(?:\.\.)/i,/^(?:\.)/i,/^(?:\()/i,/^(?:\))/i,/^(?:\{)/i,/^(?:\})/i,/^(?:::)/i,/^(?::)/i,/^(?:\|)/i,/^(?:\[)/i,/^(?:\])/i,/^(?:;)/i,/^(?:\+)/i,/^(?:,)/i,/^(?:-)/i,/^(?:=>)/i,/^(?:=)/i,/^(?:\/\/)/i,/^(?:\/)/i,/^(?:!=)/i,/^(?:<)/i,/^(?:<=)/i,/^(?:>)/i,/^(?:>=)/i,/^(?:@)/i,/^(?:or\b)/i,/^(?:let\b)/i,/^(?:last\b)/i,/^(?:and\b)/i,/^(?:div\b)/i,/^(?:mod\b)/i,/^(?:text\b)/i,/^(?:node\b)/i,/^(?:child\b)/i,/^(?:self\b)/i,/^(?:parent\b)/i,/^(?:comment\b)/i,/^(?:element\b)/i,/^(?:ancestor\b)/i,/^(?:namespace\b)/i,/^(?:attribute\b)/i,/^(?:preceding\b)/i,/^(?:following\b)/i,/^(?:ancestor_or_self\b)/i,/^(?:descendant_or_self\b)/i,/^(?:following_sibling\b)/i,/^(?:preceding_sibling\b)/i,/^(?:processing_instruction\b)/i,/^(?:[ \r\t]+)/i,/^(?:\n)/i,/^(?:[0-9]+)/i,/^(?:[0-9]+(\.[0-9]+)?)/i,/^(?:("({EscapeQuot}|[^"])*")|('\(\{EscapeApos\}\|\[\^'\]\)\*'))/i,/^(?:[A-Za-z_][A-Za-z_0-9]*)/i,/^(?:$)/i,/^(?:.)/i],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56],"inclusive":true}}
+rules: [/^(?:<\?)/i,/^(?:\?>)/i,/^(?:\/\/.*)/i,/^(?:\/\*)/i,/^(?:\*\/)/i,/^(?:.)/i,/^(?:\s+)/i,/^(?:print\b)/i,/^(?:null\b)/i,/^(?:\+)/i,/^(?:-)/i,/^(?:\*)/i,/^(?:\/)/i,/^(?:%)/i,/^(?:<=)/i,/^(?:>=)/i,/^(?:<)/i,/^(?:>)/i,/^(?:=)/i,/^(?:==)/i,/^(?:!=)/i,/^(?:&&)/i,/^(?:\|\|)/i,/^(?:!)/i,/^(?:;)/i,/^(?:\()/i,/^(?:\))/i,/^(?:&&)/i,/^(?:\|\|)/i,/^(?:!)/i,/^(?:[a-zA-Z_][a-zA-Z0-9_ñÑ]*)/i,/^(?:("((\\([\'\"\\bfnrtv]))|([^\"\\]+))*"))/i,/^(?:('((\\([\'\"\\bfnrtv]))|([^\'\\]))'))/i,/^(?:[^<>]*[a-zA-Z0-9_ñÑ]+[^<>]*)/i,/^(?:.)/i,/^(?:$)/i],
+conditions: {"comment":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],"inclusive":true},"INITIAL":{"rules":[0,2,3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],"inclusive":true}}
 });
 return lexer;
 })();
@@ -873,9 +798,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = gramaticaXPath;
-exports.Parser = gramaticaXPath.Parser;
-exports.parse = function () { return gramaticaXPath.parse.apply(gramaticaXPath, arguments); };
+exports.parser = gramaticaXMLDescendente;
+exports.Parser = gramaticaXMLDescendente.Parser;
+exports.parse = function () { return gramaticaXMLDescendente.parse.apply(gramaticaXMLDescendente, arguments); };
 exports.main = function commonjsMain (args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');
