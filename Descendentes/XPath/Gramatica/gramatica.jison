@@ -1,8 +1,3 @@
-/*definición léxica*/
-%{
-
-%}
-
 %lex
 %options case-insensitive
 
@@ -57,22 +52,20 @@
 "following_sibling"  return 'following_sibling';
 "preceding_sibling"  return 'preceding_sibling';
 "processing_instruction" return 'processing_instruction';
-/*Espacios en blanco*/
+
 [ \r\t]+     {}
 \n           {}
 [0-9]+                      return  'digits';
 [0-9]+("."[0-9]+)?  return  'decimal';
-(\"({EscapeQuot}|[^"])*\")|("'""({EscapeApos}|[^'])*""'") return 'cadena';
+(\"({EscapeQuot}|[^"])\")|("'""({EscapeApos}|[^'])""'") return 'cadena';
 [A-Za-z_][A-Za-z_0-9]*	    return 'id';
 
 
 <<EOF>>                 return 'EOF';
-.       {
-        console.error('Error');
-}
+
 /lex
 
-/* Asociación de operadores y precedencia */
+
 %right 'equal'
 %left 'or', 'barra'
 %left 'and'
@@ -80,7 +73,7 @@
 
 
 
-%left 'add', 'minus' /*binary*/
+%left 'add', 'minus' /binary/
 %left 'asterisk', 'slash', 'mod'
 
 
@@ -89,11 +82,8 @@
 
 
 
-
-
 %start ini
-%% /*definicion de gramática*/
-
+%%
 ini
         :XPATH EOF {
             $$ = new NodeDesc('INI');
@@ -113,6 +103,7 @@ XPATH:
         $$.setChild($1);
     }
 ;
+
 ENTRY
         :slash{
             $$ = new NodeDesc('ENTRY');
@@ -124,23 +115,21 @@ ENTRY
         }
 ;
 
-LIST_STEP: STEP LIST_STEP' {
+LIST_STEP: STEP LIST_STEPP {
     $$ = new NodeDesc('LIST_STEP');
     $$.setChild($1);
     $$.setChild($2);
 
-};
+}
+;
 
-LIST_STEP':
-    SEPARATE STEP LIST_STEP' {
-        $$ = new NodeDesc(`LIST_STEP'`);
-        $$.setChild($1);
-        $$.setChild($2);
-        $$.setChild($3);
-    }
-    | {};
-
-
+LIST_STEPP: SEPARATE STEP LIST_STEPP {
+    $$ = new NodeDesc(`LIST_STEP'`);
+    $$.setChild($1);
+    $$.setChild($2);
+    $$.setChild($3);
+}
+    |
 ;
 
 SEPERATE
@@ -185,49 +174,43 @@ STEP
 ;
 
 
-LIST_PREDICATE: PREDICATE LIST_PREDICATE' { 
+LIST_PREDICATE: PREDICATE LIST_PREDICATEP { 
     $$ = new NodeDesc(`LIST_PREDICATE`);
     $$.setChild($1);
     $$.setChild($2);
-};
-LIST_PREDICATE':
-
-    PREDICATE LIST_PREDICATE' {
-        $$ = new NodeDesc(`LIST_PREDICATE'`);
-        $$.setChild($1);
-        $$.setChild($2);
-    }
-    | {}
+}
 ;
 
+LIST_PREDICATEP: PREDICATE LIST_PREDICATEP {
+    $$ = new NodeDesc(`LIST_PREDICATEP`);
+    $$.setChild($1);
+    $$.setChild($2);
+}
+        |
+;
 
 PREDICATE:
     corcheteIzq LIST_E corcheteDer {
         $$ = new NodeDesc(`PREDICATE`);
         $$.setChild($1);
         $$.setChild($2);
+        $$.setChild($3);
     }
 ;
 
-LIST_E: E LIST_E' {
+LIST_E: E LIST_EP {
         $$ = new NodeDesc(`LIST_E`);
         $$.setChild($1);
         $$.setChild($2);
 };
 
-LIST_E':
-
-
-
-OP E LIST_E'{
+LIST_EP: OP E LIST_EP{
     $$ = new NodeDesc(`LIST_E'`);
     $$.setChild($1);
     $$.setChild($2);
     $$.setChild($3);
-
 }
-| {}
-
+    |
 ;
 
 OP
@@ -325,6 +308,7 @@ AXIS
             $$.setChild($1);
         }
 ;
+
 AXIS_NAME
         :ancestor{
             $$ = new NodeDesc(`AXIS_NAME`);
@@ -379,6 +363,7 @@ AXIS_NAME
             $$.setChild($1);
         }
 ;
+
 WILDCARD
         :asterisk{
             $$ = new NodeDesc(`WILDCARD`);

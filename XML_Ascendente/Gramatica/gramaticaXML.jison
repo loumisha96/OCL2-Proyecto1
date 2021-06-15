@@ -120,6 +120,7 @@ RAIZ:
 OBJETO:
       lt identifier LATRIBUTOS gt OBJETOS           lt div identifier gt       { $$= new Objeto($2,'',@1.first_line, @1.first_column,$3,$5,$8);  }
     | lt identifier LATRIBUTOS gt LISTA_ID_OBJETO   lt div identifier gt       { $$= new Objeto($2,$5,@1.first_line, @1.first_column,$3,[],$8); }
+    | lt identifier LATRIBUTOS gt   lt div identifier gt                        { $$= new Objeto($2,'',@1.first_line, @1.first_column,$3,[],$7); }
     | lt identifier LATRIBUTOS div gt                                          { $$= new Objeto($2,'',@1.first_line, @1.first_column,$3,[],'Unica'); }
     | lt identifier LATRIBUTOS gt  lt div identifier gt       { $$ = new Objeto($2,$5,@1.first_line, @1.first_column,[],[],$7); }
 ;
@@ -140,7 +141,7 @@ ATRIBUTO:
 LISTA_ID_OBJETO: LISTA_ID_OBJETO identifier          { $1=$1 + ' ' +$2 ; $$ = $1;}
         | identifier                                 { $$ = $1 }
         |LISTA_ID_OBJETO todos          { $1=$1 + ' ' +$2 ; $$ = $1;}
-        | todos                                 { $$ = $1 }
+        | todos                            { $$ = $1 }
         
 ;
 

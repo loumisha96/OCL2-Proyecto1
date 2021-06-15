@@ -62,8 +62,8 @@
 "preceding_sibling"  return 'preceding_sibling';
 "processing_instruction" return 'processing_instruction';
 /*Espacios en blanco*/
-[ \r\t]+     {}
-\n           {}
+[ \r\t]+     {}       
+\n           {}    
 [0-9]+                      return  'digits';
 [0-9]+("."[0-9]+)?  return  'decimal';
 (\"({EscapeQuot}|[^"])*\")|("'""({EscapeApos}|[^'])*""'") return 'cadena';
@@ -94,7 +94,7 @@
 
 
 <
-%start ini
+%start ini 
 %% /*definicion de gramática*/
 ini
         :XPATH EOF {/*console.log(p.getGramatica('ini'));*/ return new tree($1,p.getGramatica("ini"));}
@@ -121,16 +121,16 @@ SEPERATE
 STEP
         :id LIST_PREDICATE                   {$$=new nodo("step", new Array($1,$2));p.getGramatica("step")}
         |id                                  {$$=new nodo("step", new Array($1));p.getGramatica("step")}
-        |AXIS                                {$$=new nodo("step", new Array($1));p.getGramatica("step")}
+        |AXIS                                {$$=new nodo("step", new Array($1));p.getGramatica("step")}                         
         |WILDCARD                            {$$=new nodo("step", new Array($1));p.getGramatica("step")}
-
+        
 ;
 LIST_PREDICATE
         :LIST_PREDICATE PREDICATE             {$$=new nodo("list_e", new Array($1,$2));p.getGramatica("list_pred")}
         |PREDICATE                            {$$=new nodo("list_e", new Array($1));p.getGramatica("list_pred")}
 ;
 PREDICATE
-        :corcheteIzq LIST_E corcheteDer       {$$=new nodo("predicate", new Array($1,$2,$3));p.getGramatica("predicate")}
+        :corcheteIzq LIST_E corcheteDer       {$$=new nodo("predicate", new Array($1,$2,$3));p.getGramatica("predicate")}    
 ;
 LIST_E
         :LIST_E OP E                          {$$=new nodo("list_e", new Array($1,$2,$3));p.getGramatica("list_e")}
@@ -151,7 +151,7 @@ OP
         |barra                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |and                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |mod                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
-
+        
 ;
 E
         :STEP                                 {$$=new nodo("E", new Array($1));p.getGramatica("e")}
@@ -159,7 +159,7 @@ E
         |decimal                              {$$=new nodo("E", new Array($1));p.getGramatica("e")}
         |digits                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
         |cadena                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
-
+        
 ;
 AXIS
         :AXIS_NAME doubleColon STEP           {$$=new nodo("axis", new Array($1,$2,$3));p.getGramatica("axis")}

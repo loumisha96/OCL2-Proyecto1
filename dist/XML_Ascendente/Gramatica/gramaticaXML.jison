@@ -20,6 +20,8 @@ BSL                                 "\\".
 %%
 "<?"                                this.begin('comment');
 <comment>"?>"                       this.popState();   
+"<!--"                                this.begin('comment');
+<comment>"-->"                       this.popState();   
 "//".*                              /* skip comments */
 "/*"                                this.begin('comment');
 <comment>"*/"                       this.popState();
@@ -28,44 +30,28 @@ BSL                                 "\\".
 
 "print"                     return 'print';
 "null"                      return 'null';
-"true"                      return 'true';
-"false"                     return 'false';
 
-"+"                         return 'plus';
-"-"                         return 'minus';
-"*"                         return 'times';
 "/"                         return 'div';
 "%"                         return 'mod';
 
 
 
-"<="                        return 'lte';
-">="                        return 'gte';
+
 "<"                         return 'lt';
 ">"                         return 'gt';
 "="                         return 'asig';
-"=="                        return 'equal';
-"!="                        return 'nequal';
 
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
 
 
 ";"                         return 'semicolon';
-"("                         return 'lparen';
-")"                         return 'rparen';
 
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
 
 /* Number literals */
 
 //(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
 //[0-9]+                              return 'IntegerLiteral';
 
-[a-zA-Z_][a-zA-Z0-9_ñÑ]*            return 'identifier';
+[a-zA-Z_][a-zA-Z.0-9_ñÑ]*            return 'identifier';
 
 {stringliteral}                     return 'StringLiteral'
 {charliteral}                       return 'CharLiteral'
