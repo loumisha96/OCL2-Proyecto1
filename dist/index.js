@@ -269,18 +269,19 @@ const analizarTexto = () => {
         //tabla="";
 
 
-
+        busqueda = new busqueda(result)
+        search=busqueda
         //agregarTablaSimbolos(result);
-        console.log(result);
-        GenerarReporteTabla();
+        //console.log(result);
+        //GenerarReporteTabla();
 
         //contenido=otra(result);
         //Pagina_Reporte_AST();
-        recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
-        pruebaGraficarXML(guardarTabla);
+       // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+        //pruebaGraficarXML(guardarTabla);
         //otra(result);
-            var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
-            window.open(direccion, '_blank');
+           /* var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
+            window.open(direccion, '_blank');*/
         if(!Errores.Vacio()){
             console.log("vacio we")
         }else{

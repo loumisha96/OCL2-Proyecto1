@@ -72,7 +72,11 @@
   }
 */
 var gramaticaXPath = (function(){
+<<<<<<< HEAD
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[2,8],$V2=[1,11];
+=======
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,8],$V3=[1,12],$V4=[1,19],$V5=[1,20],$V6=[1,21],$V7=[1,22],$V8=[1,23],$V9=[1,24],$Va=[1,25],$Vb=[1,26],$Vc=[1,27],$Vd=[1,28],$Ve=[1,29],$Vf=[1,30],$Vg=[1,31],$Vh=[1,13],$Vi=[1,14],$Vj=[1,15],$Vk=[1,16],$Vl=[1,17],$Vm=[1,18],$Vn=[1,36],$Vo=[1,37],$Vp=[1,35],$Vq=[8,12,13,20,23,24,25,26,27,28,29,30,31,32,33,34,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vr=[5,8,9,12],$Vs=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vt=[1,40],$Vu=[5,8,9,12,20,23,24,25,26,27,28,29,30,31,32,33,34,39],$Vv=[13,25,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60],$Vw=[5,8,9,12,18,20,23,24,25,26,27,28,29,30,31,32,33,34],$Vx=[1,54],$Vy=[1,55],$Vz=[1,56],$VA=[8,12,20,23,24,25,26,27,28,29,30,31,32,33,34],$VB=[8,9,13,25,35,36,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,60];
+>>>>>>> 375c83ae8cf4226e0c46f2e55f6f6daeeb1eac84
 var parser = {trace: function trace () { },
 yy: {},
 symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"STEP":10,"LIST_STEPP":11,"SEPARATE":12,"PREDICATE":13,"corcheteIzq":14,"LIST_E":15,"corcheteDer":16,"E":17,"LIST_EP":18,"OP":19,"add":20,"minus":21,"asterisk":22,"equal":23,"diferent":24,"menor":25,"menorIgual":26,"mayorIgual":27,"mayor":28,"or":29,"barra":30,"and":31,"mod":32,"decimal":33,"digits":34,"cadena":35,"AXIS":36,"AXIS_NAME":37,"doubleColon":38,"ancestor":39,"ancestor_or_self":40,"attribute":41,"child":42,"descendant":43,"descendant_or_self":44,"following":45,"following_sibling":46,"namespace":47,"parent":48,"preceding":49,"preceding_sibling":50,"self":51,"WILDCARD":52,"twoPoint":53,"point":54,"at":55,"id":56,"node":57,"parIzq":58,"parDer":59,"text":60,"last":61,"$accept":0,"$end":1},
@@ -119,6 +123,7 @@ case 6:
 
 break;
 case 7:
+<<<<<<< HEAD
 
         this.$ = new NodeDesc(`LIST_STEP'`);
         this.$.setChild($$[$0-2]);
@@ -184,6 +189,36 @@ LIST_PREDICATEP:
         this.$.setChild($$[$0-2]);
         this.$.setChild($$[$0-1]);
     
+=======
+this.$=new nodo("list_step", new Array($$[$0]));p.getGramatica("list_step")
+break;
+case 8:
+this.$=new nodo("seperate", new Array($$[$0-1],$$[$0]));p.getGramatica("seperate")
+break;
+case 9: case 10: case 11:
+this.$=new nodo("seperate", new Array($$[$0]));p.getGramatica("seperate")
+break;
+case 12:
+this.$=new nodo("step", new Array($$[$0-1],$$[$0]));p.getGramatica("step")
+break;
+case 13: case 14: case 15:
+this.$=new nodo("step", new Array($$[$0]));p.getGramatica("step")
+break;
+case 16:
+this.$=new nodo("list_e", new Array($$[$0-1],$$[$0]));p.getGramatica("list_pred")
+break;
+case 17:
+this.$=new nodo("list_e", new Array($$[$0]));p.getGramatica("list_pred")
+break;
+case 18:
+this.$=new nodo("predicate", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("predicate")
+break;
+case 19:
+this.$=new nodo("list_e", new Array($$[$0-2],$$[$0-1],$$[$0]));p.getGramatica("list_e")
+break;
+case 20:
+this.$=new nodo("list_e", new Array($$[$0]));p.getGramatica("list_e")
+>>>>>>> 375c83ae8cf4226e0c46f2e55f6f6daeeb1eac84
 break;
 case 9:
 

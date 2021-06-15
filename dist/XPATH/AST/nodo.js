@@ -1,16 +1,12 @@
 "use strict";
-var attribute = /** @class */ (function () {
-    function attribute(name, value) {
-        this.name = name;
-        this.value = value;
-    }
-    return attribute;
-}());
 var nodo = /** @class */ (function () {
-    function nodo(name, children) {
+    function nodo(name, children, value) {
         this.name = "";
+        this.value = "";
+        this.contenido = "";
         this.name = name;
         this.children = children;
+        this.value = value;
     }
     ;
     return nodo;
