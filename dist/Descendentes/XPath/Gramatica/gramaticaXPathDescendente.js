@@ -72,12 +72,12 @@
   }
 */
 var gramaticaXPathDescendente = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,8],$V3=[1,12],$V4=[1,19],$V5=[1,20],$V6=[1,21],$V7=[1,22],$V8=[1,23],$V9=[1,24],$Va=[1,25],$Vb=[1,26],$Vc=[1,27],$Vd=[1,28],$Ve=[1,29],$Vf=[1,30],$Vg=[1,31],$Vh=[1,13],$Vi=[1,14],$Vj=[1,15],$Vk=[1,16],$Vl=[1,17],$Vm=[1,18],$Vn=[15,25,30,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,64,65],$Vo=[2,8],$Vp=[1,35],$Vq=[5,12,25],$Vr=[1,38],$Vs=[5,12,25,44],$Vt=[2,19];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,6],$V2=[1,8],$V3=[1,12],$V4=[1,19],$V5=[1,20],$V6=[1,21],$V7=[1,22],$V8=[1,23],$V9=[1,24],$Va=[1,25],$Vb=[1,26],$Vc=[1,27],$Vd=[1,28],$Ve=[1,29],$Vf=[1,30],$Vg=[1,31],$Vh=[1,13],$Vi=[1,14],$Vj=[1,15],$Vk=[1,16],$Vl=[1,17],$Vm=[1,18],$Vn=[8,13,14,22,26,27,28,29,30,31,32,33,34,35,36,37,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,62,63],$Vo=[2,8],$Vp=[1,37],$Vq=[1,38],$Vr=[1,36],$Vs=[5,8,9,13,22,26,27,28,29,30,31,32,33,34,35,36,37],$Vt=[1,41],$Vu=[5,8,9,13,22,26,27,28,29,30,31,32,33,34,35,36,37,42],$Vv=[14,28,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,62,63],$Vw=[2,19],$Vx=[1,56],$Vy=[1,57],$Vz=[1,58],$VA=[1,72],$VB=[1,80],$VC=[2,23],$VD=[1,69],$VE=[1,70],$VF=[1,71],$VG=[1,73],$VH=[1,74],$VI=[1,75],$VJ=[1,76],$VK=[1,77],$VL=[1,78],$VM=[1,79],$VN=[1,81],$VO=[1,82],$VP=[8,13,22,26,27,28,29,30,31,32,33,34,35,36,37],$VQ=[8,9,14,28,38,39,40,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,62,63];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"STEP":10,"LIST_STEPP":11,"SEPARATE":12,"SEPERATE":13,"barra":14,"id":15,"LIST_PREDICATE":16,"AXIS":17,"WILDCARD":18,"PREDICATE":19,"LIST_PREDICATEP":20,"corcheteIzq":21,"LIST_E":22,"corcheteDer":23,"E":24,"LIST_EPP":25,"LIST_EP":26,"OP":27,"add":28,"minus":29,"asterisk":30,"equal":31,"diferent":32,"menor":33,"menorIgual":34,"mayorIgual":35,"mayor":36,"or":37,"and":38,"mod":39,"decimal":40,"digits":41,"cadena":42,"AXIS_NAME":43,"doubleColon":44,"ancestor":45,"ancestor_or_self":46,"attribute":47,"child":48,"descendant":49,"descendant_or_self":50,"following":51,"following_sibling":52,"namespace":53,"parent":54,"preceding":55,"preceding_sibling":56,"self":57,"twoPoint":58,"point":59,"at":60,"node":61,"parIzq":62,"parDer":63,"text":64,"last":65,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"slash",9:"doubleSlash",12:"SEPARATE",14:"barra",15:"id",21:"corcheteIzq",23:"corcheteDer",25:"LIST_EPP",28:"add",29:"minus",30:"asterisk",31:"equal",32:"diferent",33:"menor",34:"menorIgual",35:"mayorIgual",36:"mayor",37:"or",38:"and",39:"mod",40:"decimal",41:"digits",42:"cadena",44:"doubleColon",45:"ancestor",46:"ancestor_or_self",47:"attribute",48:"child",49:"descendant",50:"descendant_or_self",51:"following",52:"following_sibling",53:"namespace",54:"parent",55:"preceding",56:"preceding_sibling",57:"self",58:"twoPoint",59:"point",60:"at",61:"node",62:"parIzq",63:"parDer",64:"text",65:"last"},
-productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[7,2],[11,3],[11,0],[13,2],[13,1],[13,1],[13,1],[10,2],[10,1],[10,1],[10,1],[16,2],[20,2],[20,0],[19,3],[22,2],[26,3],[26,0],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[27,1],[24,1],[24,1],[24,1],[24,1],[24,1],[17,3],[17,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[43,1],[18,1],[18,1],[18,1],[18,2],[18,3],[18,2],[18,3],[18,3],[18,3]],
+symbols_: {"error":2,"ini":3,"XPATH":4,"EOF":5,"ENTRY":6,"LIST_STEP":7,"slash":8,"doubleSlash":9,"STEP":10,"LIST_STEPP":11,"SEPARATE":12,"barra":13,"id":14,"LIST_PREDICATE":15,"AXIS":16,"WILDCARD":17,"PREDICATE":18,"LIST_PREDICATEP":19,"corcheteIzq":20,"LIST_E":21,"corcheteDer":22,"E":23,"LIST_EP":24,"OP":25,"add":26,"minus":27,"asterisk":28,"equal":29,"diferent":30,"menor":31,"menorIgual":32,"mayorIgual":33,"mayor":34,"or":35,"and":36,"mod":37,"decimal":38,"digits":39,"cadena":40,"AXIS_NAME":41,"doubleColon":42,"ancestor":43,"ancestor_or_self":44,"attribute":45,"child":46,"descendant":47,"descendant_or_self":48,"following":49,"following_sibling":50,"namespace":51,"parent":52,"preceding":53,"preceding_sibling":54,"self":55,"twoPoint":56,"point":57,"at":58,"node":59,"parIzq":60,"parDer":61,"text":62,"last":63,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"slash",9:"doubleSlash",13:"barra",14:"id",20:"corcheteIzq",22:"corcheteDer",26:"add",27:"minus",28:"asterisk",29:"equal",30:"diferent",31:"menor",32:"menorIgual",33:"mayorIgual",34:"mayor",35:"or",36:"and",37:"mod",38:"decimal",39:"digits",40:"cadena",42:"doubleColon",43:"ancestor",44:"ancestor_or_self",45:"attribute",46:"child",47:"descendant",48:"descendant_or_self",49:"following",50:"following_sibling",51:"namespace",52:"parent",53:"preceding",54:"preceding_sibling",55:"self",56:"twoPoint",57:"point",58:"at",59:"node",60:"parIzq",61:"parDer",62:"text",63:"last"},
+productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[7,2],[11,3],[11,0],[12,2],[12,1],[12,1],[12,1],[10,2],[10,1],[10,1],[10,1],[15,2],[19,2],[19,0],[18,3],[21,2],[24,3],[24,0],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[25,1],[23,1],[23,1],[23,1],[23,1],[23,1],[16,3],[16,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[41,1],[17,1],[17,1],[17,1],[17,2],[17,3],[17,2],[17,3],[17,3],[17,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -85,14 +85,14 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
 
-            this.$ = new NodeDesc('INI');
+            this.$ = new NodeDesc('INI', '');
             this.$.setChild($$[$0-1]);
             return this.$;
         
 break;
 case 2:
 
-            this.$ = new NodeDesc('XPATH');
+            this.$ = new NodeDesc('XPATH', '');
             this.$.setChild($$[$0-1]);
             this.$.setChild($$[$0]);
 
@@ -100,151 +100,417 @@ case 2:
 break;
 case 3:
 
-        this.$ = new NodeDesc('XPATH');
+        this.$ = new NodeDesc('XPATH', '');
         this.$.setChild($$[$0]);
     
 break;
-case 4: case 5:
+case 4:
 
-            this.$ = new NodeDesc('ENTRY');
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc('ENTRY', '');
+            this.$.setChild(new NodeDesc($$[$0], 'SLASH'));
+        
+break;
+case 5:
+
+            this.$ = new NodeDesc('ENTRY', '');
+            this.$.setChild(new NodeDesc($$[$0], 'DOUBLESLASH'));
         
 break;
 case 6:
 
-    this.$ = new NodeDesc('LIST_STEP');
+    this.$ = new NodeDesc('LIST_STEP', '');
     this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc('LIST_STEPP', ''));
+    } else {
+        this.$.setChild($$[$0]);
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    }
 
 
 break;
 case 7:
 
-    this.$ = new NodeDesc("LIST_STEPP");
+    this.$ = new NodeDesc("LIST_STEPP", '');
     this.$.setChild($$[$0-2]);
     this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
+
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    } else {
+        this.$.setChild($$[$0]);
+    }
 
 break;
 case 9:
 
-    this.$ = new NodeDesc("SEPARATE");
-    this.$.setChild($$[$0-1]);
+    this.$ = new NodeDesc("SEPARATE", '');
+    this.$.setChild(new NodeDesc($$[$0-1], 'BARRA'));
     this.$.setChild($$[$0]);
         
 break;
-case 10: case 11: case 12:
+case 10:
 
-            this.$ = new NodeDesc("SEPARATE");
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc("SEPARATE", '');
+            this.$.setChild(new NodeDesc($$[$0], 'BARRA'));
+        
+break;
+case 11:
+
+            this.$ = new NodeDesc("SEPARATE", '');
+            this.$.setChild(new NodeDesc($$[$0], 'SLASH'));
+        
+break;
+case 12:
+
+            this.$ = new NodeDesc("SEPARATE", '');
+            this.$.setChild(new NodeDesc($$[$0], 'DOUBLESLASH'));
         
 break;
 case 13:
 
-            this.$ = new NodeDesc("STEP");
-            this.$.setChild($$[$0-1]);
+            this.$ = new NodeDesc("STEP", '');
+            this.$.setChild(new NodeDesc($$[$0-1], 'ID'));
             this.$.setChild($$[$0]);
         
 break;
-case 14: case 15: case 16:
+case 14:
 
-            this.$ = new NodeDesc("STEP");
+            this.$ = new NodeDesc("STEP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'ID'));
+        
+break;
+case 15: case 16:
+
+            this.$ = new NodeDesc("STEP", '');
             this.$.setChild($$[$0]);
         
 break;
 case 17:
  
-    this.$ = new NodeDesc("LIST_PREDICATE");
+    this.$ = new NodeDesc("LIST_PREDICATE", '');
     this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
+
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    } else {
+        this.$.setChild($$[$0]);
+    }
 
 break;
 case 18:
 
-    this.$ = new NodeDesc("LIST_PREDICATEP");
+    this.$ = new NodeDesc("LIST_PREDICATEP", '');
     this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
+
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    } else {
+        this.$.setChild($$[$0]);
+    }
 
 break;
 case 20:
 
-        this.$ = new NodeDesc("PREDICATE");
-        this.$.setChild($$[$0-2]);
+        this.$ = new NodeDesc("PREDICATE", '');
+        this.$.setChild(new NodeDesc($$[$0-2], 'corcheteIzq'));
         this.$.setChild($$[$0-1]);
+        this.$.setChild(new NodeDesc($$[$0], 'corcheteDer'));
     
 break;
 case 21:
 
-        this.$ = new NodeDesc("LIST_E");
-        this.$.setChild($$[$0-1]);
+    this.$ = new NodeDesc("LIST_E", '');
+    this.$.setChild($$[$0-1]);
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    } else {
         this.$.setChild($$[$0]);
+    }
 
 break;
 case 22:
 
-    this.$ = new NodeDesc("LIST_EP");
+    this.$ = new NodeDesc("LIST_EP", '');
     this.$.setChild($$[$0-2]);
     this.$.setChild($$[$0-1]);
-    this.$.setChild($$[$0]);
+    if($$[$0] === undefined || !$$[$0]) {
+        this.$.setChild(new NodeDesc("EPSILON", ''));
+    } else {
+        this.$.setChild($$[$0]);
+    }
+
 
 break;
-case 24: case 25: case 26: case 27: case 28: case 29: case 30: case 31: case 32: case 33: case 34: case 35: case 36: case 37:
+case 24:
 
-            this.$ = new NodeDesc("OP");
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'ADD'));
         
 break;
-case 38: case 39: case 40: case 41: case 42:
+case 25:
 
-        this.$ = new NodeDesc("E");
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'MINUS'));
+        
+break;
+case 26:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'ASTERIK'));
+        
+break;
+case 27:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'SLASH'));
+        
+break;
+case 28:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'EQUAL'));
+        
+break;
+case 29:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'Different'));
+        
+break;
+case 30:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'MENOR'));
+        
+break;
+case 31:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'MENORIGUAL'));
+        
+break;
+case 32:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'MAYORIGUAL'));
+        
+break;
+case 33:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'MAYOR'));
+        
+break;
+case 34:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'OR'));
+        
+break;
+case 35:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'BARRA'));
+        
+break;
+case 36:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'AND'));
+        
+break;
+case 37:
+
+            this.$ = new NodeDesc("OP", '');
+            this.$.setChild(new NodeDesc($$[$0], 'OP'));
+        
+break;
+case 38: case 39:
+
+        this.$ = new NodeDesc("E",' ');
         this.$.setChild($$[$0]);
+    
+break;
+case 40:
+
+        this.$ = new NodeDesc("E",' ');
+        this.$.setChild(new NodeDesc($$[$0], 'DECIMAL'));
+    
+break;
+case 41:
+
+        this.$ = new NodeDesc("E",' ');
+        this.$.setChild(new NodeDesc($$[$0], 'DIGITS'));
+    
+break;
+case 42:
+
+        this.$ = new NodeDesc("E",' ');
+        this.$.setChild(new NodeDesc($$[$0], 'CADENA'));
     
 break;
 case 43:
 
-            this.$ = new NodeDesc("AXIS");
+            this.$ = new NodeDesc("AXIS", '');
             this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
+            this.$.setChild(new NodeDesc($$[$0-2], 'DOUBLECOLON'));
             this.$.setChild($$[$0]);
         
 break;
 case 44:
 
-            this.$ = new NodeDesc("AXIS");
+            this.$ = new NodeDesc("AXIS", '');
             this.$.setChild($$[$0]);
         
 break;
-case 45: case 46: case 47: case 48: case 49: case 50: case 51: case 52: case 53: case 54: case 55: case 56: case 57:
+case 45:
 
-            this.$ = new NodeDesc("AXIS_NAME");
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'ancestor'));
+        
+break;
+case 46:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'ancestor_or_self'));
+        
+break;
+case 47:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'attribute'));
+        
+break;
+case 48:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'child'));
+        
+break;
+case 49:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'descendant'));
+        
+break;
+case 50:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'descendant_or_self'));
+        
+break;
+case 51:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'following'));
+        
+break;
+case 52:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'following_sibling'));
+        
+break;
+case 53:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'namspace'));
+        
+break;
+case 54:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'parent'));
+        
+break;
+case 55:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'preceding'));
+        
+break;
+case 56:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'preceding_sibling'));
+        
+break;
+case 57:
+
+            this.$ = new NodeDesc("AXIS_NAME", '');
+            this.$.setChild(new NodeDesc($$[$0], 'self'));
+        
+break;
+case 58:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0], 'asterisk'));
+        
+break;
+case 59:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0], 'twoPoint'));
+        
+break;
+case 60:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0], 'point'));
+        
+break;
+case 61:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-1], 'at'));
+            this.$.setChild(new NodeDesc($$[$0-1], 'asterisk'));
+        
+break;
+case 62:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-2], 'at'));
+            this.$.setChild(new NodeDesc($$[$0-2], 'ID'));
             this.$.setChild($$[$0]);
         
 break;
-case 58: case 59: case 60:
+case 63:
 
-            this.$ = new NodeDesc("WILDCARD");
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-1], 'at'));
+            this.$.setChild(new NodeDesc($$[$0-1], 'ID'));
         
 break;
-case 61: case 63:
+case 64:
 
-            this.$ = new NodeDesc("WILDCARD");
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-2], 'node'));
+            this.$.setChild(new NodeDesc($$[$0-1], 'parIzq'));
+            this.$.setChild(new NodeDesc($$[$0], 'parDer'));
+
         
 break;
-case 62: case 64: case 65: case 66:
+case 65:
 
-            this.$ = new NodeDesc("WILDCARD");
-            this.$.setChild($$[$0-2]);
-            this.$.setChild($$[$0-1]);
-            this.$.setChild($$[$0]);
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-2], 'text'));
+            this.$.setChild(new NodeDesc($$[$0-1], 'parIZq'));
+            this.$.setChild(new NodeDesc($$[$0], 'parDer'));
+        
+break;
+case 66:
+
+            this.$ = new NodeDesc("WILDCARD", '');
+            this.$.setChild(new NodeDesc($$[$0-2], 'last'));
+            this.$.setChild(new NodeDesc($$[$0-1], 'parIZq'));
+            this.$.setChild(new NodeDesc($$[$0], 'parDer'));
         
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:4,8:$V0,9:$V1,10:7,15:$V2,17:9,18:10,30:$V3,43:11,45:$V4,46:$V5,47:$V6,48:$V7,49:$V8,50:$V9,51:$Va,52:$Vb,53:$Vc,54:$Vd,55:$Ve,56:$Vf,57:$Vg,58:$Vh,59:$Vi,60:$Vj,61:$Vk,64:$Vl,65:$Vm},{1:[3]},{5:[1,32]},{7:33,10:7,15:$V2,17:9,18:10,30:$V3,43:11,45:$V4,46:$V5,47:$V6,48:$V7,49:$V8,50:$V9,51:$Va,52:$Vb,53:$Vc,54:$Vd,55:$Ve,56:$Vf,57:$Vg,58:$Vh,59:$Vi,60:$Vj,61:$Vk,64:$Vl,65:$Vm},{5:[2,3]},o($Vn,[2,4]),o($Vn,[2,5]),{5:$Vo,11:34,12:$Vp},o($Vq,[2,14],{16:36,19:37,21:$Vr}),o($Vq,[2,15]),o($Vq,[2,16]),o($Vq,[2,44],{44:[1,39]}),o($Vq,[2,58]),o($Vq,[2,59]),o($Vq,[2,60]),{15:[1,41],30:[1,40]},{62:[1,42]},{62:[1,43]},{62:[1,44]},o($Vs,[2,45]),o($Vs,[2,46]),o($Vs,[2,47]),o($Vs,[2,48]),o($Vs,[2,49]),o($Vs,[2,50]),o($Vs,[2,51]),o($Vs,[2,52]),o($Vs,[2,53]),o($Vs,[2,54]),o($Vs,[2,55]),o($Vs,[2,56]),o($Vs,[2,57]),{1:[2,1]},{5:[2,2]},{5:[2,6]},{10:45,15:$V2,17:9,18:10,30:$V3,43:11,45:$V4,46:$V5,47:$V6,48:$V7,49:$V8,50:$V9,51:$Va,52:$Vb,53:$Vc,54:$Vd,55:$Ve,56:$Vf,57:$Vg,58:$Vh,59:$Vi,60:$Vj,61:$Vk,64:$Vl,65:$Vm},o($Vq,[2,13]),o($Vq,$Vt,{20:46,19:47,21:$Vr}),{6:51,8:$V0,9:$V1,10:50,15:$V2,17:9,18:10,22:48,24:49,30:$V3,40:[1,52],41:[1,53],42:[1,54],43:11,45:$V4,46:$V5,47:$V6,48:$V7,49:$V8,50:$V9,51:$Va,52:$Vb,53:$Vc,54:$Vd,55:$Ve,56:$Vf,57:$Vg,58:$Vh,59:$Vi,60:$Vj,61:$Vk,64:$Vl,65:$Vm},{10:55,15:$V2,17:9,18:10,30:$V3,43:11,45:$V4,46:$V5,47:$V6,48:$V7,49:$V8,50:$V9,51:$Va,52:$Vb,53:$Vc,54:$Vd,55:$Ve,56:$Vf,57:$Vg,58:$Vh,59:$Vi,60:$Vj,61:$Vk,64:$Vl,65:$Vm},o($Vq,[2,61]),o($Vq,[2,63],{19:56,21:$Vr}),{63:[1,57]},{63:[1,58]},{63:[1,59]},{5:$Vo,11:60,12:$Vp},o($Vq,[2,17]),o($Vq,$Vt,{19:47,20:61,21:$Vr}),{23:[1,62]},{25:[1,63]},{25:[2,38]},{25:[2,39]},{25:[2,40]},{25:[2,41]},{25:[2,42]},o($Vq,[2,43]),o($Vq,[2,62]),o($Vq,[2,64]),o($Vq,[2,65]),o($Vq,[2,66]),{5:[2,7]},o($Vq,[2,18]),o([5,12,21,25],[2,20]),{23:[2,21]}],
-defaultActions: {4:[2,3],32:[2,1],33:[2,2],34:[2,6],50:[2,38],51:[2,39],52:[2,40],53:[2,41],54:[2,42],60:[2,7],63:[2,21]},
+table: [{3:1,4:2,6:3,7:4,8:$V0,9:$V1,10:7,14:$V2,16:9,17:10,28:$V3,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},{1:[3]},{5:[1,32]},{7:33,10:7,14:$V2,16:9,17:10,28:$V3,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},{5:[2,3]},o($Vn,[2,4]),o($Vn,[2,5]),{5:$Vo,8:$Vp,9:$Vq,11:34,12:35,13:$Vr},o($Vs,[2,14],{15:39,18:40,20:$Vt}),o($Vs,[2,15]),o($Vs,[2,16]),o($Vs,[2,44],{42:[1,42]}),o($Vs,[2,58]),o($Vs,[2,59]),o($Vs,[2,60]),{14:[1,44],28:[1,43]},{60:[1,45]},{60:[1,46]},{60:[1,47]},o($Vu,[2,45]),o($Vu,[2,46]),o($Vu,[2,47]),o($Vu,[2,48]),o($Vu,[2,49]),o($Vu,[2,50]),o($Vu,[2,51]),o($Vu,[2,52]),o($Vu,[2,53]),o($Vu,[2,54]),o($Vu,[2,55]),o($Vu,[2,56]),o($Vu,[2,57]),{1:[2,1]},{5:[2,2]},{5:[2,6]},{10:48,14:$V2,16:9,17:10,28:$V3,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},o($Vv,[2,10],{6:49,8:$V0,9:$V1}),o($Vv,[2,11]),o($Vv,[2,12]),o($Vs,[2,13]),o($Vs,$Vw,{19:50,18:51,20:$Vt}),{6:55,8:$V0,9:$V1,10:54,14:$V2,16:9,17:10,21:52,23:53,28:$V3,38:$Vx,39:$Vy,40:$Vz,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},{10:59,14:$V2,16:9,17:10,28:$V3,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},o($Vs,[2,61]),o($Vs,[2,63],{18:60,20:$Vt}),{61:[1,61]},{61:[1,62]},{61:[1,63]},{5:$Vo,8:$Vp,9:$Vq,11:64,12:35,13:$Vr},o($Vv,[2,9]),o($Vs,[2,17]),o($Vs,$Vw,{18:51,19:65,20:$Vt}),{22:[1,66]},{8:$VA,13:$VB,22:$VC,24:67,25:68,26:$VD,27:$VE,28:$VF,29:$VG,30:$VH,31:$VI,32:$VJ,33:$VK,34:$VL,35:$VM,36:$VN,37:$VO},o($VP,[2,38]),o($VP,[2,39]),o($VP,[2,40]),o($VP,[2,41]),o($VP,[2,42]),o($Vs,[2,43]),o($Vs,[2,62]),o($Vs,[2,64]),o($Vs,[2,65]),o($Vs,[2,66]),{5:[2,7]},o($Vs,[2,18]),o([5,8,9,13,20,22,26,27,28,29,30,31,32,33,34,35,36,37],[2,20]),{22:[2,21]},{6:55,8:$V0,9:$V1,10:54,14:$V2,16:9,17:10,23:83,28:$V3,38:$Vx,39:$Vy,40:$Vz,41:11,43:$V4,44:$V5,45:$V6,46:$V7,47:$V8,48:$V9,49:$Va,50:$Vb,51:$Vc,52:$Vd,53:$Ve,54:$Vf,55:$Vg,56:$Vh,57:$Vi,58:$Vj,59:$Vk,62:$Vl,63:$Vm},o($VQ,[2,24]),o($VQ,[2,25]),o($VQ,[2,26]),o($VQ,[2,27]),o($VQ,[2,28]),o($VQ,[2,29]),o($VQ,[2,30]),o($VQ,[2,31]),o($VQ,[2,32]),o($VQ,[2,33]),o($VQ,[2,34]),o($VQ,[2,35]),o($VQ,[2,36]),o($VQ,[2,37]),{8:$VA,13:$VB,22:$VC,24:84,25:68,26:$VD,27:$VE,28:$VF,29:$VG,30:$VH,31:$VI,32:$VJ,33:$VK,34:$VL,35:$VM,36:$VN,37:$VO},{22:[2,22]}],
+defaultActions: {4:[2,3],32:[2,1],33:[2,2],34:[2,6],64:[2,7],67:[2,21],84:[2,22]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -721,101 +987,101 @@ options: {"case-insensitive":true},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
 var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
-case 0:return 30;
+case 0:return 28;
 break;
-case 1:return 58;
+case 1:return 56;
 break;
-case 2:return 59;
+case 2:return 57;
 break;
-case 3:return 62;
+case 3:return 60;
 break;
-case 4:return 63;
+case 4:return 61;
 break;
 case 5:return 'llaIzq';
 break;
 case 6:return 'llaDer';
 break;
-case 7:return 44;
+case 7:return 42;
 break;
 case 8:return 'colon';
 break;
-case 9:return 14;
+case 9:return 13;
 break;
-case 10:return 21;
+case 10:return 20;
 break;
-case 11:return 23;
+case 11:return 22;
 break;
 case 12:return 'ptcoma';
 break;
-case 13:return 28;
+case 13:return 26;
 break;
 case 14:return 'comma';
 break;
-case 15:return 29;
+case 15:return 27;
 break;
 case 16:return 'arrow';
 break;
-case 17:return 31;
+case 17:return 29;
 break;
 case 18:return 9;
 break;
 case 19:return 8;
 break;
-case 20:return 32;
+case 20:return 30;
 break;
-case 21:return 33;
+case 21:return 31;
 break;
-case 22:return 34;
+case 22:return 32;
 break;
-case 23:return 36;
+case 23:return 34;
 break;
-case 24:return 35;
+case 24:return 33;
 break;
-case 25:return 60;
+case 25:return 58;
 break;
-case 26:return 37;
+case 26:return 35;
 break;
 case 27:return 'let';
 break;
-case 28:return 65;
+case 28:return 63;
 break;
-case 29:return 38;
+case 29:return 36;
 break;
 case 30:return 'div';
 break;
-case 31:return 39;
+case 31:return 37;
 break;
-case 32:return 64;
+case 32:return 62;
 break;
-case 33:return 61;
+case 33:return 59;
 break;
-case 34:return 48;
+case 34:return 46;
 break;
-case 35:return 57;
+case 35:return 55;
 break;
-case 36:return 54;
+case 36:return 52;
 break;
 case 37:return 'comment';
 break;
 case 38:return 'element';
 break;
-case 39:return 45;
+case 39:return 43;
 break;
-case 40:return 53;
+case 40:return 51;
 break;
-case 41:return 47;
+case 41:return 45;
 break;
-case 42:return 55;
+case 42:return 53;
 break;
-case 43:return 51;
+case 43:return 49;
 break;
-case 44:return 46;
+case 44:return 44;
 break;
-case 45:return 50;
+case 45:return 48;
 break;
-case 46:return 52;
+case 46:return 50;
 break;
-case 47:return 56;
+case 47:return 54;
 break;
 case 48:return 'processing_instruction';
 break;
@@ -827,9 +1093,9 @@ case 51:return  'digits';
 break;
 case 52:return  'decimal';
 break;
-case 53:return 42;
+case 53:return 40;
 break;
-case 54:return 15;
+case 54:return 14;
 break;
 case 55:return 5;
 break;
