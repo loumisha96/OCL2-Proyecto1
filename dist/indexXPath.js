@@ -28,17 +28,3 @@ function ASTXPATH() {
     i = 0;
 
 }
-
-function analaizarXPathDescendente() {
-    var ta = document.getElementById(get_vent());
-    var contenido = ta.value;
-    tree = gramaticaXPathDescendente.parse(contenido);
-    console.log(tree);
-}
-
-function analaizarXMLDescendente() {
-    var ta = document.getElementById(get_vent());
-    var contenido = ta.value;
-    tree = gramaticaXMLDescendente.parse(contenido);
-    console.log(tree);
-}
