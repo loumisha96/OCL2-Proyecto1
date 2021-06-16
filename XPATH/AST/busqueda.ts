@@ -3,15 +3,19 @@ class busqueda{
     //list_nodos:Array<nodo>;
     
     tabla:Array<EntornoXML>;
+    tabla2:Array<EntornoXML>;
     elementoActual:any
     bandera=false;
     query:Array<any>//cadena de query
+    query2:Array<nodo>
      x=0;
      cadenaDouble=""
     constructor(tabla:Array<EntornoXML>){
       //  this.list_nodos=new Array();
         this.tabla = tabla;
+        this.tabla2 = tabla;
         this.query=[];
+        this.query2=[];
         
     }
     prueba(nodito:nodo, tabla:Array<EntornoXML>){
@@ -25,10 +29,13 @@ class busqueda{
                 this.RecorrerChildren(padre.children[n],this.tabla)
             }
             console.log(this.query)
+            console.log(this.query2)
         }
-        this.search(this.tabla,0,false)
+       this.search(this.tabla,0,false)
+       
     }
     
+
     RecorrerChildren(actual:nodo,tablaActual:Array<EntornoXML>):string{
         var cadena=""
         if(actual.children !=undefined){//tiene hijos
@@ -36,13 +43,14 @@ class busqueda{
                 cadena=""
                 if (actual.children[child].children == undefined)
                     this.query.push(actual.children[child])
+                    this.query2.push(actual.children[child])
                 this.RecorrerChildren(actual.children[child],tablaActual)
             }
         }
         return cadena
 
     }
-   // /biblioteca/libro
+    
     search(tablaActual:Array<EntornoXML>,x:number,imprimir:boolean){
         var cadena=""
         if(tablaActual!=undefined){
@@ -52,17 +60,27 @@ class busqueda{
                     if(this.query[x]=="/"){
                        x++;
                        if(this.query[x]=="@"){ 
-                            this.getAttrbFather(x+1, tablaActual)
+                         cadena= this.getAttrb(tablaActual,x)
+                         if(x+1==this.query.length && imprimir==false){
+                            console.log(cadena)
+                            imprimir=true
+                        }
+                           // this.getAttrbFather(x+1, this.tabla)
                        }
                     }else if(this.query[x]=="//"){
                         x++
                         if(this.query[x]=="@"){
-                           // this.getAttrb(x+1, tablaActual)
+                           cadena= this.getAttrb(tablaActual,x)
+                           if(x+1==this.query.length && imprimir==false){
+                            console.log(cadena)
+                            imprimir=true
+                        }
                        }else{
                             if(this.query[x]==e.id){//si es id retonar contenido
                                 cadena = this.recorrerTablaId(this.query[x],tablaActual)
                             }else{
-                                cadena= this.doubleSlash(x,e, e.tablaEntornos)
+                                x++
+                                cadena= this.doubleSlash(x,e, tablaActual)
                                 if(x+1==this.query.length && imprimir==false){
                                     console.log(cadena)
                                     imprimir=true
@@ -78,7 +96,7 @@ class busqueda{
                         
                     }
                     else{
-                        if (this.query[x]==e.id){
+                        if (this.query[x]==e.id){//id
                            cadena = this.recorrerTablaId(this.query[x],tablaActual)
                             if(x+1==this.query.length && imprimir==false){
                                 console.log(cadena)
@@ -105,10 +123,10 @@ class busqueda{
             for(let t=0; t<tablaActual.length; t++){
                 var e=tablaActual[t]
                 if(this.query[x]==e.id){
-                    cadena= this.recorrerTablaId(this.query[x],tablaActual);
+                    cadena+= this.recorrerTablaId(this.query[x],tablaActual);
                     break
                  }else{
-                    this.doubleSlash(x,e, e.tablaEntornos)
+                    cadena +=this.doubleSlash(x,e, e.tablaEntornos)
                  }
             }
         }
@@ -180,25 +198,50 @@ class busqueda{
         cadena+=" "
         return cadena
     }
-    getAttrbFather(x:number, tablaActual:Array<EntornoXML>){
+    getAttrbFather(x:number, tablaActual:Array<EntornoXML>):string{
         var cadena=""
         if(this.query[x]=="*"){
             tablaActual.forEach((e)=>{
                 if(e.tablaSimbolos.length!=0){
                     if(this.query[x-3]==e.id)
-                     cadena = this.recorrerAttrb(e.tablaSimbolos)
+                     cadena += this.recorrerAttrb(e.tablaSimbolos)
                      
                 }
             })
-        }else{
-
         }
-        tablaActual.forEach((e)=>{
-
-        })
+        return cadena
     }
-    getId(){
-
+    getAttrb(tabla:Array<EntornoXML>,x:number):string{
+        var cadena="";
+        if(this.query[x]=="*"){
+            
+            tabla.forEach((e)=>{
+                if(e.tablaSimbolos.length!=0)// SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                    cadena+=this.recorrerAttrb(e.tablaSimbolos)
+                cadena+=this.getAttrb(e.tablaEntornos,x)
+            });
+        }
+        
+        return cadena
+    }
+    getId(x:number, tablaActual:Array<EntornoXML>, imprimir:boolean, e:EntornoXML, t:number){
+        var cadena=""
+        if (this.query[x]==e.id){//id
+            cadena = this.recorrerTablaId(this.query[x],tablaActual)
+             if(x+1==this.query.length && imprimir==false){
+                 console.log(cadena)
+                 imprimir=true
+             }
+                  
+             this.search(e.tablaEntornos,x+1,imprimir)
+            // break;
+         }else{
+             if(t+1<tablaActual.length){
+                 return
+             }else{
+                 x++;
+             }
+         }
     }
 
 }

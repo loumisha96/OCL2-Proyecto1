@@ -51,16 +51,18 @@
 "parent"    return 'parent';
 "comment"   return 'comment';
 "element"   return 'element';
+"ancestor-or-self"   return 'ancestor_or_self';
+
+"descendant-or-self" return 'descendant_or_self';
+"following-sibling"  return 'following_sibling';
+"preceding-sibling"  return 'preceding_sibling';
+"processing-instruction" return 'processing_instruction';
 "ancestor"  return 'ancestor';
+"descendant" return 'descendant';
 "namespace" return 'namespace';
 "attribute" return 'attribute';
 "preceding" return 'preceding';
 "following" return 'following';
-"ancestor_or_self"   return 'ancestor_or_self';
-"descendant_or_self" return 'descendant_or_self';
-"following_sibling"  return 'following_sibling';
-"preceding_sibling"  return 'preceding_sibling';
-"processing_instruction" return 'processing_instruction';
 /*Espacios en blanco*/
 [ \r\t]+     {}       
 \n           {}    
@@ -72,7 +74,7 @@
 
 <<EOF>>                 return 'EOF';
 .       {
-        console.error('Error');
+         console.error('Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column);
 }
 /lex
 
@@ -140,7 +142,7 @@ OP
         :add                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |minus                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |asterisk                             {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
-        |slash                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |div                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |equal                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |diferent                             {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |menor                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
@@ -151,6 +153,7 @@ OP
         |barra                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |and                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         |mod                                  {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
+        |slash                                {$$=new nodo("operador", new Array($1));p.getGramatica("op")}
         
 ;
 E
@@ -159,6 +162,7 @@ E
         |decimal                              {$$=new nodo("E", new Array($1));p.getGramatica("e")}
         |digits                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
         |cadena                               {$$=new nodo("E", new Array($1));p.getGramatica("e")}
+        |parIzq E parDer                      {$$=new nodo("E", new Array($1,$2,$3));p.getGramatica("e")}
         
 ;
 AXIS
