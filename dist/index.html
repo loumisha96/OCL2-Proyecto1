@@ -128,7 +128,7 @@
     <title>Proyecto 1</title>
 </head>
 
-<body>
+<body onload="init()">
     <div>
         <h2>Proyecto 1 Grupo 19</h2>
     </div>
@@ -149,8 +149,8 @@
         <div>
             <button onclick="query();" id="guardarEditor" title="Guardar" class="btnp">Consulta</button>
             <button onclick="AnalizarXpath();" id="guardarEditor" title="Guardar" class="btnp">Analizar Xpath</button>
-            <button onclick="analaizarXPathDescendente();" id="guardarEditor" title="Guardar" class="btnp">Analizar XPath Desc</button>
-            <button onclick="analaizarXMLDescendente();" id="guardarEditor" title="Guardar" class="btnp">Analizar XML Desc</button>
+            <button id="analaizarXPathDescendente" title="Guardar" class="btnp">Analizar XPath Desc</button>
+            <button id="analaizarXMLDescendente" title="Guardar" class="btnp">Analizar XML Desc</button>
             <button onclick="ASTXPATH()" title="QuitarPestana" id="btn7" class="btnp">AST_XPATH</button>
         </div>
         <div>
@@ -162,6 +162,17 @@
         </div>
 
         <script>
+            var sample = 'digraph g { a -> b; }';
+
+            var options = {
+                format: 'svg'
+                    // format: 'png-image-element'
+            }
+
+            var image = Viz(sample, options);
+            var main = document.getElementsByClassName('main');
+
+            main.innerHTML = image; // SVG
         </script>
 
 
@@ -249,6 +260,7 @@
         </body>
 
         <body>
+
             <div id="contenidoconsolas">
             </div>
 
@@ -257,7 +269,10 @@
 
     </div>
     <h2> VISUALIZACION DE REPORTES </h2>
-    <div class="contenedorXML" id="grafo"> </div>
+    <div class="contenedorXML" id="grafo">
+
+    </div>
+
 </body>
 
 </html>
