@@ -60,7 +60,7 @@ XML:
             return $$;
          }
         |TAGS_LIST EOF                    {
-         //new ReporteGramatica("XML -> N TAGS_LIST EOF",  "XML.val = TAGS_LIST.val"      )
+
 
             $$ = new NodeDescXML('XML', '');
             $$.childList.push($1);

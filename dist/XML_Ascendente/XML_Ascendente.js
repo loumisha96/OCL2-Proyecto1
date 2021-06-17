@@ -2,10 +2,12 @@
 var cont = 0;
 var tablaGeneral = [];
 var entornoAnterior = "Global";
+var entornoAnterior2;
 var simboloAnterior;
 var entornoGlobalXML;
 var guardarTabla;
 var contadorLineas;
+var salida;
 ///////// PRUEBA DE BUSQUEDA TIPO----> //titulo
 function recorreTabla(objeto, tabla) {
     if (tabla != undefined) {
@@ -18,7 +20,8 @@ function recorreTabla(objeto, tabla) {
                         if (element.tablaSimbolos.length != 0) { //SI EL ELEMENTO TIENE ATRIBUTOS
                         }
                         else { // SI EL ELEMENTO NO TIENE ATRIBUTOS
-                            console.log("<" + element.id + ">" + element.texto + "</" + element.EtiquetaCierre + ">");
+                            // console.log("<"+element.id+">"+element.texto+"</"+element.EtiquetaCierre+">")
+                            salida += "<" + element.id + ">" + element.texto + "</" + element.EtiquetaCierre + ">";
                         }
                     }
                     else { //SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR <---- DOBLE VALIDACION
@@ -70,13 +73,13 @@ function agregarTablaSimbolos3(result) {
                 if (element.tablaSimbolos.lenght != 0) {
                     element.tablaSimbolos.forEach(function (atributo) {
                         if (atributo != undefined) {
-                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element.id);
+                            var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element.id, element);
                             entornoObjeto_1.agregar(simbolo.id, simbolo);
                             llenar(simbolo);
                         }
                     });
                 }
-                element.entorno = entornoObjeto_1;
+                //element.entorno = entornoObjeto;
                 //  if( element.tablaEntornos != undefined){
                 // if (element.tablaEntornos.lenght != 0) {
                 //   entornoAnterior = element.id;
@@ -91,11 +94,12 @@ function agregarTablaSimbolos3(result) {
                 //}
                 //}
                 if (element != undefined) {
-                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, "");
+                    //if(element.tablaEntornos!=0){
+                    var simbolo = new SimboloXML("OBJETO", element.id, element.linea, element.columna, element.texto, element.entorno, element);
                     entornoGlobalXML.agregar(simbolo, element, simbolo);
                     llenar(simbolo);
-                    entornoAnterior = element.id;
                     agregarTablaSimbolos3(element.tablaEntornos);
+                    // }
                 }
             }
             else {
@@ -111,7 +115,9 @@ function agregarTablaSimbolos(element) {
         if (element[0].tablaEntornos != undefined) {
             //if(element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre=='Unica'){
             if (element[0].tablaEntornos.length == 0) {
-                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior, entornoAnterior2);
+                element[index].entorno = entornoAnterior;
+                element[index].entornoAnterior = entornoAnterior2;
                 llenar(simbolo);
                 // console.log(element[0])
                 contadorLineas++;
@@ -127,14 +133,17 @@ function agregarTablaSimbolos(element) {
         if (element[index].tablaEntornos != undefined) {
             // if(element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre=='Unica'){
             if (element[index].tablaEntornos.length != 0) {
-                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                var simbolo = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior, entornoAnterior2);
+                element[index].entorno = entornoAnterior;
+                element[index].entornoAnterior = entornoAnterior2;
                 llenar(simbolo);
                 //console.log(element[index])
                 contadorLineas++;
             }
             if (element[index].tablaSimbolos != undefined) {
                 element[index].tablaSimbolos.forEach(function (atributo) {
-                    var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element[index].id);
+                    var simbolo = new SimboloXML("ATRIBUTO", atributo.id, atributo.linea, atributo.columna, atributo.valor, element[index].id, element[index]);
+                    atributo.entornoAnterior = element[index];
                     llenar(simbolo);
                 });
             }
@@ -152,8 +161,9 @@ function agregarTablaSimbolos(element) {
         if (element[index].tablaEntornos != undefined) {
             if (element[index].id == element[index].EtiquetaCierre || element[index].EtiquetaCierre == 'Unica') {
                 if (element[index].tablaEntornos.length != 0) {
-                    simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior);
+                    simboloAnterior = new SimboloXML("OBJETO", element[index].id, element[index].linea, element[index].columna, element[index].texto, entornoAnterior, entornoAnterior2);
                     entornoAnterior = element[index].id;
+                    entornoAnterior2 = element[index];
                     contadorLineas++;
                     // console.log(element[index])
                     agregarTablaSimbolos(element[index].tablaEntornos);
