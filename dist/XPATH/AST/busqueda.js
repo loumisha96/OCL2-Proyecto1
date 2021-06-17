@@ -20,21 +20,119 @@ var busqueda = /** @class */ (function () {
             for (var n in padre.children) { //si el nodo padre tiene hijos
                 this.RecorrerChildren(padre.children[n], this.tabla);
             }
-            console.log(this.query);
-            console.log(this.query2);
         }
-        this.search(this.tabla, 0, false);
+        //this.recorrerT(this.tabla)
+        //this.cons(this.tabla,0)
+        this.search(this.tabla, this.x, false);
     };
     busqueda.prototype.RecorrerChildren = function (actual, tablaActual) {
-        var cadena = "";
         if (actual.children != undefined) { //tiene hijos
             for (var child in actual.children) {
-                cadena = "";
-                if (actual.children[child].children == undefined)
-                    this.query.push(actual.children[child]);
-                this.query2.push(actual.children[child]);
                 this.RecorrerChildren(actual.children[child], tablaActual);
             }
+        }
+        else {
+            this.query2.push(actual);
+            this.query.push(actual.value);
+        }
+    };
+    busqueda.prototype.recorrerT = function (tablaActual) {
+        if (tablaActual != undefined) {
+            for (var t = 0; t < tablaActual.length; t++) {
+                var e = tablaActual[t];
+                if (e.tablaEntornos.length != 0) { //mas entornos
+                    console.log(e.id);
+                    this.recorrerT(e.tablaEntornos);
+                }
+                else {
+                    console.log(e.id);
+                }
+            }
+        }
+    };
+    busqueda.prototype.cons = function (tablaActual, x) {
+        if (tablaActual != undefined) {
+            for (var t = 0; t < tablaActual.length; t++) {
+                var e = tablaActual[t];
+                if (e.tablaEntornos.length != 0) { //mas entornos
+                    console.log(e.id);
+                    if (e.id == this.query2[this.x].value)
+                        this.recorrerT(e.tablaEntornos);
+                }
+                else {
+                    console.log(e.id);
+                }
+            }
+        }
+        return "j";
+    };
+    busqueda.prototype.consulta = function (tablaActual, x) {
+        var cadena = "";
+        if (this.query2[x].name == "entry") {
+            cadena = this.entry(tablaActual, x);
+        }
+        else if (this.query2[x].name == "axis") {
+            //entrar axis
+        }
+        else if (this.query2[x].name == "sep") {
+            x++;
+            cadena = this.step(tablaActual, x);
+        }
+        else {
+            this.id(tablaActual, x);
+        }
+        console.log(cadena);
+        return cadena;
+    };
+    busqueda.prototype.entry = function (tablaActual, x) {
+        var cadena = "";
+        if (this.query2[x].value == "/") {
+            x++;
+            cadena = this.slash(tablaActual, x);
+        }
+        else if (this.query2[x].value == "//") {
+            // this.doubleSlash(tablaActual)
+        }
+        return cadena;
+    };
+    busqueda.prototype.id = function (tablaActual, x) {
+        var cadena = "";
+        for (var t = 0; t < tablaActual.length; t++) {
+            var e = tablaActual[t];
+            if (this.query2[x].value == e.id) {
+                cadena = this.recorrerTablaId(this.query2[x].value, tablaActual);
+            }
+        }
+        return cadena;
+    };
+    busqueda.prototype.slash = function (tablaActual, x) {
+        var cadena = "";
+        if (this.query2[x].value == "*") {
+        }
+        else if (this.query2[x].value == "@") {
+        }
+        else {
+            var find = false;
+            for (var t = 0; t < tablaActual.length; t++) {
+                var e = tablaActual[t];
+                if (this.query2[x].value == e.id) {
+                    find = true;
+                    cadena += this.id(tablaActual, x);
+                }
+            }
+            if (find == false) {
+                for (var t = 0; t < tablaActual.length; t++) {
+                    var e = tablaActual[t];
+                    cadena += this.id(e.tablaEntornos, x);
+                }
+            }
+        }
+        return cadena;
+    };
+    busqueda.prototype.step = function (tablaActual, x) {
+        var cadena = "";
+        if (this.query2[x].name == "id") {
+            cadena = this.id(tablaActual, x);
         }
         return cadena;
     };
@@ -52,7 +150,7 @@ var busqueda = /** @class */ (function () {
                                 console.log(cadena);
                                 imprimir = true;
                             }
-                            // this.getAttrbFather(x+1, this.tabla)
+                            this.getAttrbFather(x + 1, this.tabla);
                         }
                     }
                     else if (this.query[x] == "//") {
@@ -235,6 +333,18 @@ var busqueda = /** @class */ (function () {
                 x++;
             }
         }
+    };
+    busqueda.prototype.printAllAttr = function (entPadre, attr) {
+        var _this = this;
+        var cadena = "";
+        for (var t = 0; t < entPadre.length; t++) { //
+            entPadre.forEach(function (e) {
+                if (attr == attr) {
+                    cadena += _this.recorrerAttrb(e.tablaEntornos); //fechaNa
+                }
+            });
+        }
+        return cadena;
     };
     return busqueda;
 }());

@@ -115,9 +115,9 @@ function agregar() {
         tact.value=editor.getValue();
     });
 }
-function consola(){
+function consola(texto){
     var x = document.createElement("TEXTAREA");
-    var t = document.createTextNode("Aklhvb");
+    var t = document.createTextNode(texto);
     
     x.appendChild(t);
     document.body.appendChild(x);
@@ -264,7 +264,7 @@ const analizarTexto = () => {
         //contenidoErrores="";
         //Errores.clear();
         tabla="";
-        agregarTablaSimbolos3(result);
+      //  agregarTablaSimbolos3(result);
         
         //tabla="";
 
@@ -282,11 +282,11 @@ const analizarTexto = () => {
         //otra(result);
            /* var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
             window.open(direccion, '_blank');*/
-        if(!Errores.Vacio()){
+        /*if(!Errores.Vacio()){
             console.log("vacio we")
         }else{
             contenidoErrores= Errores.mostrar_Lista()
-        }
+        }*/
 
         busqueda= new busqueda(guardarTabla);
         

@@ -24,33 +24,134 @@ class busqueda{
         }
     }
     RecorrerAst(padre:nodo){
+        
         if (padre.name!=null){
             for (const n in padre.children){//si el nodo padre tiene hijos
                 this.RecorrerChildren(padre.children[n],this.tabla)
             }
-            console.log(this.query)
-            console.log(this.query2)
         }
-       this.search(this.tabla,0,false)
+       //this.recorrerT(this.tabla)
+        //this.cons(this.tabla,0)
+        this.search(this.tabla,this.x,false)
        
     }
     
 
-    RecorrerChildren(actual:nodo,tablaActual:Array<EntornoXML>):string{
-        var cadena=""
+    RecorrerChildren(actual:nodo,tablaActual:Array<EntornoXML>){
+        
         if(actual.children !=undefined){//tiene hijos
            for(const child in actual.children){
-                cadena=""
-                if (actual.children[child].children == undefined)
-                    this.query.push(actual.children[child])
-                    this.query2.push(actual.children[child])
                 this.RecorrerChildren(actual.children[child],tablaActual)
+            }
+        }else{
+            this.query2.push(actual)
+            this.query.push(actual.value)
+        }
+        
+        
+
+    }
+    recorrerT(tablaActual:Array<EntornoXML>){
+        if(tablaActual!=undefined){
+            for(let t=0; t<tablaActual.length; t++){
+                var e=tablaActual[t]
+                if(e.tablaEntornos.length!=0){//mas entornos
+                    console.log(e.id)
+                    this.recorrerT(e.tablaEntornos)
+                }else{
+                    console.log(e.id)
+                }
+            }
+        }
+    }
+    cons(tablaActual:Array<EntornoXML>,x:number):string{
+        
+        if(tablaActual!=undefined){
+            for(let t=0; t<tablaActual.length; t++){
+                var e=tablaActual[t]
+                if(e.tablaEntornos.length!=0){//mas entornos
+                    console.log(e.id)
+                    if(e.id==this.query2[this.x].value)
+                    this.recorrerT(e.tablaEntornos)
+                }else{
+                    console.log(e.id)
+                }
+            }
+        }
+        return "j"
+    }
+    consulta(tablaActual:Array<EntornoXML>,x:number):string{
+        var cadena=""
+        if(this.query2[x].name=="entry" ){
+            cadena=this.entry(tablaActual,x)
+        }else if(this.query2[x].name=="axis"){
+            //entrar axis
+        }else if(this.query2[x].name=="sep" ){
+            x++
+            cadena=this.step(tablaActual,x)
+        }else{
+            this.id(tablaActual,x)
+            
+        }
+        console.log(cadena)
+        return cadena
+    }
+    entry(tablaActual:Array<EntornoXML>,x:number):string{
+        var cadena=""
+        if(this.query2[x].value=="/"){
+            x++
+            
+            cadena=this.slash(tablaActual,x)
+        }else if(this.query2[x].value=="//"){
+           // this.doubleSlash(tablaActual)
+        }
+        return cadena
+    }
+    id(tablaActual:Array<EntornoXML>,x:number):string{
+        var cadena=""
+        for(let t=0; t<tablaActual.length; t++){
+            var e=tablaActual[t]
+            if(this.query2[x].value==e.id){
+                cadena=this.recorrerTablaId(this.query2[x].value,tablaActual)
             }
         }
         return cadena
-
     }
-    
+     slash(tablaActual:Array<EntornoXML>,x:number):string{
+        var cadena=""
+        
+            if(this.query2[x].value=="*"){
+
+            }else if(this.query2[x].value=="@"){
+                
+            }else{
+               var find=false
+                for(let t=0; t<tablaActual.length; t++){
+                    var e=tablaActual[t]
+                    if(this.query2[x].value==e.id){
+                        find=true
+                        cadena+=this.id(tablaActual,x)
+                    }
+                }
+                if(find==false){
+                    for(let t=0; t<tablaActual.length; t++){
+                        var e=tablaActual[t]
+                        cadena+=this.id(e.tablaEntornos,x)
+                    }
+                }
+            
+            }
+            return cadena
+        
+    }
+    step(tablaActual:Array<EntornoXML>,x:number):string{
+        var cadena=""
+        
+        if(this.query2[x].name=="id"){
+            cadena=this.id(tablaActual,x)
+        }
+        return cadena
+    }
     search(tablaActual:Array<EntornoXML>,x:number,imprimir:boolean){
         var cadena=""
         if(tablaActual!=undefined){
@@ -62,10 +163,11 @@ class busqueda{
                        if(this.query[x]=="@"){ 
                          cadena= this.getAttrb(tablaActual,x)
                          if(x+1==this.query.length && imprimir==false){
+                            
                             console.log(cadena)
                             imprimir=true
                         }
-                           // this.getAttrbFather(x+1, this.tabla)
+                           this.getAttrbFather(x+1, this.tabla)
                        }
                     }else if(this.query[x]=="//"){
                         x++
@@ -214,7 +316,6 @@ class busqueda{
     getAttrb(tabla:Array<EntornoXML>,x:number):string{
         var cadena="";
         if(this.query[x]=="*"){
-            
             tabla.forEach((e)=>{
                 if(e.tablaSimbolos.length!=0)// SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
                     cadena+=this.recorrerAttrb(e.tablaSimbolos)
@@ -243,5 +344,16 @@ class busqueda{
              }
          }
     }
-
+    printAllAttr(entPadre:Array<EntornoXML>, attr:string):string{//padrelibro
+        var cadena=""
+            for(let t=0; t<entPadre.length; t++){//
+                entPadre.forEach((e)=>{//e = libro[0]==autor
+                    if(attr==attr){
+                        cadena+=this.recorrerAttrb(e.tablaEntornos)//fechaNa
+                    }
+                })
+            }
+        return cadena
+    }
+   
 }
