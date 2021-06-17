@@ -1,219 +1,187 @@
-/* Definición Léxica */
-%lex
-
-%options case-insensitive
-
-escapechar                          [\'\"\\bfnrtv]
-escape                              \\{escapechar}
-acceptedcharsdouble                 [^\"\\]+
-stringdouble                        {escape}|{acceptedcharsdouble}
-stringliteral                       \"{stringdouble}*\"
-
-
-acceptedcharssingle                 [^\'\\]
-stringsingle                        {escape}|{acceptedcharssingle}
-charliteral                         \'{stringsingle}\'
-
-BSL                                 "\\".
-%s                                  comment
-%%
-"<?"                                this.begin('comment');
-<comment>"?>"                       this.popState();
-"//".*                              /* skip comments */
-"/*"                                this.begin('comment');
-<comment>"*/"                       this.popState();
-<comment>.                          /* skip comment content*/
-\s+                                 /* skip whitespace */
-
-"print"                     return 'print';
-"null"                      return 'null';
-// "true"                      return 'true';
-// "false"                     return 'false';
-
-"+"                         return 'plus';
-"-"                         return 'minus';
-"*"                         return 'times';
-"/"                         return 'div';
-"%"                         return 'mod';
-
-
-
-"<="                        return 'lte';
-">="                        return 'gte';
-"<"                         return 'lt';
-">"                         return 'gt';
-"="                         return 'asig';
-"=="                        return 'equal';
-"!="                        return 'nequal';
-
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
-
-
-";"                         return 'semicolon';
-"("                         return 'lparen';
-")"                         return 'rparen';
-
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
-
-/* Number literals */
-
-//(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
-//[0-9]+                              return 'IntegerLiteral';
-
-[a-zA-Z_][a-zA-Z0-9_ñÑ]*            return 'identifier';
-
-{stringliteral}                     return 'StringLiteral'
-{charliteral}                       return 'CharLiteral'
-[^<>]*[a-zA-Z0-9_ñÑ]+[^<>]*           return 'todos';
-
-//error lexico
-.                                   {
-                                        console.error('Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column);
-                                    }
-
-<<EOF>>                     return 'EOF'
-
-/lex
-
-//SECCION DE IMPORTS
 %{
+
+
 
 %}
 
-// DEFINIMOS PRESEDENCIA DE OPERADORES
-%left 'or'
-%left 'and'
-%left 'lt' 'lte' 'gt' 'gte' 'equal' 'nequal'
-%left 'plus' 'minus'
-%left 'times' 'div' 'mod'
-%left 'pow'
-%left 'not'
-%left UMINUS
+//_______________________________
 
-%left 'lparen' 'rparen'
-
-
-// DEFINIMOS PRODUCCIÓN INICIAL
-%start START
-
+%lex
+%options case-insensitive
+%x Comentario
+%x TagApertura
+%x TagCierre
 %%
 
+//Comentario
+"<!--"                  {this.begin("Comentario"); }
+<Comentario>[\r\t]+     {}
+<Comentario>\n          {}
+<Comentario>"-->"       {this.popState(); }
+<Comentario>[^"-->"]+   {}
 
-/* Definición de la gramática */
-START : RAICES EOF  {
+//TagConfiguracion
+"<?xml"                                 { this.begin("TagApertura"); return 'AbreTagConf'; }
+<TagApertura>[\s\r\t\n]+                {}
+<TagApertura>[a-zA-Z_][a-zA-Z0-9_]*     { return 'NombreAtributo'; }
+<TagApertura>"="                        { return 'IgualAtributo' }
+<TagApertura>\"[^\"\n]*\"               { return 'ValorAtributo'; }
+<TagApertura>"?>"                       { this.popState(); return 'CierreTagConf'; }
 
- }
+//TagApertura
+"<"[a-zA-Z_][a-zA-Z0-9_]*               { this.begin("TagApertura"); return 'AbreTagApertura'; }
+<TagApertura>[\s\r\t\n]+                {}
+<TagApertura>[a-zA-Z_][a-zA-Z0-9_]*     { return 'NombreAtributo'; }
+<TagApertura>"="                        { return 'IgualAtributo' }
+<TagApertura>\"[^\"\n]*\"               { return 'ValorAtributo'; }
+<TagApertura>">"                        { this.popState(); return 'CIERRA_TAGAP'; }
+<TagApertura>"/>"                       { this.popState();  return 'TAG_CIERRE_U'; }
+
+//TagCierre
+"</"[a-zA-Z_][a-zA-Z0-9_]*        { this.begin("TagCierre"); return 'AbreTagCierre' }
+<TagCierre>">"                    { this.popState(); return 'CierreTagCierre' }
+
+[\s\r\t\n]+           {}
+[^<]+                 { return 'CadenaValores'; }
+<<EOF>>               { return 'EOF'; }
+.                     { };
+/lex
+
+//_______________________________
+
+%start XML
+%%
+
+XML:
+        T_CONF TAGS_LIST EOF   {
+        //return $$;
+
+         //new ReporteGramatica("XML -> T_CONF TAGS_LIST EOF",  "XML.val = T_CONF.val+TAGS_LIST.val"      )
+
+         }
+        |TAGS_LIST EOF                    {
+         //new ReporteGramatica("XML -> N TAGS_LIST EOF",  "XML.val = TAGS_LIST.val"      )
+
+
+        }
 ;
 
-RAICES: RAIZ RAICESP {
+TAGS_LIST:    TAG TAG_LIST {
+
 
 }
 ;
 
-RAICESP: RAIZ RAICESP {
-
-}
-    | {}
-;
-
-
-RAIZ:
-    PRINT semicolon       {
-
-
-     }
-    | OBJETO              {
+TAG_LIST : TAG TAG_LIST  {
 
     }
+| {
+
+  }
+;
+TAG:
+        TAG_APERTURA MenuEtiqueta {
+
+        }
+        |TAG_UNICO                              {
+
+         }
+
+
+        | error  AbreTagApertura                     { }
+
 ;
 
-OBJETO:
-    lt  identifier LATRIBUTOS OBJETOP {
+MenuEtiqueta:
+    TAGS_LIST TAG_CIERRE
+    {
+    }
+    | CadenaValores TAG_CIERRE
+        {
+    }
+    | TAG_CIERRE
+        {
     }
 
 ;
 
-OBJETOP:
-      gt LISTA_ID_OBJETO lt div identifier gt
+
+TAG_APERTURA:
+    AbreTagApertura MENU_TAG_APERTURA {
+    }
+
+
+
+;
+
+MENU_TAG_APERTURA: LISTA_ATRIBUTOS CIERRA_TAGAP
     {
 
     }
-    | gt OBJETOS lt div identifier gt
+
+
+
+    | CIERRA_TAGAP {
+
+    }
+;
+
+
+
+
+
+
+
+
+TAG_CIERRE:
+    AbreTagCierre CierreTagCierre
+    {
+    }
+;
+
+TAG_UNICO:
+    AbreTagApertura TAG_SELEC  {
+
+    }
+
+;
+
+
+TAG_SELEC:
+
+
+    LISTA_ATRIBUTOS TAG_CIERRE_U
     {
 
     }
-    | gt  lt div identifier gt {
 
-    }
-    | div gt {
 
+
+
+    |  TAG_CIERRE_U
+    {
     }
+
+
+
 ;
 
-
-LATRIBUTOS: ATRIBUTOS {
-
- }
- |
+T_CONF:
+        AbreTagConf LISTA_ATRIBUTOS CierreTagConf   { }
 ;
 
+LISTA_ATRIBUTOS: ATRIBUTO LA  {}
 
-ATRIBUTOS:
-    ATRIBUTO ATRIBUTOSP {
-
-    };
-
-ATRIBUTOSP:
-    ATRIBUTO ATRIBUTOSP {
-
-    }
-    | {}
 ;
+LA: ATRIBUTO LA { }
+|{}
+
+;
+
 
 ATRIBUTO:
-    identifier asig StringLiteral {
+        NombreAtributo IgualAtributo ValorAtributo    {}
 
-    }
-;
 
-LISTA_ID_OBJETO: todos LISTA_ID_OBJETOP{
-
-                }
-                | identifier LISTA_ID_OBJETOP{
-
-                }
-;
-
-LISTA_ID_OBJETOP:
-         todos LISTA_ID_OBJETOP {
-
-        }
-        | identifier LISTA_ID_OBJETOP {
-
-        }
-        | {}
-;
-
-OBJETOS:
-    OBJETO OBJETOSP {
-    };
-
-OBJETOSP:
-    OBJETO OBJETOSP {
-
-    }
-    |{}
 
 ;
-
-OBJETOVACIO: {};
-
-PRINT:
-    print lparen EXPR rparen            {
-
-
-     } ;

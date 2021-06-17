@@ -5,12 +5,12 @@ class TreeXPathDesc {
     }
 
     graphXPathDescendente(treeNode) {
-        console.log(treeNode);
+
         if (treeNode.nodeNumber == 0) {
             treeNode.nodeNumber = this.auxNumber;
             this.auxNumber++;
         }
-        console.log(treeNode.nodeNumber);
+
         treeNode.value = treeNode.value.toString();
         treeNode.value = treeNode.value.replace('"', '');
         treeNode.value = treeNode.value.replace('"', '');

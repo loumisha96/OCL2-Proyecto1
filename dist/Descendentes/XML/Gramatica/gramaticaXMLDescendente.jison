@@ -1,299 +1,254 @@
-/* Definición Léxica */
-%lex
-
-%options case-insensitive
-
-escapechar                          [\'\"\\bfnrtv]
-escape                              \\{escapechar}
-acceptedcharsdouble                 [^\"\\]+
-stringdouble                        {escape}|{acceptedcharsdouble}
-stringliteral                       \"{stringdouble}*\"
-
-
-acceptedcharssingle                 [^\'\\]
-stringsingle                        {escape}|{acceptedcharssingle}
-charliteral                         \'{stringsingle}\'
-
-BSL                                 "\\".
-%s                                  comment
-%%
-"<?"                                this.begin('comment');
-<comment>"?>"                       this.popState();
-"//".*                              /* skip comments */
-"/*"                                this.begin('comment');
-<comment>"*/"                       this.popState();
-<comment>.                          /* skip comment content*/
-\s+                                 /* skip whitespace */
-
-"print"                     return 'print';
-"null"                      return 'null';
-// "true"                      return 'true';
-// "false"                     return 'false';
-
-"+"                         return 'plus';
-"-"                         return 'minus';
-"*"                         return 'times';
-"/"                         return 'div';
-"%"                         return 'mod';
-
-
-
-"<="                        return 'lte';
-">="                        return 'gte';
-"<"                         return 'lt';
-">"                         return 'gt';
-"="                         return 'asig';
-"=="                        return 'equal';
-"!="                        return 'nequal';
-
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
-
-
-";"                         return 'semicolon';
-"("                         return 'lparen';
-")"                         return 'rparen';
-
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
-
-/* Number literals */
-
-//(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
-//[0-9]+                              return 'IntegerLiteral';
-
-[a-zA-Z_][a-zA-Z0-9_ñÑ]*            return 'identifier';
-
-{stringliteral}                     return 'StringLiteral'
-{charliteral}                       return 'CharLiteral'
-[^<>]*[a-zA-Z0-9_ñÑ]+[^<>]*           return 'todos';
-
-//error lexico
-.                                   {
-                                        console.error('Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column);
-                                    }
-
-<<EOF>>                     return 'EOF'
-
-/lex
-
-//SECCION DE IMPORTS
 %{
+
+    const listaGramatical = [];
 
 %}
 
-// DEFINIMOS PRESEDENCIA DE OPERADORES
-%left 'or'
-%left 'and'
-%left 'lt' 'lte' 'gt' 'gte' 'equal' 'nequal'
-%left 'plus' 'minus'
-%left 'times' 'div' 'mod'
-%left 'pow'
-%left 'not'
-%left UMINUS
+//_______________________________
 
-%left 'lparen' 'rparen'
-
-
-// DEFINIMOS PRODUCCIÓN INICIAL
-%start START
-
+%lex
+%options case-insensitive
+%x Comentario
+%x TagApertura
+%x TagCierre
 %%
 
+//Comentario
+"<!--"                  {this.begin("Comentario"); }
+<Comentario>[\r\t]+     {}
+<Comentario>\n          {}
+<Comentario>"-->"       {this.popState(); }
+<Comentario>[^"-->"]+   {}
 
-/* Definición de la gramática */
-START : RAICES EOF  {
-    $$ = new NodeDescXML("START");
-    $$.childList.push($1);
-    return $$;
- }
-;
+//TagConfiguracion
+"<?xml"                                 { this.begin("TagApertura"); return 't_congOp'; }
+<TagApertura>[\s\r\t\n]+                {}
+<TagApertura>[a-zA-Z_][a-zA-Z0-9_]*     { return 'atName'; }
+<TagApertura>"="                        { return 'atAsi' }
+<TagApertura>\"[^\"\n]*\"               { return 'atValue'; }
+<TagApertura>"?>"                       { this.popState(); return 't_congClose'; }
 
-RAICES: RAIZ RAICESP {
-    $$ = new NodeDescXML("RAICES");
-    $$.childList.push($1);
-    $$.childList.push($2);
-}
-;
+//TagApertura
+"<"[a-zA-Z_][a-zA-Z0-9_]*               { this.begin("TagApertura"); return 'OPEN_TAG'; }
+<TagApertura>[\s\r\t\n]+                {}
+<TagApertura>[a-zA-Z_][a-zA-Z0-9_]*     { return 'atName'; }
+<TagApertura>"="                        { return 'atAsi' }
+<TagApertura>\"[^\"\n]*\"               { return 'atValue'; }
+<TagApertura>">"                        { this.popState(); return 'CIERRA_TAGAP'; }
+<TagApertura>"/>"                       { this.popState();  return 'TAG_CIERRE_U'; }
 
-RAICESP: RAIZ RAICESP {
-    $$ = new NodeDescXML("RAICESP");
-    $$.childList.push($1);
-    $$.childList.push($2);
-}
-    | {}
-;
+//TagCierre
+"</"[a-zA-Z_][a-zA-Z0-9_]*        { this.begin("TagCierre"); return 'openTag' }
+<TagCierre>">"                    { this.popState(); return 'closingTag' }
 
+[\s\r\t\n]+           {}
+[^<]+                 { return 'cadena_letras'; }
+<<EOF>>               { return 'EOF'; }
+.                     { };
+/lex
 
-RAIZ:
-    PRINT semicolon       {
-        $$ = new NodeDescXML("RAIZ");
-        $$.childList.push($1);
-        $$.childList.push($2);
+//_______________________________
 
-     }
-    | OBJETO              {
-        $$ = new NodeDescXML("RAIZ");
-        $$.childList.push($1);
-    }
-;
+%start XML
+%%
 
-OBJETO:
-    lt identifier LATRIBUTOS OBJETOP {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-    }
-;
-
-OBJETOP:
-<<<<<<< HEAD
-    gt OBJETOS lt div identifier gt
-    {
-=======
-    gt  lt div identifier gt {
->>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-<<<<<<< HEAD
-        $$.childList.push($6);
-    }
-    | gt LISTA_ID_OBJETO lt div identifier gt
-=======
-    }
-    |gt OBJETOS lt div identifier gt
->>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
-    {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-        $$.childList.push($6);
-    }
-<<<<<<< HEAD
-    | div gt {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    }
-    | gt  lt div identifier gt {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-    }
-=======
-    | gt LISTA_ID_OBJETO lt div identifier gt
-    {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-        $$.childList.push($5);
-        $$.childList.push($6);
-    }
-    | div gt {
-        $$ = new NodeDescXML("OBJETOP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    }
-
->>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
-;
-
-
-LATRIBUTOS: ATRIBUTOS {
-    $$ = new NodeDescXML("LATRIBUTOS");
-    $$.childList.push($1);
- }
- |
-;
-
-
-ATRIBUTOS:
-    ATRIBUTO ATRIBUTOSP {
-        $$ = new NodeDescXML("ATRIBUTOS");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    };
-
-ATRIBUTOSP:
-    ATRIBUTO ATRIBUTOSP {
-        $$ = new NodeDescXML("ATRIBUTOSP");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    }
-    | {}
-;
-
-ATRIBUTO:
-    identifier asig StringLiteral {
-        $$ = new NodeDescXML("ATRIBUTO");
-        $$.childList.push($1);
-        $$.childList.push($2);
-        $$.childList.push($3);
-    }
-;
-
-LISTA_ID_OBJETO: identifier LISTA_ID_OBJETOP{
-                    $$ = new NodeDescXML("LISTA_ID_OBJETO");
-                    $$.childList.push($1);
-                    $$.childList.push($2);
-                }
-                | todos LISTA_ID_OBJETOP{
-                    $$ = new NodeDescXML("LISTA_ID_OBJETO");
-                    $$.childList.push($1);
-                    $$.childList.push($2);
-                }
-;
-
-LISTA_ID_OBJETOP:
-        identifier LISTA_ID_OBJETOP {
-                $$ = new NodeDescXML("LISTA_ID_OBJETOP");
-                $$.childList.push($1);
-                $$.childList.push($2);
-        }
-        | todos LISTA_ID_OBJETOP {
-            $$ = new NodeDescXML("LISTA_ID_OBJETOP");
+XML:
+        T_CONF TAGS_LIST EOF   {
+            $$ = new NodeDescXML('XML', '');
             $$.childList.push($1);
             $$.childList.push($2);
+
+            return $$;
+         }
+        |TAGS_LIST EOF                    {
+
+
+            $$ = new NodeDescXML('XML', '');
+            $$.childList.push($1);
+
+            return $$;
         }
-        | {}
 ;
 
-OBJETOS:
-    OBJETO OBJETOSP {
-        $$ = new NodeDescXML("OBJETOS");
-        $$.childList.push($1);
-        $$.childList.push($2);
-    };
+TAGS_LIST:    TAG TAG_LIST {
+    $$ = new NodeDescXML('TAGS_LIST', '');
+    $$.childList.push($1);
+    $$.childList.push($2);
 
-OBJETOSP:
-    OBJETO OBJETOSP {
-        $$ = new NodeDescXML("OBJETOSP");
+
+}
+;
+
+TAG_LIST : TAG TAG_LIST  {
+        $$ = new NodeDescXML('TAG_LIST', '');
         $$.childList.push($1);
         $$.childList.push($2);
     }
-    | {};
+| {
 
-PRINT:
-    print lparen EXPR rparen            {
-        $$ = new NodeDescXML("PRINT");
+  }
+;
+TAG:
+        TAG_APERTURA TAG_OP {
+            $$ = new NodeDescXML('TAG', '');
+            $$.childList.push($1);
+            $$.childList.push(new NodeDescXML($2, 'TAG_OP'));
+        }
+        |TAG_UNICO                              {
+            $$ = new NodeDescXML('TAG', '');
+            $$.childList.push($1);
+         }
+
+
+        | error  OPEN_TAG                     {
+
+        }
+
+;
+
+TAG_OP:
+    TAGS_LIST TAG_CIERRE
+    {
+            $$ = new NodeDescXML('TAG_OP', '');
+            $$.childList.push($1);
+            $$.childList.push($2);
+    }
+    | cadena_letras TAG_CIERRE
+        {
+            $$ = new NodeDescXML('TAG_OP', '');
+            $$.childList.push(new NodeDescXML($1, 'cadena_letras'));
+            $$.childList.push($2);
+    }
+    | TAG_CIERRE
+        {
+            $$ = new NodeDescXML('TAG_OP', '');
+            $$.childList.push($1);
+    }
+
+;
+
+
+TAG_APERTURA:
+    OPEN_TAG MENU_TAG_APERTURA {
+        $$ = new NodeDescXML('TAG_APERTURA', '');
         $$.childList.push($1);
         $$.childList.push($2);
-        $$.childList.push($3);
-        $$.childList.push($4);
-     } ;
+    }
+
+
+
+;
+
+MENU_TAG_APERTURA: LISTA_ATRIBUTOS CIERRA_TAGAP
+    {
+        $$ = new NodeDescXML('MENU_TAG_APERTURA', '');
+        $$.childList.push($1);
+        $$.childList.push($2);
+    }
+
+
+
+    | CIERRA_TAGAP {
+        $$ = new NodeDescXML('MENU_TAG_APERTURA', '');
+        $$.childList.push($1);
+    }
+;
+
+
+
+
+
+
+
+
+TAG_CIERRE:
+    openTag closingTag
+    {
+        $$ = new NodeDescXML('MENU_TAG_APERTURA', '');
+        $$.childList.push(new NodeDescXML($1, 'openTag'));
+        $$.childList.push(new NodeDescXML($2, 'CLOSING_TAG'));
+    }
+;
+
+TAG_UNICO:
+    OPEN_TAG TAG_SELEC  {
+        $$ = new NodeDescXML('TAG_UNICO', '');
+        $$.childList.push($1);
+        $$.childList.push($2);
+    }
+
+;
+
+
+TAG_SELEC:
+
+
+    LISTA_ATRIBUTOS TAG_CIERRE_U
+    {
+        $$ = new NodeDescXML('TAG_SELEC', '');
+        $$.childList.push($1);
+        $$.childList.push($2);
+    }
+
+
+
+
+    |  TAG_CIERRE_U
+    {
+        $$ = new NodeDescXML('TAG_SELEC', '');
+        $$.childList.push($1);
+
+    }
+
+
+
+;
+
+T_CONF:
+        t_congOp LISTA_ATRIBUTOS t_congClose   {
+            $$ = new NodeDescXML('T_CONF', '');
+            $$.childList.push(new NodeDescXML($1, 't_congOp'));
+            $$.childList.push($2);
+            $$.childList.push(new NodeDescXML($2, 't_congClose'));
+        }
+;
+
+LISTA_ATRIBUTOS: ATRIBUTO LA  {
+        $$ = new NodeDescXML('LISTA_ATRIBUTOS', '');
+        $$.childList.push($1);
+
+        if($2 === undefined || !$2) {
+            $$.setChild(new NodeDescXML('LA', ''));
+        } else {
+            $$.setChild($2);
+            $$.setChild(new NodeDescXML("EPSILON", ''));
+        }
+}
+
+;
+LA: ATRIBUTO LA {
+    $$ = new NodeDescXML('LA', '');
+    $$.childList.push($1);
+    if($2 === undefined || !$2) {
+        $$.setChild(new NodeDescXML('LA', ''));
+    } else {
+        $$.setChild($2);
+        $$.setChild(new NodeDescXML("EPSILON", ''));
+    }
+}
+|{}
+
+;
+
+
+ATRIBUTO:
+        atName atAsi atValue    {
+        $$ = new NodeDescXML('ATRIBUTO', '');
+        $$.childList.push(new NodeDescXML($1, 'atName'));
+        $$.childList.push(new NodeDescXML($2, 'atAsi'));
+        $$.childList.push(new NodeDescXML($3, 'atValue'));
+        }
+
+
+
+;
