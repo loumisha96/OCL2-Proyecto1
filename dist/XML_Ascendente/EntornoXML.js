@@ -1,13 +1,14 @@
 "use strict";
 var EntornoXML = /** @class */ (function () {
-    function EntornoXML(id, texto, linea, columna, tablaSimbolos, tablaEntornos, EtiquetaCierre) {
+    function EntornoXML(id, texto, linea, columna, tablaSimbolos, tablaEntornos, entorno, entornoAnterior, EtiquetaCierre) {
         this.id = id;
         this.texto = texto;
         this.linea = linea;
         this.columna = columna;
         this.tablaSimbolos = tablaSimbolos;
         this.tablaEntornos = tablaEntornos;
-        // this.entorno = new EntornoXML(null);
+        this.entorno = entorno;
+        this.entornoAnterior = entornoAnterior;
         this.EtiquetaCierre = EtiquetaCierre;
     }
     EntornoXML.prototype.getId = function () {

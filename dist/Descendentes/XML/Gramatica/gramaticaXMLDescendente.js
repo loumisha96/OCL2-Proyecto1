@@ -72,12 +72,21 @@
   }
 */
 var gramaticaXMLDescendente = (function(){
+<<<<<<< HEAD
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,6],$V2=[2,4],$V3=[5,11,27],$V4=[1,13],$V5=[15,17],$V6=[1,19],$V7=[2,16],$V8=[2,22],$V9=[1,42],$Va=[1,43];
 var parser = {trace: function trace () { },
 yy: {},
 symbols_: {"error":2,"START":3,"RAICES":4,"EOF":5,"RAIZ":6,"RAICESP":7,"PRINT":8,"semicolon":9,"OBJETO":10,"lt":11,"identifier":12,"LATRIBUTOS":13,"OBJETOP":14,"gt":15,"OBJETOS":16,"div":17,"LISTA_ID_OBJETO":18,"ATRIBUTOS":19,"ATRIBUTO":20,"ATRIBUTOSP":21,"asig":22,"StringLiteral":23,"LISTA_ID_OBJETOP":24,"todos":25,"OBJETOSP":26,"print":27,"lparen":28,"EXPR":29,"rparen":30,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",9:"semicolon",11:"lt",12:"identifier",15:"gt",17:"div",22:"asig",23:"StringLiteral",25:"todos",27:"print",28:"lparen",29:"EXPR",30:"rparen"},
 productions_: [0,[3,2],[4,2],[7,2],[7,0],[6,2],[6,1],[10,4],[14,6],[14,6],[14,2],[14,5],[13,1],[13,0],[19,2],[21,2],[21,0],[20,3],[18,2],[18,2],[24,2],[24,2],[24,0],[16,2],[26,2],[26,0],[8,4]],
+=======
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,6],$V2=[2,4],$V3=[5,11,27],$V4=[1,13],$V5=[15,16],$V6=[1,19],$V7=[2,16],$V8=[2,22],$V9=[1,42],$Va=[1,43];
+var parser = {trace: function trace () { },
+yy: {},
+symbols_: {"error":2,"START":3,"RAICES":4,"EOF":5,"RAIZ":6,"RAICESP":7,"PRINT":8,"semicolon":9,"OBJETO":10,"lt":11,"identifier":12,"LATRIBUTOS":13,"OBJETOP":14,"gt":15,"div":16,"OBJETOS":17,"LISTA_ID_OBJETO":18,"ATRIBUTOS":19,"ATRIBUTO":20,"ATRIBUTOSP":21,"asig":22,"StringLiteral":23,"LISTA_ID_OBJETOP":24,"todos":25,"OBJETOSP":26,"print":27,"lparen":28,"EXPR":29,"rparen":30,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",9:"semicolon",11:"lt",12:"identifier",15:"gt",16:"div",22:"asig",23:"StringLiteral",25:"todos",27:"print",28:"lparen",29:"EXPR",30:"rparen"},
+productions_: [0,[3,2],[4,2],[7,2],[7,0],[6,2],[6,1],[10,4],[14,5],[14,6],[14,6],[14,2],[13,1],[13,0],[19,2],[21,2],[21,0],[20,3],[18,2],[18,2],[24,2],[24,2],[24,0],[17,2],[26,2],[26,0],[8,4]],
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -127,10 +136,16 @@ case 7:
         this.$.childList.push($$[$0]);
     
 break;
+<<<<<<< HEAD
 case 8: case 9:
 
         this.$ = new NodeDescXML("OBJETOP");
         this.$.childList.push($$[$0-5]);
+=======
+case 8:
+
+        this.$ = new NodeDescXML("OBJETOP");
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
         this.$.childList.push($$[$0-4]);
         this.$.childList.push($$[$0-3]);
         this.$.childList.push($$[$0-2]);
@@ -138,9 +153,19 @@ case 8: case 9:
         this.$.childList.push($$[$0]);
     
 break;
+<<<<<<< HEAD
 case 10:
 
         this.$ = new NodeDescXML("OBJETOP");
+=======
+case 9: case 10:
+
+        this.$ = new NodeDescXML("OBJETOP");
+        this.$.childList.push($$[$0-5]);
+        this.$.childList.push($$[$0-4]);
+        this.$.childList.push($$[$0-3]);
+        this.$.childList.push($$[$0-2]);
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
         this.$.childList.push($$[$0-1]);
         this.$.childList.push($$[$0]);
     
@@ -148,9 +173,12 @@ break;
 case 11:
 
         this.$ = new NodeDescXML("OBJETOP");
+<<<<<<< HEAD
         this.$.childList.push($$[$0-4]);
         this.$.childList.push($$[$0-3]);
         this.$.childList.push($$[$0-2]);
+=======
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
         this.$.childList.push($$[$0-1]);
         this.$.childList.push($$[$0]);
     
@@ -229,7 +257,11 @@ case 26:
 break;
 }
 },
+<<<<<<< HEAD
 table: [{3:1,4:2,6:3,8:4,10:5,11:$V0,27:$V1},{1:[3]},{5:[1,8]},{5:$V2,6:10,7:9,8:4,10:5,11:$V0,27:$V1},{9:[1,11]},o($V3,[2,6]),{28:[1,12]},{12:$V4},{1:[2,1]},{5:[2,2]},{5:$V2,6:10,7:14,8:4,10:5,11:$V0,27:$V1},o($V3,[2,5]),{29:[1,15]},o($V5,[2,13],{13:16,19:17,20:18,12:$V6}),{5:[2,3]},{30:[1,20]},{14:21,15:[1,22],17:[1,23]},o($V5,[2,12]),o($V5,$V7,{21:24,20:25,12:$V6}),{22:[1,26]},{9:[2,26]},o($V3,[2,7]),{10:30,11:[1,29],12:[1,31],16:27,18:28,25:[1,32]},{15:[1,33]},o($V5,[2,14]),o($V5,$V7,{20:25,21:34,12:$V6}),{23:[1,35]},{11:[1,36]},{11:[1,37]},{12:$V4,17:[1,38]},{10:40,11:$V0,26:39},{11:$V8,12:$V9,24:41,25:$Va},{11:$V8,12:$V9,24:44,25:$Va},o($V3,[2,10]),o($V5,[2,15]),o([12,15,17],[2,17]),{17:[1,45]},{17:[1,46]},{12:[1,47]},{11:[2,23]},{10:40,11:$V0,26:48},{11:[2,18]},{11:$V8,12:$V9,24:49,25:$Va},{11:$V8,12:$V9,24:50,25:$Va},{11:[2,19]},{12:[1,51]},{12:[1,52]},{15:[1,53]},{11:[2,24]},{11:[2,20]},{11:[2,21]},{15:[1,54]},{15:[1,55]},o($V3,[2,11]),o($V3,[2,8]),o($V3,[2,9])],
+=======
+table: [{3:1,4:2,6:3,8:4,10:5,11:$V0,27:$V1},{1:[3]},{5:[1,8]},{5:$V2,6:10,7:9,8:4,10:5,11:$V0,27:$V1},{9:[1,11]},o($V3,[2,6]),{28:[1,12]},{12:$V4},{1:[2,1]},{5:[2,2]},{5:$V2,6:10,7:14,8:4,10:5,11:$V0,27:$V1},o($V3,[2,5]),{29:[1,15]},o($V5,[2,13],{13:16,19:17,20:18,12:$V6}),{5:[2,3]},{30:[1,20]},{14:21,15:[1,22],16:[1,23]},o($V5,[2,12]),o($V5,$V7,{21:24,20:25,12:$V6}),{22:[1,26]},{9:[2,26]},o($V3,[2,7]),{10:30,11:[1,27],12:[1,31],17:28,18:29,25:[1,32]},{15:[1,33]},o($V5,[2,14]),o($V5,$V7,{20:25,21:34,12:$V6}),{23:[1,35]},{12:$V4,16:[1,36]},{11:[1,37]},{11:[1,38]},{10:40,11:$V0,26:39},{11:$V8,12:$V9,24:41,25:$Va},{11:$V8,12:$V9,24:44,25:$Va},o($V3,[2,11]),o($V5,[2,15]),o([12,15,16],[2,17]),{12:[1,45]},{16:[1,46]},{16:[1,47]},{11:[2,23]},{10:40,11:$V0,26:48},{11:[2,18]},{11:$V8,12:$V9,24:49,25:$Va},{11:$V8,12:$V9,24:50,25:$Va},{11:[2,19]},{15:[1,51]},{12:[1,52]},{12:[1,53]},{11:[2,24]},{11:[2,20]},{11:[2,21]},o($V3,[2,8]),{15:[1,54]},{15:[1,55]},o($V3,[2,9]),o($V3,[2,10])],
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
 defaultActions: {8:[2,1],9:[2,2],14:[2,3],20:[2,26],39:[2,23],41:[2,18],44:[2,19],48:[2,24],49:[2,20],50:[2,21]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
@@ -731,7 +763,11 @@ case 10:return 'minus';
 break;
 case 11:return 'times';
 break;
+<<<<<<< HEAD
 case 12:return 17;
+=======
+case 12:return 16;
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
 break;
 case 13:return 'mod';
 break;

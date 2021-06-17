@@ -20,6 +20,8 @@ BSL                                 "\\".
 %%
 "<?"                                this.begin('comment');
 <comment>"?>"                       this.popState();   
+"<!--"                                this.begin('comment');
+<comment>"-->"                       this.popState();   
 "//".*                              /* skip comments */
 "/*"                                this.begin('comment');
 <comment>"*/"                       this.popState();
@@ -28,44 +30,28 @@ BSL                                 "\\".
 
 "print"                     return 'print';
 "null"                      return 'null';
-"true"                      return 'true';
-"false"                     return 'false';
 
-"+"                         return 'plus';
-"-"                         return 'minus';
-"*"                         return 'times';
 "/"                         return 'div';
 "%"                         return 'mod';
 
 
 
-"<="                        return 'lte';
-">="                        return 'gte';
+
 "<"                         return 'lt';
 ">"                         return 'gt';
 "="                         return 'asig';
-"=="                        return 'equal';
-"!="                        return 'nequal';
 
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
 
 
 ";"                         return 'semicolon';
-"("                         return 'lparen';
-")"                         return 'rparen';
 
-"&&"                        return 'and';
-"||"                        return 'or';
-"!"                         return 'not';
 
 /* Number literals */
 
 //(([0-9]+"."[0-9]*)|("."[0-9]+))     return 'DoubleLiteral';
 //[0-9]+                              return 'IntegerLiteral';
 
-[a-zA-Z_][a-zA-Z0-9_ñÑ]*            return 'identifier';
+[a-zA-Z_][a-zA-Z.0-9_ñÑ]*            return 'identifier';
 
 {stringliteral}                     return 'StringLiteral'
 {charliteral}                       return 'CharLiteral'
@@ -129,7 +115,7 @@ RAIZ:
 OBJETO:
       lt identifier LATRIBUTOS gt OBJETOS           lt div identifier gt       {contadorLineas++; 
                                                                                     if($2==$8){
-                                                                                    $$= new EntornoXML($2,'',@1.first_line, @1.first_column,$3,$5,$8);
+                                                                                    $$= new EntornoXML($2,'',@1.first_line, @1.first_column,$3,$5,'',null,$8);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $2)
                                                                                     var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$8, @1.first_line, @1.first_column);
@@ -138,17 +124,17 @@ OBJETO:
                                                                                         }
     | lt identifier LATRIBUTOS gt LISTA_ID_OBJETO   lt div identifier gt       { contadorLineas++; 
                                                                                     if($2==$8){
-                                                                                    $$= new EntornoXML($2,$5,@1.first_line, @1.first_column,$3,[],$8);
+                                                                                    $$= new EntornoXML($2,$5,@1.first_line, @1.first_column,$3,[],'',null,$8);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $2)
                                                                                     var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$8, @1.first_line, @1.first_column);
                                                                                     Errores.add(er);
                                                                                     } 
                                                                                      }
-    | lt identifier LATRIBUTOS div gt                                          { $$= new EntornoXML($2,'',@1.first_line, @1.first_column,$3,[],'Unica'); }
+    | lt identifier LATRIBUTOS div gt                                          { $$= new EntornoXML($2,'',@1.first_line, @1.first_column,$3,[],'',null,'Unica'); }
     | lt identifier LATRIBUTOS gt  lt div identifier gt       { contadorLineas++; 
                                                                 if($2==$8){
-                                                                $$ = new EntornoXML($2,$5,@1.first_line, @1.first_column,[],[],$7);
+                                                                $$ = new EntornoXML($2,$5,@1.first_line, @1.first_column,[],[],'',null,$7);
                                                                 }else{
                                                                 console.log("Error semantico"+ $2+ @1.first_column)
                                                                 var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $2+"-> "+$7, @1.first_line, @1.first_column);
@@ -177,7 +163,7 @@ ATRIBUTOS:
 ;
 
 ATRIBUTO: 
-    identifier asig StringLiteral                   { $$= new Atributo($1, $3, @1.first_line, @1.first_column); }
+    identifier asig StringLiteral                   { $$= new Atributo($1, $3, @1.first_line, @1.first_column,null); }
     |error StringLiteral {console.error('Error Sintactico: ' + yytext + ', linea: ' + @1.first_line + ',  columna: ' + @1.first_column);
                                var er =new NodoError("Error Sintatico","XML Ascendente","No se esperaba el caracter: "+ $1+"Se esperaba: ATRIBUTO ", @1.first_line,@1.first_column);
                                Errores.add(er);}

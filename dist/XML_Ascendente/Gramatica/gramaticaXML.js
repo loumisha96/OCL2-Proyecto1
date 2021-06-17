@@ -101,7 +101,7 @@ break;
 case 6:
 contadorLineas++; 
                                                                                     if($$[$0-7]==$$[$0-1]){
-                                                                                    this.$= new EntornoXML($$[$0-7],'',_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],$$[$0-4],$$[$0-1]);
+                                                                                    this.$= new EntornoXML($$[$0-7],'',_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],$$[$0-4],'',null,$$[$0-1]);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $$[$0-7])
                                                                                     var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], _$[$0-8].first_line, _$[$0-8].first_column);
@@ -112,7 +112,7 @@ break;
 case 7:
  contadorLineas++; 
                                                                                     if($$[$0-7]==$$[$0-1]){
-                                                                                    this.$= new EntornoXML($$[$0-7],$$[$0-4],_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],[],$$[$0-1]);
+                                                                                    this.$= new EntornoXML($$[$0-7],$$[$0-4],_$[$0-8].first_line, _$[$0-8].first_column,$$[$0-6],[],'',null,$$[$0-1]);
                                                                                     }else{
                                                                                     console.log("Error semantico"+ $$[$0-7])
                                                                                     var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-7]+"-> "+$$[$0-1], _$[$0-8].first_line, _$[$0-8].first_column);
@@ -121,12 +121,12 @@ case 7:
                                                                                      
 break;
 case 8:
- this.$= new EntornoXML($$[$0-3],'',_$[$0-4].first_line, _$[$0-4].first_column,$$[$0-2],[],'Unica'); 
+ this.$= new EntornoXML($$[$0-3],'',_$[$0-4].first_line, _$[$0-4].first_column,$$[$0-2],[],'',null,'Unica'); 
 break;
 case 9:
  contadorLineas++; 
                                                                 if($$[$0-6]==$$[$0]){
-                                                                this.$ = new EntornoXML($$[$0-6],$$[$0-3],_$[$0-7].first_line, _$[$0-7].first_column,[],[],$$[$0-1]);
+                                                                this.$ = new EntornoXML($$[$0-6],$$[$0-3],_$[$0-7].first_line, _$[$0-7].first_column,[],[],'',null,$$[$0-1]);
                                                                 }else{
                                                                 console.log("Error semantico"+ $$[$0-6]+ _$[$0-7].first_column)
                                                                 var er =new NodoError("Error Semantico","XML Ascendente","Etiquetas no coincidenG: "+ $$[$0-6]+"-> "+$$[$0-1], _$[$0-7].first_line, _$[$0-7].first_column);
@@ -151,7 +151,7 @@ case 13:
  this.$ = []; 
 break;
 case 16:
- this.$= new Atributo($$[$0-2], $$[$0], _$[$0-2].first_line, _$[$0-2].first_column); 
+ this.$= new Atributo($$[$0-2], $$[$0], _$[$0-2].first_line, _$[$0-2].first_column,null); 
 break;
 case 17:
 console.error('Error Sintactico: ' + yytext + ', linea: ' + _$[$0-1].first_line + ',  columna: ' + _$[$0-1].first_column);
@@ -163,7 +163,7 @@ case 18:
                                                     $$[$0]=$$[$0].replace('&gt;','>');
                                                     $$[$0]=$$[$0].replace('&amp;','&');
                                                     $$[$0]=$$[$0].replace('&apos;',"'");
-                                                    $$[$0]=$$[$0].replace('&quos;','"');
+                                                    $$[$0]=$$[$0].replace('&quot;','"');
                                                     $$[$0-1]=$$[$0-1] + ' ' +$$[$0] ; this.$ = $$[$0-1];
 break;
 case 19: case 21:
@@ -171,7 +171,7 @@ case 19: case 21:
                                                     this.$=this.$.replace('&gt;','>');
                                                     this.$=this.$.replace('&amp;','&');
                                                     this.$=this.$.replace('&apos;',"'");
-                                                    this.$=this.$.replace('&quos;','"'); 
+                                                    this.$=this.$.replace('&quot;','"'); 
                                                     this.$ = $$[$0] 
 break;
 case 20:
@@ -179,7 +179,7 @@ case 20:
                                                     $$[$0]=$$[$0].replace('&gt;','>');
                                                     $$[$0]=$$[$0].replace('&amp;','&');
                                                     $$[$0]=$$[$0].replace('&apos;',"'");
-                                                    $$[$0]=$$[$0].replace('&quos;','"'); 
+                                                    $$[$0]=$$[$0].replace('&quot;','"'); 
                                                     $$[$0-1]=$$[$0-1] + ' ' +$$[$0] ; this.$ = $$[$0-1];
 break;
 case 24:
@@ -775,86 +775,56 @@ case 0:this.begin('comment');
 break;
 case 1:this.popState();   
 break;
-case 2:/* skip comments */
+case 2:this.begin('comment');
 break;
-case 3:this.begin('comment');
+case 3:this.popState();   
 break;
-case 4:this.popState();
+case 4:/* skip comments */
 break;
-case 5:/* skip comment content*/
+case 5:this.begin('comment');
 break;
-case 6:/* skip whitespace */
+case 6:this.popState();
 break;
-case 7:return 23;
+case 7:/* skip comment content*/
 break;
-case 8:return 'null';
+case 8:/* skip whitespace */
 break;
-case 9:return 'true';
+case 9:return 23;
 break;
-case 10:return 'false';
+case 10:return 'null';
 break;
-case 11:return 'plus';
+case 11:return 15;
 break;
-case 12:return 'minus';
+case 12:return 'mod';
 break;
-case 13:return 'times';
+case 13:return 10;
 break;
-case 14:return 15;
+case 14:return 13;
 break;
-case 15:return 'mod';
+case 15:return 20;
 break;
-case 16:return 'lte';
+case 16:return 8;
 break;
-case 17:return 'gte';
+case 17:return 11;
 break;
-case 18:return 10;
+case 18:return 21
 break;
-case 19:return 13;
+case 19:return 'CharLiteral'
 break;
-case 20:return 20;
+case 20:return 22;
 break;
-case 21:return 'equal';
-break;
-case 22:return 'nequal';
-break;
-case 23:return 'and';
-break;
-case 24:return 'or';
-break;
-case 25:return 'not';
-break;
-case 26:return 8;
-break;
-case 27:return 24;
-break;
-case 28:return 26;
-break;
-case 29:return 'and';
-break;
-case 30:return 'or';
-break;
-case 31:return 'not';
-break;
-case 32:return 11;
-break;
-case 33:return 21
-break;
-case 34:return 'CharLiteral'
-break;
-case 35:return 22;
-break;
-case 36:
+case 21:
                                         console.error('Error léxico: ' + yy_.yytext + ', linea: ' + yy_.yylloc.first_line + ',  columna: ' + yy_.yylloc.first_column);
                                          var er =new NodoError("Error Lexico","No se esperaba el caracter: "+ yy_.yytext, yy_.yylloc.first_line,yy_.yylloc.first_column);
                                         Errores.add(er);
                                     
 break;
-case 37:return 5
+case 22:return 5
 break;
 }
 },
-rules: [/^(?:<\?)/i,/^(?:\?>)/i,/^(?:\/\/.*)/i,/^(?:\/\*)/i,/^(?:\*\/)/i,/^(?:.)/i,/^(?:\s+)/i,/^(?:print\b)/i,/^(?:null\b)/i,/^(?:true\b)/i,/^(?:false\b)/i,/^(?:\+)/i,/^(?:-)/i,/^(?:\*)/i,/^(?:\/)/i,/^(?:%)/i,/^(?:<=)/i,/^(?:>=)/i,/^(?:<)/i,/^(?:>)/i,/^(?:=)/i,/^(?:==)/i,/^(?:!=)/i,/^(?:&&)/i,/^(?:\|\|)/i,/^(?:!)/i,/^(?:;)/i,/^(?:\()/i,/^(?:\))/i,/^(?:&&)/i,/^(?:\|\|)/i,/^(?:!)/i,/^(?:[a-zA-Z_][a-zA-Z0-9_ñÑ]*)/i,/^(?:("((\\([\'\"\\bfnrtv]))|([^\"\\]+))*"))/i,/^(?:('((\\([\'\"\\bfnrtv]))|([^\'\\]))'))/i,/^(?:[^<>]*[a-zA-Z0-9_ñÑ]+[^<>]*)/i,/^(?:.)/i,/^(?:$)/i],
-conditions: {"comment":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37],"inclusive":true},"INITIAL":{"rules":[0,2,3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37],"inclusive":true}}
+rules: [/^(?:<\?)/i,/^(?:\?>)/i,/^(?:<!--)/i,/^(?:-->)/i,/^(?:\/\/.*)/i,/^(?:\/\*)/i,/^(?:\*\/)/i,/^(?:.)/i,/^(?:\s+)/i,/^(?:print\b)/i,/^(?:null\b)/i,/^(?:\/)/i,/^(?:%)/i,/^(?:<)/i,/^(?:>)/i,/^(?:=)/i,/^(?:;)/i,/^(?:[a-zA-Z_][a-zA-Z.0-9_ñÑ]*)/i,/^(?:("((\\([\'\"\\bfnrtv]))|([^\"\\]+))*"))/i,/^(?:('((\\([\'\"\\bfnrtv]))|([^\'\\]))'))/i,/^(?:[^<>]*[a-zA-Z0-9_ñÑ]+[^<>]*)/i,/^(?:.)/i,/^(?:$)/i],
+conditions: {"comment":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"inclusive":true},"INITIAL":{"rules":[0,2,4,5,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"inclusive":true}}
 });
 return lexer;
 })();

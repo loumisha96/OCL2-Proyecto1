@@ -245,6 +245,8 @@ var entornoAnterior="Global";
 var simboloAnterior;
 var textopagina="";
 var contenido="";
+var codificacion="UTF-8"
+
 //let entornoGlobal;
 let p = new producion();
 
@@ -256,21 +258,42 @@ const analizarTexto = () => {
     contenidoErrores="";
         Errores.clear();
     try {
-
+        
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
-        //agregarTablaSimbolos3(result);
-
-        //contenidoErrores="";
-        //Errores.clear();
+        arbolito=result;
         tabla="";
+<<<<<<< HEAD
       //  agregarTablaSimbolos3(result);
         
         //tabla="";
+=======
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
+
+        agregarTablaSimbolos(arbolito);
+        console.log(arbolito);
+        GenerarReporteTabla();
+        //recorreTablaExpresiones("titulo",guardarTabla)//prueba de entrada-->   //titulo
+       // reconocerCaso(pruebaDeQuery,arbolito)
 
 
+        recorreTabla("TITLE",arbolito)//prueba de entrada-->   //titulo
+    
+     
+
+
+        if (contenido.includes('ASCII')||contenido.includes('ascii')){
+            codificacion='ASCII'
+            
+        }else if(contenido.includes('UTF-8')||contenido.includes('utf-8')){
+            codificacion='UTF-8'
+        }else if(contenido.includes('ISO-8859-1')||contenido.includes('iso-8859-1')){
+            codificacion='ISO-8859-1'
+        }
+        imprimirEnConsola(salida)
         busqueda = new busqueda(result)
         search=busqueda
+<<<<<<< HEAD
         //agregarTablaSimbolos(result);
         //console.log(result);
         //GenerarReporteTabla();
@@ -283,23 +306,68 @@ const analizarTexto = () => {
            /* var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
             window.open(direccion, '_blank');*/
         /*if(!Errores.Vacio()){
+=======
+
+
+        if(!Errores.Vacio()){
+>>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
             console.log("vacio we")
         }else{
             contenidoErrores= Errores.mostrar_Lista()
         }*/
 
-        busqueda= new busqueda(guardarTabla);
+       // busqueda= new busqueda(guardarTabla);
         
-       // recorreTabla("titulo",guardarTabla)//prueba de entrada-->   //titulo
+       
 
 
     } catch (error) {
       console.log(error);
     }
   }
+  
+  function codificacionEnviar(cadena){
+    try {
+       var acumular= cadena;
+       var acumularUTF8 = "";
+       var acumularISO = "";
+       var retorno="";
 
+       switch(codificacion) {
+           case "UTF-8":
+            acumularUTF8 = decodeURIComponent(acumular);
+            acumularISO = decodeURIComponent(escape(acumularUTF8));
+               acumular = acumularISO;
+             break;
+           case "ISO-8859-1": 
+           acumularUTF8 = unescape(encodeURIComponent(acumular));
+               acumular = acumularUTF8;
+             break;
+            case "ASCII":
+                for (let index = 0; index < cadena.length; index++) {
+                   retorno+=cadena[index].charCodeAt()+' '
+
+                }
+                console.log(retorno)
+                cadena=retorno
+                break;
+           default:
+            acumularUTF8 = decodeURIComponent(acumular);
+            acumularISO = decodeURIComponent(escape(acumularUTF8));
+            acumular = acumularISO;
+         }
+       return acumular;
+    } catch (error) {
+        console.log(error);
+        return cadena
+    }
+   }
+   function imprimirEnConsola(cadena){
+
+       var c =document.getElementById("cons").value = codificacionEnviar(salida).replace('undefined','');
+   }
 function GenerarReporteTabla(){
-
+    texto=""
     texto = "<!DOCTYPE html> ";
     texto+="<html lang=\"en\">";
     texto+="<head>";
@@ -334,50 +402,10 @@ function Reporte_Errores(){
 
     var nueva_ventana = window.open('../Reporte_Errores','_blank');
     nueva_ventana.document.write(contenidoErrores);
-    //alert(Reporte_Error)
 
 }
-/*
-
+var textopagina;
 function Pagina_Reporte_AST(){
-
-    var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
-
-    var textopagina="<!DOCTYPE html>";
-    textopagina += "<html lang=\"en\">";
-    textopagina += "<head>";
-    textopagina += " <title>Reporte AST</title>";
-    textopagina += "<meta charset=\"utf-8\">";
-    textopagina += " <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
-    textopagina +=   "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js\"></script>";
-    textopagina += " <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js\"></script>";
-   
-    textopagina +=  " <script src=\"https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.3.0/viz.js\"></script>" ;  
-     
-
-    textopagina += "</head>";
-    textopagina += "<body>";
-    textopagina += "<div class=\"container\">";
-    textopagina += "<h1>Display</h1>";
-    textopagina += "<div id=\"jstree-tree\"></div>";
-    textopagina +=" <div id=\"graph\" style=\"text-align: center;\"></div>";
-    textopagina += "<script Viz("+cstXML+", options); ></script>";
-
-
-
-    
-    textopagina += "</div>";
-    textopagina += "</body>";
-    textopagina += "</html>";
-
-    nueva_ventana.document.write(textopagina);
-    //alert(textopagina);
-    
-
-}*/
-function Pagina_Reporte_AST(){
-
-    ///var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
 
     textopagina="<!DOCTYPE html>";
     textopagina += "<html lang=\"en\">";
@@ -385,55 +413,69 @@ function Pagina_Reporte_AST(){
     textopagina += " <title>Reporte AST</title>";
     textopagina += "<meta charset=\"utf-8\">";
     textopagina += " <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
-    textopagina += "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">";    
-    textopagina += "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css\" />";
-    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>";
-    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>";
-    textopagina += "<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>";
-    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>";
+
+    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/tablesort.min.js\"></script>";
+    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/tablesort/4.1.0/src/sorts/tablesort.number.js\"></script>";
+    textopagina += "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.3.0/viz.js\"></script>";
+    textopagina +=" <script src='./XML_Ascendente/CST/prueba.js'></script>"
     textopagina += "</head>";
     textopagina += "<body>";
     textopagina += "<div class=\"container\">";
     textopagina += "<h1>Display</h1>";
     textopagina += "<div id=\"jstree-tree\"></div>";
-    textopagina += "<script src=\"//d3js.org/d3.v5.min.js\"></script>";
-    textopagina += "<script src=\"https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js\"></script>";
-    textopagina += "<script src=\"https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js\"></script>";
-    textopagina +=" <div id=\"graph\" style=\"text-align: center;\"></div>";
-    textopagina +="<script> d3.select(\"#graph\").graphviz() .renderDot("+contenido+"); </script>";
+
     
-    textopagina += "</div>";
+    textopagina+="<button onclick=\"pruebaGraficarXML("+arbolito+")\"  id=\"btn22\" class=\"btnp\">CST Asc</button>"
+    textopagina+="<div id=\"grafoXML\"> </div>";
+
     textopagina += "</body>";
     textopagina += "</html>";
 
-    //nueva_ventana.document.write(textopagina);
-    //alert(textopagina);
-   // return textopagina
-
 }
 
-function Reporte_unos(){
-    console.log(Reporte_Clases.toString());
-    var nueva_ventana = window.open('../Reporte_Clases','_blank');
-    nueva_ventana.document.write(Reporte_Clases);
-    //alert(Reporte_Error)
+function Reporte_gramaticales(){
+   
+    GenerarReporteGramatical()
+    var nueva_ventana = window.open('../Reporte_Gramatical','_blank');
+    nueva_ventana.document.write(textoGramatical);
 
 }
-
+function Reporte_TablaV2(){
+    tabla="";
+    texto="";
+    entornoAnterior="Global"
+    agregarTablaSimbolos3(arbolito);
+    GenerarReporteTabla()
+    var nueva_ventana = window.open('../Reporte_Tabla','_blank');
+    nueva_ventana.document.write(texto);
+}
 
 function Reporte_Tabla(){
-
+    tabla="";
+    texto="";
+    entornoAnterior="Global"
+    agregarTablaSimbolos(arbolito);
+    console.log(arbolito)
+    GenerarReporteTabla()
     var nueva_ventana = window.open('../Reporte_Tabla','_blank');
     nueva_ventana.document.write(texto);
 
 
 }
 function Reporte_CST(){
+    pruebaGraficarXML()
+    cstXML=""
+    var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(arbolito));
+    window.open(direccion, '_blank');
+   // var nueva_ventana = window.open('./Reportes/Reporte_AST.html','_blank');
+    //nueva_ventana.document.open();
 
-    var nueva_ventana = window.open('./Reportes/Reporte_AST','_blank');
-    nueva_ventana.document.write(textopagina);
 
-
+}
+function AnalizarX(){
+    var ta = document.getElementById(get_vent());
+    var contenido = ta.value;
+    AnalizarXpath(contenido)
 }
 
 document.getElementById("boton").addEventListener("click",analizarTexto);
