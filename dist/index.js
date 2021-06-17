@@ -263,12 +263,9 @@ const analizarTexto = () => {
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         arbolito=result;
         tabla="";
-<<<<<<< HEAD
       //  agregarTablaSimbolos3(result);
         
         //tabla="";
-=======
->>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
 
         agregarTablaSimbolos(arbolito);
         console.log(arbolito);
@@ -293,7 +290,6 @@ const analizarTexto = () => {
         imprimirEnConsola(salida)
         busqueda = new busqueda(result)
         search=busqueda
-<<<<<<< HEAD
         //agregarTablaSimbolos(result);
         //console.log(result);
         //GenerarReporteTabla();
@@ -306,11 +302,6 @@ const analizarTexto = () => {
            /* var direccion = encodeURI("https://dreampuf.github.io/GraphvizOnline/#" + otra(result));
             window.open(direccion, '_blank');*/
         /*if(!Errores.Vacio()){
-=======
-
-
-        if(!Errores.Vacio()){
->>>>>>> 1b12fdc6b8708bf62b9047fc6ed7149c10d406d5
             console.log("vacio we")
         }else{
             contenidoErrores= Errores.mostrar_Lista()

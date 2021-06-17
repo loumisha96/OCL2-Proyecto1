@@ -1,7 +1,7 @@
 var nodos = new vis.DataSet();
 var aristas = new vis.DataSet();
 var bandera = false;
-padre_id=i;
+
 function newNodo(id,name){//creacion de nodos
     nodos.add([
         {id:id, label:name}

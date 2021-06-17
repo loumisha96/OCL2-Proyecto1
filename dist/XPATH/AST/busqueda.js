@@ -16,6 +16,7 @@ var busqueda = /** @class */ (function () {
         }
     };
     busqueda.prototype.RecorrerAst = function (padre) {
+        var cadena = "";
         if (padre.name != null) {
             for (var n in padre.children) { //si el nodo padre tiene hijos
                 this.RecorrerChildren(padre.children[n], this.tabla);
@@ -23,7 +24,9 @@ var busqueda = /** @class */ (function () {
         }
         //this.recorrerT(this.tabla)
         //this.cons(this.tabla,0)
-        this.search(this.tabla, this.x, false);
+        //var cadena = this.search(this.tabla,this.x,false)
+        cadena = this.cons0();
+        return cadena;
     };
     busqueda.prototype.RecorrerChildren = function (actual, tablaActual) {
         if (actual.children != undefined) { //tiene hijos
@@ -50,21 +53,41 @@ var busqueda = /** @class */ (function () {
             }
         }
     };
+    busqueda.prototype.cons0 = function () {
+        var cadena = "";
+        var x = 0;
+        if (this.tabla != undefined) {
+            for (var t = 0; t < this.tabla.length; t++) {
+                cadena = this.consulta(this.tabla, x);
+                x++;
+                x++;
+                var e = this.tabla[t];
+                if (e.tablaEntornos != undefined) {
+                    if (x < this.query2.length)
+                        cadena = this.cons(this.tabla, x);
+                }
+            }
+        }
+        return cadena;
+    };
     busqueda.prototype.cons = function (tablaActual, x) {
+        var cadena = "";
         if (tablaActual != undefined) {
             for (var t = 0; t < tablaActual.length; t++) {
                 var e = tablaActual[t];
                 if (e.tablaEntornos.length != 0) { //mas entornos
-                    console.log(e.id);
-                    if (e.id == this.query2[this.x].value)
-                        this.recorrerT(e.tablaEntornos);
+                    if (x < this.query2.length)
+                        cadena = this.consulta(e.tablaEntornos, x);
+                    x++;
                 }
                 else {
                     console.log(e.id);
                 }
+                if (x < this.query2.length)
+                    cadena = this.cons(e.tablaEntornos, x);
             }
         }
-        return "j";
+        return cadena;
     };
     busqueda.prototype.consulta = function (tablaActual, x) {
         var cadena = "";
@@ -79,7 +102,7 @@ var busqueda = /** @class */ (function () {
             cadena = this.step(tablaActual, x);
         }
         else {
-            this.id(tablaActual, x);
+            cadena = this.id(tablaActual, x);
         }
         console.log(cadena);
         return cadena;
@@ -160,6 +183,7 @@ var busqueda = /** @class */ (function () {
                             if (x + 1 == this.query.length && imprimir == false) {
                                 console.log(cadena);
                                 imprimir = true;
+                                return cadena;
                             }
                         }
                         else {
@@ -172,6 +196,7 @@ var busqueda = /** @class */ (function () {
                                 if (x + 1 == this.query.length && imprimir == false) {
                                     console.log(cadena);
                                     imprimir = true;
+                                    return cadena;
                                 }
                                 x++;
                                 if (x)
@@ -187,6 +212,7 @@ var busqueda = /** @class */ (function () {
                             if (x + 1 == this.query.length && imprimir == false) {
                                 console.log(cadena);
                                 imprimir = true;
+                                return cadena;
                             }
                             this.search(e.tablaEntornos, x + 1, imprimir);
                             break;
@@ -203,6 +229,7 @@ var busqueda = /** @class */ (function () {
                 }
             }
         }
+        return cadena;
     };
     busqueda.prototype.doubleSlash = function (x, e, tablaActual) {
         var cadena = "";
@@ -224,29 +251,29 @@ var busqueda = /** @class */ (function () {
         var _this = this;
         var cadena = "";
         tablaActual.forEach(function (element) {
-            if (element.id == objeto) { //encontró el entorno
-                if (element.id == element.EtiquetaCierre) {
-                    cadena += "<" + element.id + ">\n ";
-                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                        cadena += _this.recorrerAttrb(element.tablaSimbolos);
-                    }
-                    else {
-                        if (element.texto != "")
-                            cadena += element.texto;
-                        else
-                            cadena += _this.getContenido(element.tablaEntornos);
-                        cadena += "</" + element.EtiquetaCierre + ">\n";
-                    }
+            // if(element.id==objeto){//encontró el entorno
+            if (element.id == element.EtiquetaCierre) {
+                cadena += "<" + element.id + ">\n ";
+                if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                    cadena += _this.recorrerAttrb(element.tablaSimbolos);
                 }
                 else {
-                    cadena += "<" + element.id;
-                    if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
-                        cadena += _this.recorrerAttrb(element.tablaSimbolos) + "/>";
-                    }
+                    if (element.texto != "")
+                        cadena += element.texto;
                     else
-                        cadena += _this.getContenido(element.tablaEntornos) + "/>";
+                        cadena += _this.getContenido(element.tablaEntornos);
+                    cadena += "</" + element.EtiquetaCierre + ">\n";
                 }
             }
+            else {
+                cadena += "<" + element.id;
+                if (element.tablaSimbolos.length != 0) { // SI EL ELEMENTO TIENE MAS ENTORNOS EN SU INTERIOR
+                    cadena += _this.recorrerAttrb(element.tablaSimbolos) + "/>";
+                }
+                else
+                    cadena += _this.getContenido(element.tablaEntornos) + "/>";
+            }
+            // }
         });
         return cadena;
     };
