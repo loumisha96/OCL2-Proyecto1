@@ -1,6 +1,6 @@
 %{
 
-
+    const listaGramatical = [];
 
 %}
 
@@ -57,6 +57,7 @@ XML:
             $$ = new NodeDescXML('XML', '');
             $$.childList.push($1);
             $$.childList.push($2);
+
             return $$;
          }
         |TAGS_LIST EOF                    {
@@ -64,6 +65,7 @@ XML:
 
             $$ = new NodeDescXML('XML', '');
             $$.childList.push($1);
+
             return $$;
         }
 ;
@@ -72,6 +74,7 @@ TAGS_LIST:    TAG TAG_LIST {
     $$ = new NodeDescXML('TAGS_LIST', '');
     $$.childList.push($1);
     $$.childList.push($2);
+
 
 }
 ;
