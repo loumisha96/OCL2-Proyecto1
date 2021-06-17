@@ -1,9 +1,7 @@
-class NodeDesc {
-    constructor(value, type) {
+class NodeDescXML {
+    constructor(value) {
         this.value = value;
-        this.type = type;
         this.childList = [];
-        this.nodeNumber = 0;
     }
 
     setChild(value) {

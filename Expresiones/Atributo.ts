@@ -3,12 +3,14 @@ class Atributo{
     valor:string;
     linea: number;
     columna: number;
+    entornoAnterior:any;
 
-    constructor(id:string, valor:string, linea:number, columna:number){
+    constructor(id:string, valor:string, linea:number, columna:number,entornoAnterior:any){
         this.id = id;
         this.valor = valor;
         this.linea = linea;
         this.columna = columna;
+        this.entornoAnterior=entornoAnterior;
     }
     getId() {
         return this.id;

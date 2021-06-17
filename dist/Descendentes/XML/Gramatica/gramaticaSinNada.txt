@@ -134,6 +134,7 @@ RAIZ:
 OBJETO:
     lt  identifier LATRIBUTOS OBJETOP {
     }
+
 ;
 
 OBJETOP:
