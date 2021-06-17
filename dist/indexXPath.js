@@ -1,7 +1,6 @@
 let ast;
 
-i = 0;
-
+i=0;
 
 function AnalizarXpath() {
     var ta = document.getElementById(get_vent());
@@ -18,8 +17,10 @@ function AnalizarXpath() {
 }
 
 
+
 function query() {
     busqueda.recorrerAst(ast.tree);
+
 
 }
 
