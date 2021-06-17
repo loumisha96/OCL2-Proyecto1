@@ -1,10 +1,11 @@
 "use strict";
 var Atributo = /** @class */ (function () {
-    function Atributo(id, valor, linea, columna) {
+    function Atributo(id, valor, linea, columna, entornoAnterior) {
         this.id = id;
         this.valor = valor;
         this.linea = linea;
         this.columna = columna;
+        this.entornoAnterior = entornoAnterior;
     }
     Atributo.prototype.getId = function () {
         return this.id;

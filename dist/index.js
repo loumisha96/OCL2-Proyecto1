@@ -245,6 +245,7 @@ var entornoAnterior="Global";
 var simboloAnterior;
 var textopagina="";
 var contenido="";
+var codificacion="UTF-8"
 
 //let entornoGlobal;
 let p = new producion();
@@ -257,25 +258,33 @@ const analizarTexto = () => {
     contenidoErrores="";
         Errores.clear();
     try {
-
+        
       let result = gramaticaXML.parse(contenido);//<----------------- Arbol generado del analizador ascendente
         guardarTabla=result;//<---------------------------- Aqui esta la tabla de simbolos
         arbolito=result;
         tabla="";
 
-        agregarTablaSimbolos(result);
-        console.log(result);
+        agregarTablaSimbolos(arbolito);
+        console.log(arbolito);
         GenerarReporteTabla();
         //recorreTablaExpresiones("titulo",guardarTabla)//prueba de entrada-->   //titulo
-        reconocerCaso(pruebaDeQuery,arbolito)
+       // reconocerCaso(pruebaDeQuery,arbolito)
 
 
+        recorreTabla("TITLE",arbolito)//prueba de entrada-->   //titulo
+    
+     
 
 
-
-
-
-
+        if (contenido.includes('ASCII')||contenido.includes('ascii')){
+            codificacion='ASCII'
+            
+        }else if(contenido.includes('UTF-8')||contenido.includes('utf-8')){
+            codificacion='UTF-8'
+        }else if(contenido.includes('ISO-8859-1')||contenido.includes('iso-8859-1')){
+            codificacion='ISO-8859-1'
+        }
+        imprimirEnConsola(salida)
         busqueda = new busqueda(result)
         search=busqueda
 
@@ -288,7 +297,7 @@ const analizarTexto = () => {
 
        // busqueda= new busqueda(guardarTabla);
         
-        recorreTabla("CD",guardarTabla)//prueba de entrada-->   //titulo
+       
 
 
     } catch (error) {
@@ -296,7 +305,46 @@ const analizarTexto = () => {
     }
   }
   
+  function codificacionEnviar(cadena){
+    try {
+       var acumular= cadena;
+       var acumularUTF8 = "";
+       var acumularISO = "";
+       var retorno="";
 
+       switch(codificacion) {
+           case "UTF-8":
+            acumularUTF8 = decodeURIComponent(acumular);
+            acumularISO = decodeURIComponent(escape(acumularUTF8));
+               acumular = acumularISO;
+             break;
+           case "ISO-8859-1": 
+           acumularUTF8 = unescape(encodeURIComponent(acumular));
+               acumular = acumularUTF8;
+             break;
+            case "ASCII":
+                for (let index = 0; index < cadena.length; index++) {
+                   retorno+=cadena[index].charCodeAt()+' '
+
+                }
+                console.log(retorno)
+                cadena=retorno
+                break;
+           default:
+            acumularUTF8 = decodeURIComponent(acumular);
+            acumularISO = decodeURIComponent(escape(acumularUTF8));
+            acumular = acumularISO;
+         }
+       return acumular;
+    } catch (error) {
+        console.log(error);
+        return cadena
+    }
+   }
+   function imprimirEnConsola(cadena){
+
+       var c =document.getElementById("cons").value = codificacionEnviar(salida).replace('undefined','');
+   }
 function GenerarReporteTabla(){
     texto=""
     texto = "<!DOCTYPE html> ";
@@ -365,7 +413,7 @@ function Pagina_Reporte_AST(){
 }
 
 function Reporte_gramaticales(){
-    
+   
     GenerarReporteGramatical()
     var nueva_ventana = window.open('../Reporte_Gramatical','_blank');
     nueva_ventana.document.write(textoGramatical);
@@ -373,6 +421,8 @@ function Reporte_gramaticales(){
 }
 function Reporte_TablaV2(){
     tabla="";
+    texto="";
+    entornoAnterior="Global"
     agregarTablaSimbolos3(arbolito);
     GenerarReporteTabla()
     var nueva_ventana = window.open('../Reporte_Tabla','_blank');
@@ -380,7 +430,12 @@ function Reporte_TablaV2(){
 }
 
 function Reporte_Tabla(){
-
+    tabla="";
+    texto="";
+    entornoAnterior="Global"
+    agregarTablaSimbolos(arbolito);
+    console.log(arbolito)
+    GenerarReporteTabla()
     var nueva_ventana = window.open('../Reporte_Tabla','_blank');
     nueva_ventana.document.write(texto);
 

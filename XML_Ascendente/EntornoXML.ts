@@ -5,17 +5,19 @@ class EntornoXML{
     tablaEntornos: Array<any>;
     linea: number;
     columna: number;
-   // entorno: EntornoXML;
+    entorno: String;
+    entornoAnterior:any;
     EtiquetaCierre:string;
 
-    constructor(id:string, texto:string, linea:number, columna:number, tablaSimbolos:Array<any>, tablaEntornos:Array<any>,EtiquetaCierre:string){
+    constructor(id:string, texto:string, linea:number, columna:number, tablaSimbolos:Array<any>, tablaEntornos:Array<any>,entorno:String,entornoAnterior:any,EtiquetaCierre:string){
         this.id = id;
         this.texto = texto;
         this.linea = linea;
         this.columna = columna;
         this.tablaSimbolos = tablaSimbolos;
         this.tablaEntornos = tablaEntornos
-       // this.entorno = new EntornoXML(null);
+        this.entorno = entorno;
+        this.entornoAnterior=entornoAnterior
         this.EtiquetaCierre=EtiquetaCierre;
     }
     getId() {
